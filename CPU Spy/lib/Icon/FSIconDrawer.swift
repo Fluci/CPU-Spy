@@ -89,19 +89,6 @@ public class FSIconDrawer : NSObject, IconDrawer {
         
     }
     private func drawBars(){
-        
-        // run-variables
-        
-        var x : Int = 0
-        var y : Int = 0
-        
-        let barsCount = bars.count
-        var barCount = 0
-        var bar : [FSIconBar]
-        var b : FSIconBar
-        
-        // draw bars
-        
         /// lower horizontal edge y-coordinate
         var barBase : CGFloat = 0.0
         
@@ -112,7 +99,7 @@ public class FSIconDrawer : NSObject, IconDrawer {
         var barStart : CGFloat = 0.0
 
         /// horizontal width
-        let barWidth : CGFloat = width / CGFloat(barsCount)
+        let barWidth : CGFloat = width / CGFloat(bars.count)
         
         
         // coordinate system: (0,0) left bottom corner
@@ -120,14 +107,15 @@ public class FSIconDrawer : NSObject, IconDrawer {
         let ctx : CGContextRef = NSGraphicsContext.currentContext()!.CGContext
         
         CGContextSetLineWidth(ctx, 0.0)
+        
 
-        for (x = 0; x < barsCount; x++) {
-            bar = bars[x]
+        for (var x = 0; x < bars.count; x++) {
+            var bar : [FSIconBar] = bars[x]
             barBase = 0.0
             barStart = barWidth * CGFloat(x) // leftStartPoint: calculated absolute for
-            barCount = bar.count
-            for (y = 0; y < barCount; y++) {
-                b = bar[y]
+            let barCount = bar.count
+            for (var y = 0; y < barCount; y++) {
+                let b : FSIconBar = bar[y]
                 barHeight = b.height
                 //CGContextSetFillColor(ctx, &b.color)
                 CGContextSetRGBFillColor(ctx, b.color[0], b.color[1], b.color[2], 1)
