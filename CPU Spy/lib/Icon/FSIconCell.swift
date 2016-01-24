@@ -11,12 +11,12 @@ import Foundation
 
 public struct FSIconCell {
     /// will be written in cell
-    var string : String
-    var cfString : CFAttributedString!
+    var string: String
+    var cfString: CFAttributedString!
     /// color: r,g,b,a
-    var color : CGColor = CGColorGetConstantColor(kCGColorWhite)!
-    
-    init(value: String){
-        string = value;
+    var color: CGColor = CGColorGetConstantColor(kCGColorWhite)!
+
+    init(value: String) {
+        string = value
     }
 }

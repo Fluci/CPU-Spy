@@ -10,28 +10,28 @@ import Foundation
 
 public class FSSample: Sample {
     // FAQ: why arrays and not linked lists? it's simpler for maintaining
-    
+
     /// time when sample was taken
-    public internal(set) var dateSampling  : NSDate = NSDate()
+    public internal(set) var dateSampling: NSDate = NSDate()
 
     /// raw data
-    public private(set) var processesAll : [ProcessSample] = []
-    
-    
+    public private(set) var processesAll: [ProcessSample] = []
+
+
     // MARK: Methods
     // MARK: wrapper: appending to lists
-    internal func appendProcessSample(newProc: ProcessSample){
+    internal func appendProcessSample(newProc: ProcessSample) {
         // insert into global list
         processesAll.append(newProc)
     }
-    
-    public var totalCpuUsagePercAll : Double {
+
+    public var totalCpuUsagePercAll: Double {
         get {
-            var sum = 0.0;
+            var sum = 0.0
             for p in processesAll {
-                sum += p.cpuUsagePerc;
+                sum += p.cpuUsagePerc
             }
-            return sum;
+            return sum
         }
     }
 }

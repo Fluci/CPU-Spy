@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		844B9DE91C52DB2400EE25CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844B9DE81C52DB2400EE25CC /* Assets.xcassets */; };
 		844B9DEC1C52DB2400EE25CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844B9DEA1C52DB2400EE25CC /* Main.storyboard */; };
-		844B9DF71C52DB2400EE25CC /* CPU_SpyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9DF61C52DB2400EE25CC /* CPU_SpyTests.swift */; };
-		844B9E021C52DB2400EE25CC /* CPU_SpyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E011C52DB2400EE25CC /* CPU_SpyUITests.swift */; };
+		844B9DF71C52DB2400EE25CC /* CPUSpyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9DF61C52DB2400EE25CC /* CPUSpyTests.swift */; };
+		844B9E021C52DB2400EE25CC /* CPUSpyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E011C52DB2400EE25CC /* CPUSpyUITests.swift */; };
 		844B9E461C52DE0E00EE25CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E431C52DE0E00EE25CC /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		844B9E471C52DE0E00EE25CC /* ProcessTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E441C52DE0E00EE25CC /* ProcessTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		844B9E481C52DE0E00EE25CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E451C52DE0E00EE25CC /* ViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -27,7 +27,6 @@
 		844B9E791C52DE3000EE25CC /* FSPSRowReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E621C52DE3000EE25CC /* FSPSRowReader.swift */; settings = {ASSET_TAGS = (); }; };
 		844B9E7B1C52DE3000EE25CC /* FSPSSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E641C52DE3000EE25CC /* FSPSSampler.swift */; settings = {ASSET_TAGS = (); }; };
 		844B9E7C1C52DE3000EE25CC /* PSCol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E651C52DE3000EE25CC /* PSCol.swift */; settings = {ASSET_TAGS = (); }; };
-		844B9E7D1C52DE3000EE25CC /* PSSampling_Datatypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E661C52DE3000EE25CC /* PSSampling_Datatypes.swift */; settings = {ASSET_TAGS = (); }; };
 		844B9E7E1C52DE3000EE25CC /* ProcessState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E671C52DE3000EE25CC /* ProcessState.swift */; settings = {ASSET_TAGS = (); }; };
 		844B9E7F1C52DE3000EE25CC /* FSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E691C52DE3000EE25CC /* FSString.swift */; settings = {ASSET_TAGS = (); }; };
 		844B9E811C52E04E00EE25CC /* FSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E691C52DE3000EE25CC /* FSString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -97,10 +96,10 @@
 		844B9DEB1C52DB2400EE25CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		844B9DED1C52DB2400EE25CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		844B9DF21C52DB2400EE25CC /* CPU SpyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CPU SpyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		844B9DF61C52DB2400EE25CC /* CPU_SpyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU_SpyTests.swift; sourceTree = "<group>"; };
+		844B9DF61C52DB2400EE25CC /* CPUSpyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUSpyTests.swift; sourceTree = "<group>"; };
 		844B9DF81C52DB2400EE25CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		844B9DFD1C52DB2400EE25CC /* CPU SpyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CPU SpyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		844B9E011C52DB2400EE25CC /* CPU_SpyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU_SpyUITests.swift; sourceTree = "<group>"; };
+		844B9E011C52DB2400EE25CC /* CPUSpyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUSpyUITests.swift; sourceTree = "<group>"; };
 		844B9E031C52DB2400EE25CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		844B9E431C52DE0E00EE25CC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		844B9E441C52DE0E00EE25CC /* ProcessTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessTableViewController.swift; sourceTree = "<group>"; };
@@ -119,7 +118,6 @@
 		844B9E621C52DE3000EE25CC /* FSPSRowReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPSRowReader.swift; sourceTree = "<group>"; };
 		844B9E641C52DE3000EE25CC /* FSPSSampler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPSSampler.swift; sourceTree = "<group>"; };
 		844B9E651C52DE3000EE25CC /* PSCol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSCol.swift; sourceTree = "<group>"; };
-		844B9E661C52DE3000EE25CC /* PSSampling_Datatypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSSampling_Datatypes.swift; sourceTree = "<group>"; };
 		844B9E671C52DE3000EE25CC /* ProcessState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProcessState.swift; path = Protocols/ProcessState.swift; sourceTree = "<group>"; };
 		844B9E691C52DE3000EE25CC /* FSString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSString.swift; sourceTree = "<group>"; };
 		844B9E841C52E09700EE25CC /* FSStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSStringTests.swift; sourceTree = "<group>"; };
@@ -204,7 +202,7 @@
 		844B9DF51C52DB2400EE25CC /* CPU SpyTests */ = {
 			isa = PBXGroup;
 			children = (
-				844B9DF61C52DB2400EE25CC /* CPU_SpyTests.swift */,
+				844B9DF61C52DB2400EE25CC /* CPUSpyTests.swift */,
 				844B9DF81C52DB2400EE25CC /* Info.plist */,
 			);
 			path = "CPU SpyTests";
@@ -213,7 +211,7 @@
 		844B9E001C52DB2400EE25CC /* CPU SpyUITests */ = {
 			isa = PBXGroup;
 			children = (
-				844B9E011C52DB2400EE25CC /* CPU_SpyUITests.swift */,
+				844B9E011C52DB2400EE25CC /* CPUSpyUITests.swift */,
 				844B9E031C52DB2400EE25CC /* Info.plist */,
 			);
 			path = "CPU SpyUITests";
@@ -276,7 +274,6 @@
 				844B9E641C52DE3000EE25CC /* FSPSSampler.swift */,
 				844B9E871C52E0B800EE25CC /* FSPSSampler.t.swift */,
 				844B9E651C52DE3000EE25CC /* PSCol.swift */,
-				844B9E661C52DE3000EE25CC /* PSSampling_Datatypes.swift */,
 			);
 			path = PSSampler;
 			sourceTree = "<group>";
@@ -339,6 +336,7 @@
 				844B9DDA1C52DB2400EE25CC /* Sources */,
 				844B9DDB1C52DB2400EE25CC /* Frameworks */,
 				844B9DDC1C52DB2400EE25CC /* Resources */,
+				84DEAF2D1C55174400060D34 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -453,6 +451,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		84DEAF2D1C55174400060D34 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint lint --config ${PROJECT_DIR}/.swiftlint.yml\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		844B9DDA1C52DB2400EE25CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -460,7 +474,6 @@
 			files = (
 				8488A1F21C5414B100DE565D /* SampleCollectorDelegate.swift in Sources */,
 				844B9E7F1C52DE3000EE25CC /* FSString.swift in Sources */,
-				844B9E7D1C52DE3000EE25CC /* PSSampling_Datatypes.swift in Sources */,
 				844B9E7C1C52DE3000EE25CC /* PSCol.swift in Sources */,
 				844B9E6B1C52DE3000EE25CC /* FSIconBar.swift in Sources */,
 				844B9E481C52DE0E00EE25CC /* ViewController.swift in Sources */,
@@ -504,7 +517,7 @@
 			files = (
 				844B9E8D1C52E53D00EE25CC /* FSPSSampler.t.swift in Sources */,
 				8488A1F91C54175700DE565D /* CommandSplitter.swift in Sources */,
-				844B9DF71C52DB2400EE25CC /* CPU_SpyTests.swift in Sources */,
+				844B9DF71C52DB2400EE25CC /* CPUSpyTests.swift in Sources */,
 				844B9E811C52E04E00EE25CC /* FSString.swift in Sources */,
 				844B9E9E1C538E8B00EE25CC /* PSCol.swift in Sources */,
 				844B9E8B1C52E53400EE25CC /* FSPSCommandSplitter.swift in Sources */,
@@ -534,7 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				844B9E021C52DB2400EE25CC /* CPU_SpyUITests.swift in Sources */,
+				844B9E021C52DB2400EE25CC /* CPUSpyUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

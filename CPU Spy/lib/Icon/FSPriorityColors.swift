@@ -10,18 +10,18 @@ import Foundation
 
 
 public class FSPriorityColors {
-    public var defaultColor : [CGFloat];
-    public var prioColors : [[CGFloat]];
-    
+    public var defaultColor: [CGFloat]
+    public var prioColors: [[CGFloat]]
+
     public subscript(index: Int) -> [CGFloat] {
-        if(0 <= index && index < prioColors.count){
-            return prioColors[index];
+        if 0 <= index && index < prioColors.count {
+            return prioColors[index]
         }
-        return defaultColor;
+        return defaultColor
     }
 
-    init(aDefaultColor : [CGFloat] = [0.5, 0.5, 0.5, 1.0], somePrioColors: [CGFloat]...){
-        defaultColor = aDefaultColor;
-        prioColors = somePrioColors;
+    init(aDefaultColor: [CGFloat] = [0.5, 0.5, 0.5, 1.0], somePrioColors: [CGFloat]...) {
+        defaultColor = aDefaultColor
+        prioColors = somePrioColors
     }
 }

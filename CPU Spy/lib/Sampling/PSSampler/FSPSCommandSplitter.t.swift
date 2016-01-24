@@ -15,60 +15,60 @@ import XCTest
     Don't change the order of the cases in the array, just append at the end.
 */
 class FSPSCommandSplitterTests: XCTestCase {
-    
-    let splitter : CommandSplitter = FSPSCommandSplitter();
-    
+
+    let splitter: CommandSplitter = FSPSCommandSplitter()
+
     func testNoPath() {
-        runCase(8);
-        runCase(9);
-        runCase(10);
-        runCase(12);
-        runCase(13);
+        runCase(8)
+        runCase(9)
+        runCase(10)
+        runCase(12)
+        runCase(13)
     }
-    func testNoArgs(){
-        runCase(14);
-        runCase(16);
-    
+    func testNoArgs() {
+        runCase(14)
+        runCase(16)
+
     }
-    func testCommonAll(){
-        runCase(12);
-        runCase(13);
+    func testCommonAll() {
+        runCase(12)
+        runCase(13)
     }
-    func testSpecialArgSpaceExec(){
-        runCase(16);
-        runCase(17);
-        runCase(18);
+    func testSpecialArgSpaceExec() {
+        runCase(16)
+        runCase(17)
+        runCase(18)
     }
-    func testSpecialArgLowArg(){
-        runCase(3);
-        runCase(5);
-        runCase(6);
-        runCase(7);
+    func testSpecialArgLowArg() {
+        runCase(3)
+        runCase(5)
+        runCase(6)
+        runCase(7)
     }
-    func testSpecialArgPath(){
-        runCase(0);
-        runCase(1);
-        runCase(2);
+    func testSpecialArgPath() {
+        runCase(0)
+        runCase(1)
+        runCase(2)
     }
-    func testAll(){
-        for(var i = 0; i < cases.count; ++i){
-            runCase(i);
+    func testAll() {
+        for var i = 0; i < cases.count; ++i {
+            runCase(i)
         }
     }
-    func runCase(let i : Int){
-        let c = cases[i];
-        let (path: path, exec: exec, args: args) = splitter.split(FSString(c.command));
-        
-        XCTAssertEqual(c.path, path?.string(), "case \(i) failed: path: \(c.command)");
-        XCTAssertEqual(c.exec, exec.string(), "case \(i) failed: exec: \(c.command)");
-        XCTAssertEqual(c.args.count, args.count, "case \(i) failed: args: \(c.command)");
-        let m = min(c.args.count, args.count);
-        for(var j = 0; j < m; ++j){
-            XCTAssertEqual(c.args[j], args[j].string(), "case \(i) failed: arg \(j): \(c.command)");
+    func runCase(let caseI: Int) {
+        let c = cases[caseI]
+        let (path: path, exec: exec, args: args) = splitter.split(FSString(c.command))
+
+        XCTAssertEqual(c.path, path?.string(), "case \(caseI) failed: path: \(c.command)")
+        XCTAssertEqual(c.exec, exec.string(), "case \(caseI) failed: exec: \(c.command)")
+        XCTAssertEqual(c.args.count, args.count, "case \(caseI) failed: args: \(c.command)")
+        let m = min(c.args.count, args.count)
+        for var j = 0; j < m; ++j {
+            XCTAssertEqual(c.args[j], args[j].string(), "case \(caseI) failed: arg \(j): \(c.command)")
         }
     }
-    
-    let cases : [(command : String, path : String?, exec: String, args: [String])] = [
+
+    let cases : [(command: String, path: String?, exec: String, args: [String])] = [
         ( // 0
             command: "/opt/cisco/anyconnect/bin/vpnagentd -execv_instance",
             path: "/opt/cisco/anyconnect/bin",
@@ -133,7 +133,16 @@ class FSPSCommandSplitterTests: XCTestCase {
             command: "ssh -Cf -L localhost:15555:localhost:1234 abc@de.fg.de -p 4321 sleep 10",
             path: nil,
             exec: "ssh",
-            args: ["-Cf", "-L", "localhost:15555:localhost:1234", "abc@de.fg.de", "-p", "4321", "sleep", "10"]
+            args: [
+                "-Cf",
+                "-L",
+                "localhost:15555:localhost:1234",
+                "abc@de.fg.de",
+                "-p",
+                "4321",
+                "sleep",
+                "10"
+            ]
         ),
         ( // 11
             command: "/bin/sh - /usr/sbin/periodic daily",
@@ -213,5 +222,5 @@ class FSPSCommandSplitterTests: XCTestCase {
             exec: "com.apple.dock.extra",
             args: []
         )
-    ];
+    ]
 }

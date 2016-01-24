@@ -9,7 +9,7 @@
 import Cocoa
 
 public protocol Icon {
-    var delegate : IconDelegate? { get set }
-    
-    var drawer : IconDrawer { get set }
+    var delegate: IconDelegate? { get set }
+
+    var drawer: IconDrawer { get set }
 }

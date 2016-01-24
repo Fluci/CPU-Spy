@@ -10,5 +10,5 @@ import Foundation
 
 
 public protocol SamplerDelegate {
-    func didLoadSample(sender: Sampler, sample: Sample);
+    func didLoadSample(sender: Sampler, sample: Sample)
 }

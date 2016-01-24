@@ -9,18 +9,18 @@
 import Foundation
 
 enum Alignment {
-    case left
-    case right
-    case unknown
+    case Left
+    case Right
+    case Unknown
 }
 
 internal struct PSCol {
-    var start: Int = 0;
-    var end: Int = Int.max;
-    var alignment: Alignment = .unknown;
-    
-    init(start: Int, end: Int){
-        self.start = start;
-        self.end = end;
+    var start: Int = 0
+    var end: Int = Int.max
+    var alignment: Alignment = .Unknown
+
+    init(start: Int, end: Int) {
+        self.start = start
+        self.end = end
     }
 }

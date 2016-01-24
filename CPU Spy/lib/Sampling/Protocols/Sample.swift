@@ -10,10 +10,10 @@ import Foundation
 
 
 public protocol Sample {
-    var dateSampling  : NSDate { get };
-    
+    var dateSampling: NSDate { get }
+
     /// raw data
-    var processesAll : [ProcessSample] { get };
-    
-    var totalCpuUsagePercAll : Double { get };
+    var processesAll: [ProcessSample] { get }
+
+    var totalCpuUsagePercAll: Double { get }
 }

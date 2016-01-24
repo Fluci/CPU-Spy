@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol IconDrawerDelegate {    
+public protocol IconDrawerDelegate {
     func willRedraw(sender: IconDrawer) -> Bool
 }

@@ -12,39 +12,39 @@ import Foundation
 
 public class FSSampleCollector: SampleCollector, SamplerDelegate {
 
-    public required init (aSampler: Sampler){
-        sampler = aSampler;
-        sampler.delegate = self;
+    public required init (aSampler: Sampler) {
+        sampler = aSampler
+        sampler.delegate = self
     }
-    
-    public var delegate : SampleCollectorDelegate?
-    public private(set) var sampler : Sampler;
-    
-    public private(set) var samples : [Sample] = []
-    public var maxSamples : Int = 16;
-    
+
+    public var delegate: SampleCollectorDelegate?
+    public private(set) var sampler: Sampler
+
+    public private(set) var samples: [Sample] = []
+    public var maxSamples: Int = 16
+
     // MARK: internal
-    private func addSample(smpl : Sample){
-        if(samples.count >= maxSamples){
-            samples.removeFirst(maxSamples - samples.count + 1);
-            assert(samples.count == maxSamples-1);
+    private func addSample(smpl: Sample) {
+        if samples.count >= maxSamples {
+            samples.removeFirst(maxSamples - samples.count + 1)
+            assert(samples.count == maxSamples-1)
         }
         samples.append(smpl)
-        assert(samples.count <= maxSamples);
+        assert(samples.count <= maxSamples)
     }
-    
+
     // MARK: interfaces for communication with subobjects
-    
-    private func delegateDidLoadSample(sample: Sample){
+
+    private func delegateDidLoadSample(sample: Sample) {
         // informs delegate
         self.delegate?.didLoadSample(self, sample: sample)
     }
-    
+
     // MARK: delegate-receiving
-    
+
     public func didLoadSample(sender: Sampler, sample: Sample) {
         addSample(sample)
         delegateDidLoadSample(sample)
     }
-    
+
 }

@@ -8,4 +8,4 @@
 
 import Foundation
 
-let SAMPLE_INTERVAL_FOREGROUND = "SAMPLE_INTERVAL_FOREGROUND"
+let settingSampleIntervalForeground = "SAMPLE_INTERVAL_FOREGROUND"

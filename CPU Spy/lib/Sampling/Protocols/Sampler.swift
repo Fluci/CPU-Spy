@@ -10,9 +10,9 @@ import Foundation
 
 
 public protocol Sampler {
-    var sampleInterval: Double { get set };
-    var delegate: SamplerDelegate? { get set } ;
-    var sample : Sample? { get };
-    
-    func start ();
+    var sampleInterval: Double { get set }
+    var delegate: SamplerDelegate? { get set }
+    var sample: Sample? { get }
+
+    func start ()
 }

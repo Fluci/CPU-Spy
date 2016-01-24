@@ -10,20 +10,20 @@ import Foundation
 
 
 public protocol ProcessSample {
-    var staticDat : ProcessSampleStatic { get }
-    
+    var staticDat: ProcessSampleStatic { get }
+
     /// 1.0 = one core running on 100%
-    var cpuUsagePerc : Double! { get }
-    var memUsagePerc : Double! { get }
-    
-    var signalsPending : String! { get }
-    var signalsBlocked : String! { get }
-    
-    var xstat : Int! { get }
-    var state : ProcessState! { get }
-    var additionalStates : [ProcessStateAdditional] { get }
-    
-    
-    func addAdditionalState(s: ProcessStateAdditional);
-    
+    var cpuUsagePerc: Double! { get }
+    var memUsagePerc: Double! { get }
+
+    var signalsPending: String! { get }
+    var signalsBlocked: String! { get }
+
+    var xstat: Int! { get }
+    var state: ProcessState! { get }
+    var additionalStates: [ProcessStateAdditional] { get }
+
+
+    func addAdditionalState(aState: ProcessStateAdditional)
+
 }

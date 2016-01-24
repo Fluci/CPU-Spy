@@ -10,13 +10,13 @@ import Foundation
 
 
 public protocol SampleCollector {
-    
-    init(aSampler : Sampler)
-    
-    var delegate : SampleCollectorDelegate? { get set }
-    var sampler : Sampler { get }
-    
-    var samples : [Sample] { get }
-    
-    var maxSamples : Int { get set }
+
+    init(aSampler: Sampler)
+
+    var delegate: SampleCollectorDelegate? { get set }
+    var sampler: Sampler { get }
+
+    var samples: [Sample] { get }
+
+    var maxSamples: Int { get set }
 }

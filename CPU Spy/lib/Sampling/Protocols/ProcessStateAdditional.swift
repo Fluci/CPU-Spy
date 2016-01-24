@@ -9,18 +9,18 @@
 import Foundation
 
 
-public enum ProcessStateAdditional : Int {
-    case normal                 // just nothing special
-    case foreground             // +
-    case raisedCPU              // <
-    case exceedingSoftMemLim    // >
-    case randomPageReplacement  // A
-    case exiting                // E
-    case lockedPagesInCore      // L
-    case reducedCPUPriority     // N
+public enum ProcessStateAdditional: Int {
+    case Normal                 // just nothing special
+    case Foreground             // +
+    case RaisedCPU              // <
+    case ExceedingSoftMemLim    // >
+    case RandomPageReplacement  // A
+    case Exiting                // E
+    case LockedPagesInCore      // L
+    case ReducedCPUPriority     // N
     case FIFOPageReplacement    // S
-    case sessionLeader          // s
-    case vforkSuspension        // V
-    case swappedOut             // W
-    case tracedDebugged         // X
+    case SessionLeader          // s
+    case VforkSuspension        // V
+    case SwappedOut             // W
+    case TracedDebugged         // X
 }

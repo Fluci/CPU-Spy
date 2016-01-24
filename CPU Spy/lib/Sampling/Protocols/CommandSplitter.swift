@@ -9,5 +9,5 @@
 import Foundation
 
 protocol CommandSplitter {
-    func split(command : FSString) -> (path : FSString?, exec : FSString, args : [FSString])
+    func split(command: FSString) -> (path: FSString?, exec: FSString, args: [FSString])
 }

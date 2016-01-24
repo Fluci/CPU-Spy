@@ -8,5 +8,5 @@
 
 import Foundation
 
-let NEW_SAMPLE = "NEW_SAMPLE"
-let NEW_SAMPLE_INTERVAL_FOREGROUND = "NEW_SAMPLE_INTERVAL_FOREGROUND"
+let msgNewSample = "NEW_SAMPLE"
+let msgNewSampleIntervalForeground = "NEW_SAMPLE_INTERVAL_FOREGROUND"
