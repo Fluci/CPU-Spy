@@ -9,25 +9,58 @@
 import Cocoa
 
 class ViewController: NSViewController {
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    let noteCenter = NSNotificationCenter.defaultCenter()
+
+    var runMode: RunMode = .Foreground
 
     @IBOutlet var sampleIntervalForeground: NSTextField?
-
-    @IBAction func sampleIntervalForegroundChanged(sender: NSTextField) {
-        if NSUserDefaults.standardUserDefaults()
-            .doubleForKey(settingSampleIntervalForeground) == sender.doubleValue {
-            return
-        }
-        NSNotificationCenter.defaultCenter()
-            .postNotificationName(msgNewSampleIntervalForeground, object: sender.doubleValue)
-    }
+    @IBOutlet var sampleIntervalBackground: NSTextField?
+    @IBOutlet var sampleIntervalHidden: NSTextField?
 
     var processTableViewController: ProcessTableViewController! = ProcessTableViewController()
+
     @IBOutlet var processTableView: NSTableView? {
         didSet {
             processTableViewController.processTable = processTableView
         }
     }
 
+
+    // MARK: Appearance control
+    override func viewWillAppear() {
+        super.viewWillAppear()
+
+        // read settings from UserDefaults
+        let ud = userDefaults
+        sampleIntervalForeground?.doubleValue = ud.doubleForKey(settingSampleIntervalForeground)
+        sampleIntervalBackground?.doubleValue = ud.doubleForKey(settingSampleIntervalBackground)
+        sampleIntervalHidden?.doubleValue     = ud.doubleForKey(settingSampleIntervalHidden)
+
+        // add self as observer for settings
+        noteCenter.addObserver(
+            self,
+            selector: Selector("newSample:"),
+            name: msgNewSample,
+            object: nil)
+
+        // add self as observer for runMode
+        noteCenter.addObserver(
+            self,
+            selector: Selector("runModeChanged:"),
+            name: msgRunModeChanged,
+            object: nil)
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+
+        // remove as observer, we're not showing anything anyway
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+
+    }
+
+    // MARK: newSample handling
     func newSample(aNote: NSNotification) {
         switch aNote.name {
         case msgNewSample:
@@ -39,31 +72,69 @@ class ViewController: NSViewController {
                     aNote.name)
             }
         default:
-            NSLog("Unknown notification name encountered: %@", aNote.name)
+            NSLog("newSample: Unknown notification name encountered: %@", aNote.name)
         }
     }
 
-    // MARK: Appearance control
-    override func viewWillAppear() {
-        super.viewWillAppear()
+    // MARK: sampleIntervalX handling
 
-        let defaults = NSUserDefaults.standardUserDefaults()
+    @IBAction func sampleIntervalChanged(sender: NSTextField) {
+        if sender.identifier == nil {
+            NSLog("No sender.identifier given for interval change.")
+            return
+        }
 
-        // read settings from UserDefaults
-        sampleIntervalForeground?.doubleValue = defaults
-            .doubleForKey(settingSampleIntervalForeground)
+        let settingKey: String
+        let msgKey: String
+        let newValue = sender.doubleValue
 
-        // add self as observer for settings
-        NSNotificationCenter.defaultCenter()
-            .addObserver(self, selector: Selector("newSample:"), name: msgNewSample, object: nil)
+        switch sender.identifier! {
+        case "sampleIntervalForeground":
+            settingKey = settingSampleIntervalForeground
+            msgKey = msgNewSampleIntervalForeground
+        case "sampleIntervalBackground":
+            settingKey = settingSampleIntervalBackground
+            msgKey = msgNewSampleIntervalBackground
+        case "sampleIntervalHidden":
+            settingKey = settingSampleIntervalHidden
+            msgKey = msgNewSampleIntervalHidden
+        default:
+            NSLog(
+                "Unkown sender identifier encountered for interval change: %@",
+                sender.identifier!)
+            return
+        }
+
+        if newValue <= 0 {
+            // set to one if equal-less zero
+            sender.doubleValue = 1
+            return
+        }
+
+        if userDefaults.doubleForKey(settingKey) == newValue {
+            return
+        }
+
+        noteCenter.postNotificationName(msgKey, object: newValue)
     }
 
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
+    // MARK: runMode handling
 
-        // remove as observer, we're not showing anything anyway
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-
+    func runModeChanged(aNote: NSNotification) {
+        switch aNote.name {
+        case msgRunModeChanged:
+            if let newMode = aNote.object as? String {
+                if let candidate = RunMode(rawValue: newMode) {
+                    runMode = candidate
+                    return
+                }
+                NSLog("Unknown raw value for RunMode encountered: %@.", newMode)
+                return
+            }
+            NSLog("Could not downcast object to RunMode in notification with name %@.", aNote.name)
+        default:
+            NSLog("runModeChanged: Unknown notification name encountered: %@", aNote.name)
+        }
     }
 
 }

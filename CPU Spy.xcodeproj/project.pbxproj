@@ -71,6 +71,8 @@
 		84DEAF281C54FC6000060D34 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF271C54FC6000060D34 /* Icon.swift */; settings = {ASSET_TAGS = (); }; };
 		84DEAF2A1C54FD3A00060D34 /* IconDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF291C54FD3A00060D34 /* IconDrawer.swift */; settings = {ASSET_TAGS = (); }; };
 		84DEAF2C1C5502BE00060D34 /* IconSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF2B1C5502BE00060D34 /* IconSample.swift */; settings = {ASSET_TAGS = (); }; };
+		84DEAF2F1C557A8E00060D34 /* RunMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF2E1C557A8E00060D34 /* RunMode.swift */; settings = {ASSET_TAGS = (); }; };
+		84DEAF301C557A8E00060D34 /* RunMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF2E1C557A8E00060D34 /* RunMode.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +142,7 @@
 		84DEAF271C54FC6000060D34 /* Icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Icon.swift; path = Protocols/Icon.swift; sourceTree = "<group>"; };
 		84DEAF291C54FD3A00060D34 /* IconDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconDrawer.swift; path = Protocols/IconDrawer.swift; sourceTree = "<group>"; };
 		84DEAF2B1C5502BE00060D34 /* IconSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconSample.swift; path = Protocols/IconSample.swift; sourceTree = "<group>"; };
+		84DEAF2E1C557A8E00060D34 /* RunMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunMode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +228,7 @@
 				844B9E451C52DE0E00EE25CC /* ViewController.swift */,
 				8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */,
 				8488A1FD1C5425E400DE565D /* SettingsKeys.swift */,
+				84DEAF2E1C557A8E00060D34 /* RunMode.swift */,
 			);
 			path = glue;
 			sourceTree = "<group>";
@@ -503,6 +507,7 @@
 				8488A1FE1C5425E400DE565D /* SettingsKeys.swift in Sources */,
 				844B9EB21C540DE000EE25CC /* SamplerDelegate.swift in Sources */,
 				84DEAF2C1C5502BE00060D34 /* IconSample.swift in Sources */,
+				84DEAF2F1C557A8E00060D34 /* RunMode.swift in Sources */,
 				844B9E7E1C52DE3000EE25CC /* ProcessState.swift in Sources */,
 				844B9E741C52DE3000EE25CC /* FSSampleCollector.swift in Sources */,
 				84DEAF2A1C54FD3A00060D34 /* IconDrawer.swift in Sources */,
@@ -539,6 +544,7 @@
 				844B9E981C52F9BF00EE25CC /* FSPSRowReader.swift in Sources */,
 				844B9EAD1C540CC300EE25CC /* ProcessSample.swift in Sources */,
 				8488A1FC1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */,
+				84DEAF301C557A8E00060D34 /* RunMode.swift in Sources */,
 				844B9EAF1C540CC800EE25CC /* ProcessSampleStatic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

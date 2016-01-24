@@ -746,17 +746,44 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vvM-Cb-BrP">
-                                <rect key="frame" x="18" y="82" width="102" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vvM-Cb-BrP">
+                                <rect key="frame" x="18" y="82" width="108" height="17"/>
                                 <animations/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Sample Interval:" id="8Ep-3d-HSn">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Sample Intervals:" id="8Ep-3d-HSn">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kGF-bN-uft">
-                                <rect key="frame" x="126" y="79" width="96" height="22"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Owp-Rx-G6g">
+                                <rect key="frame" x="18" y="57" width="108" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Foreground:" id="MIY-Qf-PFe">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LuI-o5-bmX">
+                                <rect key="frame" x="18" y="32" width="108" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Background:" id="02H-u6-yEr">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bxd-0S-OZY">
+                                <rect key="frame" x="18" y="7" width="108" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Hidden:" id="AWl-Fm-NMJ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField identifier="sampleIntervalForeground" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kGF-bN-uft">
+                                <rect key="frame" x="132" y="54" width="46" height="22"/>
                                 <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Wfa-zk-SzD">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="852-El-hT8"/>
@@ -765,21 +792,74 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <action selector="sampleIntervalForegroundChanged:" target="XfG-lQ-9wD" id="yl7-wz-GU7"/>
+                                    <action selector="sampleIntervalChanged:" target="XfG-lQ-9wD" id="XA0-X3-bcr"/>
                                 </connections>
+                            </textField>
+                            <textField identifier="sampleIntervalBackground" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uR8-od-Gu4">
+                                <rect key="frame" x="132" y="29" width="46" height="22"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="KZ8-fQ-ykD">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="CRR-1U-MxD"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="sampleIntervalChanged:" target="XfG-lQ-9wD" id="B5e-TO-1sk"/>
+                                </connections>
+                            </textField>
+                            <textField identifier="sampleIntervalHidden" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aKV-Zx-rwI">
+                                <rect key="frame" x="132" y="4" width="46" height="22"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="eet-Sa-WSw">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Fba-1r-Qsv"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="sampleIntervalChanged:" target="XfG-lQ-9wD" id="v5d-RU-tV2"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XwZ-uO-hgP">
+                                <rect key="frame" x="130" y="82" width="21" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="[s]" id="GCf-DV-1Rc">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
                             </textField>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="iVi-5p-0E3" secondAttribute="trailing" id="2Dc-bI-UzQ"/>
+                            <constraint firstItem="Owp-Rx-G6g" firstAttribute="top" secondItem="vvM-Cb-BrP" secondAttribute="bottom" constant="8" id="8NX-yQ-Zdj"/>
+                            <constraint firstItem="kGF-bN-uft" firstAttribute="top" secondItem="XwZ-uO-hgP" secondAttribute="bottom" constant="6" id="BVF-8K-gjE"/>
                             <constraint firstItem="iVi-5p-0E3" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="CIP-VR-odX"/>
+                            <constraint firstItem="kGF-bN-uft" firstAttribute="leading" secondItem="Owp-Rx-G6g" secondAttribute="trailing" constant="8" id="IBC-g5-Woo"/>
+                            <constraint firstItem="LuI-o5-bmX" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="LvQ-LV-J8T"/>
+                            <constraint firstItem="uR8-od-Gu4" firstAttribute="leading" secondItem="LuI-o5-bmX" secondAttribute="trailing" constant="8" id="NCa-Dv-n6y"/>
+                            <constraint firstItem="aKV-Zx-rwI" firstAttribute="top" secondItem="uR8-od-Gu4" secondAttribute="bottom" constant="3" id="OIp-sF-oCu"/>
+                            <constraint firstAttribute="bottom" secondItem="bxd-0S-OZY" secondAttribute="bottom" constant="7" id="PGs-L0-xpB"/>
+                            <constraint firstItem="bxd-0S-OZY" firstAttribute="top" secondItem="LuI-o5-bmX" secondAttribute="bottom" constant="8" id="PYz-8q-Fbc"/>
+                            <constraint firstItem="vvM-Cb-BrP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="RJ9-po-2sa"/>
+                            <constraint firstItem="LuI-o5-bmX" firstAttribute="top" secondItem="Owp-Rx-G6g" secondAttribute="bottom" constant="8" id="dSJ-Jz-Tdv"/>
                             <constraint firstItem="iVi-5p-0E3" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="kv0-AE-O8Y"/>
+                            <constraint firstItem="bxd-0S-OZY" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="l5u-YQ-Gxc"/>
+                            <constraint firstItem="XwZ-uO-hgP" firstAttribute="leading" secondItem="vvM-Cb-BrP" secondAttribute="trailing" constant="8" id="ln7-Xm-K6F"/>
+                            <constraint firstItem="aKV-Zx-rwI" firstAttribute="leading" secondItem="bxd-0S-OZY" secondAttribute="trailing" constant="8" id="nYW-GH-IVJ"/>
+                            <constraint firstAttribute="bottom" secondItem="aKV-Zx-rwI" secondAttribute="bottom" constant="4" id="oyX-yP-P9b"/>
+                            <constraint firstItem="uR8-od-Gu4" firstAttribute="top" secondItem="kGF-bN-uft" secondAttribute="bottom" constant="3" id="pBv-h8-uqN"/>
+                            <constraint firstItem="Owp-Rx-G6g" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="t6v-IP-r8t"/>
                             <constraint firstAttribute="bottom" secondItem="iVi-5p-0E3" secondAttribute="bottom" constant="109" id="ynP-aU-ger"/>
                         </constraints>
                         <animations/>
                     </view>
                     <connections>
                         <outlet property="processTableView" destination="OET-Ag-efz" id="dbr-t7-15o"/>
+                        <outlet property="sampleIntervalBackground" destination="uR8-od-Gu4" id="uza-6Y-4cI"/>
                         <outlet property="sampleIntervalForeground" destination="kGF-bN-uft" id="rSW-VE-rar"/>
+                        <outlet property="sampleIntervalHidden" destination="aKV-Zx-rwI" id="bF9-qd-pda"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
