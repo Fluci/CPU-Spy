@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 let settingSampleIntervalForeground = "SAMPLE_INTERVAL_FOREGROUND"
 let settingSampleIntervalBackground = "SAMPLE_INTERVAL_BACKGROUND"
 let settingSampleIntervalHidden     = "SAMPLE_INTERVAL_HIDDEN"

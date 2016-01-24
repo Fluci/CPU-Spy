@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 let msgNewSample = "NEW_SAMPLE"
 let msgNewSampleIntervalForeground = "NEW_SAMPLE_INTERVAL_FOREGROUND"
 let msgNewSampleIntervalBackground = "NEW_SAMPLE_INTERVAL_BACKGROUND"

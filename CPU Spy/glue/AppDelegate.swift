@@ -60,7 +60,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
         // trigger passing of sample
         myIcon.addSample(sample)
         myApp.applicationIconImage = myIcon.drawer.icon
-        noteCenter.postNotificationName(msgNewSample, object: (sample as? AnyObject))
+        let obj = sample as? AnyObject;
+        if obj == nil {
+            NSLog("Couldn't cast Sample to AnyObject.");
+        }
+        noteCenter.postNotificationName(msgNewSample, object: obj)
     }
 
     func willRedraw(sender: Icon) -> Bool {
@@ -126,7 +130,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
 
     private var runMode: RunMode = .Foreground
 
-    // if user changes application, lower measurement intervals
     func applicationWillBecomeActive(notification: NSNotification) {
         // user is in the application, focus on app
         updateRunMode(.Foreground)

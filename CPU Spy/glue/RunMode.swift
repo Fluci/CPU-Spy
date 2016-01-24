@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 enum RunMode: String {
     case Foreground = "foreground"
     case Background = "background"

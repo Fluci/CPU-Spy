@@ -8,6 +8,7 @@
 
 import Cocoa
 
+
 class ViewController: NSViewController {
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let noteCenter = NSNotificationCenter.defaultCenter()
@@ -100,7 +101,7 @@ class ViewController: NSViewController {
             msgKey = msgNewSampleIntervalHidden
         default:
             NSLog(
-                "Unkown sender identifier encountered for interval change: %@",
+                "Unknown sender identifier encountered for interval change: %@",
                 sender.identifier!)
             return
         }
@@ -123,15 +124,20 @@ class ViewController: NSViewController {
     func runModeChanged(aNote: NSNotification) {
         switch aNote.name {
         case msgRunModeChanged:
-            if let newMode = aNote.object as? String {
-                if let candidate = RunMode(rawValue: newMode) {
-                    runMode = candidate
-                    return
-                }
-                NSLog("Unknown raw value for RunMode encountered: %@.", newMode)
+
+            let newModeRaw = aNote.object as? String
+            if newModeRaw == nil {
+                NSLog("Could not downcast object to RunMode in notification with name %@.", aNote.name)
                 return
             }
-            NSLog("Could not downcast object to RunMode in notification with name %@.", aNote.name)
+
+            let newMode = RunMode(rawValue: newModeRaw!)
+            if newMode == nil {
+                NSLog("Unknown raw value for RunMode encountered: %@.", newModeRaw!)
+                return
+            }
+
+            runMode = newMode!
         default:
             NSLog("runModeChanged: Unknown notification name encountered: %@", aNote.name)
         }

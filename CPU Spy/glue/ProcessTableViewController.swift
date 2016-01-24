@@ -8,6 +8,7 @@
 
 import Cocoa
 
+
 class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
     @IBOutlet var processTable: NSTableView? {
         didSet {
