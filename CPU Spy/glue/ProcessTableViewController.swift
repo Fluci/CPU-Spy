@@ -14,6 +14,7 @@ class ProcessTableViewController : NSViewController, NSTableViewDelegate, NSTabl
             processTable!.setDataSource(self)
             processTable!.setDelegate(self)
             
+            // hard coded columns for the moment
             var col = NSTableColumn(identifier: "PID");
             col.title = "PID";
             col.width = 50;
@@ -63,9 +64,10 @@ class ProcessTableViewController : NSViewController, NSTableViewDelegate, NSTabl
     var samples : [ProcessSample]?;
     var maxSamples = -1;
     var filter : (ProcessSample -> Bool)! = {$0.cpuUsagePerc != 0.0};
+
+    /// Evaluated from top to bottom. The last comparator decides the total order etc.
+    /// Note: not stable yet
     var sorts : [((ProcessSample, ProcessSample) -> Bool)] = [
-        //{$0.staticDat.pid < $1.staticDat.pid},
-        //{$0.staticDat.exec!.lowercaseString < $1.staticDat.exec!.lowercaseString},
         {$0.cpuUsagePerc > $1.cpuUsagePerc}
     ];
     

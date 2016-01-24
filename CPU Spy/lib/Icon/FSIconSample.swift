@@ -8,12 +8,14 @@
 
 import Cocoa
 
-public class FSIconSample : FSIcon {
-    public var maxSamples : Int = 16 // how many samples to show
+public class FSIconSample : FSIcon, IconSample {
+    /// how many samples (bars) to show
+    public var maxSamples : Int = 16
     
     public var cores : Int = 1
-
-    public var entries : Int = 7 // how many process should be listed explicitly?
+    
+    /// how many processes should be listed explicitly?
+    public var entries : Int = 7
 
     /// how many "subbars" should be displayed in bars (1 subbar corresponds to one processSample)
     public var barPeek : Int = 2
@@ -24,6 +26,8 @@ public class FSIconSample : FSIcon {
         "other"  : FSPriorityColors(aDefaultColor: [0.3, 0.3, 0.8, 1.0], somePrioColors: [0.0, 0.0, 1.0, 1.0], [0.0, 0.0, 0.9, 1.0]),
         "all"    : FSPriorityColors(aDefaultColor: [1.0, 1.0, 1.0, 1.0])
         ]
+    
+    public var font : CTFontRef = CTFontCreateWithName("Menlo Regular", 10.0, nil)
     
     private var strAttributes : [String : [String : AnyObject]] {
         get {
@@ -47,7 +51,8 @@ public class FSIconSample : FSIcon {
             ];
         }
     };
-    let rgbColorSpace : CGColorSpaceRef = CGColorSpaceCreateDeviceRGB()!;
+    
+    private let rgbColorSpace : CGColorSpaceRef = CGColorSpaceCreateDeviceRGB()!;
     
     /// 2/cores (bar height is multiplied in the drawer)
     private var barScale : Double {
@@ -58,8 +63,8 @@ public class FSIconSample : FSIcon {
     
     /// samples to display textually
     private var lines : ArraySlice<ProcessSample>!;
-    public var username = "feliceserena";
-    public var partitionOrders = ["system", "user", "other"]
+    public var username = "aUser";
+    public var partitionsOrder = ["system", "user", "other"]
     private let pSmplValSelector : (ProcessSample) -> Double = {$0.cpuUsagePerc}
     private let pSmplPartitionKey : (ProcessSample) -> String = {
         switch $0.staticDat.user {
@@ -74,7 +79,7 @@ public class FSIconSample : FSIcon {
     private let pSmplDisplayName : (ProcessSample) -> String = {$0.staticDat.exec}
 
     /// sets all values such that the Icon can be redrawn
-    public func pushSample(smpl : Sample){
+    public func addSample(smpl : Sample){
         let pSmpls = smpl.processesAll.filter {self.pSmplValSelector($0) != 0.0}.sort {self.pSmplValSelector($0) > self.pSmplValSelector($1)};
         
         // get lines
@@ -115,7 +120,7 @@ public class FSIconSample : FSIcon {
         // reduce partions to the values that should be displayed and add to cells
         cellsLocal.append(CFAttributedStringCreate(kCFAllocatorDefault, "", nil));
         var sum = 0.0;
-        for orderKey in partitionOrders {
+        for orderKey in partitionsOrder {
             if let p = pSmplsPartition[orderKey] {
                 let value : Double = p.reduce(0.0){(l : Double, r) in l + self.pSmplValSelector(r)}*100;
                 sum += value;
@@ -137,7 +142,7 @@ public class FSIconSample : FSIcon {
         
         // get bars
         var bar = [FSIconBar]();
-        let scale = barScale*height;
+        let scale = barScale * Double(drawer.height);
         for (var i = 0; i < orderedPartitions.count; ++i) {
             let pSmpls : [ProcessSample] = orderedPartitions[i]
             let max = min(pSmpls.count, barPeek);
@@ -190,13 +195,6 @@ public class FSIconSample : FSIcon {
         return map
     }
     
-    public func addSample(smpl : Sample){
-        pushSample(smpl);
-    }
-    
-    override init() {
-        super.init();
-    }
     private func padStringLeft(aVal: Double, positions: Int) -> String{
         let str = String(stringInterpolationSegment: aVal)
         
@@ -206,8 +204,5 @@ public class FSIconSample : FSIcon {
             return str;
         }
         return String(count: diff, repeatedValue: Character(" ")) + str;
-    }
-    override public func willDraw(sender: FSIconDrawer) {
-        super.delegateWillDraw()
     }
 }

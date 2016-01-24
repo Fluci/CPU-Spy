@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 public class FSPriorityColors {
     public var defaultColor : [CGFloat];
     public var prioColors : [[CGFloat]];

@@ -48,24 +48,26 @@ public class FSPSSampler: FSSampler {
     
     // MARK: ps-coordination
     override internal func sampleNow () {
+        if(waitingForTaskToFinish){
+            // just return if the previous task hasn't finished yet
+            return;
+        }
         // launches the task
         runPs()
-        
     }
     private func runPs(){
-        // TODO: improve so there is no more file access (thanks PS)
         task = NSTask()
         pipe = NSPipe()
         
-        task.launchPath = "/bin/ps" // deflag the //R  comments -> is cached after first call ;) but, you know, creating a new process is quite expensive, sooo, maybe there's a more efficient way …
+        task.launchPath = "/bin/ps";
+        // binary -> is cached after first call ;) but, you know, creating a new process is quite expensive, sooo, maybe there's a more efficient way …
         
         // ww: causes the lines not to stop at the end of the screen but to wrap to the next line (at least in terminal view)
-        task.arguments = ["-Arww", "-o pid,%cpu,ppid,pgid,gid,uid,user,rgid,ruid,ruser,lstart,state,xstat,sig,sigmask,sess,command"] //
+        task.arguments = ["-Arww", "-o pid,%cpu,ppid,pgid,gid,uid,user,rgid,ruid,ruser,lstart,state,xstat,sig,sigmask,sess,command"];
         
         task.standardOutput = pipe
         
         pipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
-        //R responseTime = NSDate();
         
         waitingForTaskToFinish = true // flag
         
@@ -105,14 +107,12 @@ public class FSPSSampler: FSSampler {
     public func taskTerminated(aNotification: NSNotification){
         // we're called by notification centre, the task did terminate and we can read the buffer
         
-        //R NSLog("responseTime: %f", -responseTime.timeIntervalSinceNow);
-        
         if(!waitingForTaskToFinish){
-            NSLog("unexpected message received … %@", aNotification.description);
+            NSLog("Unexpected message received … %@", aNotification.description);
             return
         }
         if(aNotification.object !== pipe.fileHandleForReading){
-            NSLog("msg doesn't belong to pipe … %@", aNotification.description);
+            NSLog("Msg doesn't belong to pipe … %@", aNotification.description);
             return
         }
         waitingForTaskToFinish = false;

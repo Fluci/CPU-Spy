@@ -12,7 +12,6 @@ class ViewController: NSViewController {
     
     @IBOutlet var sampleIntervalForeground : NSTextField?;
     
-    
     @IBAction func sampleIntervalForegroundChanged(sender: NSTextField){
         if(NSUserDefaults.standardUserDefaults().doubleForKey(SAMPLE_INTERVAL_FOREGROUND) == sender.doubleValue){
             return;
@@ -28,27 +27,32 @@ class ViewController: NSViewController {
     }
     
     func newSample(aNote : NSNotification){
-        if(aNote.name == NEW_SAMPLE){
+        switch(aNote.name) {
+        case NEW_SAMPLE:
             let sample = (aNote.object as! Sample);
             processTableViewController.newSample(sample);
-            return;
+        default:
+            NSLog("Unknown notification name encountered: %@", aNote.name);
         }
-        NSLog("Unknown notification name encountered: %@", aNote.name);
     }
     
+    // MARK: Appearance control
     override func viewWillAppear() {
         super.viewWillAppear();
         
         let defaults = NSUserDefaults.standardUserDefaults();
         
+        // read settings from UserDefaults
         sampleIntervalForeground?.doubleValue = defaults.doubleForKey(SAMPLE_INTERVAL_FOREGROUND);
         
+        // add self as observer for settings
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("newSample:"), name: NEW_SAMPLE, object: nil)
     }
     
     override func viewDidDisappear() {
         super.viewDidDisappear();
 
+        // remove as observer, we're not showing anything anyway
         NSNotificationCenter.defaultCenter().removeObserver(self)
         
     }

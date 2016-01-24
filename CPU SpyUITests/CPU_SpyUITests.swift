@@ -30,6 +30,12 @@ class CPU_SpyUITests: XCTestCase {
     
     func testExample() {
         // Use recording to get started writing UI tests.
+        
+        let textField = XCUIApplication().windows["Window"].childrenMatchingType(.TextField).element
+        textField.click()
+        textField.typeText("\r2\r")
+        textField.typeText("1\r")
+        
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     

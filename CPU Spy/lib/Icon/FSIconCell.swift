@@ -8,10 +8,13 @@
 
 import Foundation
 
+
 public struct FSIconCell {
-    var string : String // will be written in cell
+    /// will be written in cell
+    var string : String
     var cfString : CFAttributedString!
-    var color : CGColor = CGColorGetConstantColor(kCGColorWhite)! // color: r,g,b,a
+    /// color: r,g,b,a
+    var color : CGColor = CGColorGetConstantColor(kCGColorWhite)!
     
     init(value: String){
         string = value;

@@ -10,8 +10,11 @@ import Foundation
 
 
 public struct FSIconBar {
-    var color : [CGFloat] = [1.0, 1.0, 1.0, 0.0] // color: r,g,b,a
-    var height : CGFloat // height in CG-coordinate system (scaling not done by FSIconDrawer because of performance
+    /// color: r,g,b,a
+    var color : [CGFloat] = [1.0, 1.0, 1.0, 0.0]
+    
+    /// height in CG-coordinate system (scaling not done by FSIconDrawer)
+    var height : CGFloat
     
     init(aHeight : CGFloat = 1.0) {
         height = aHeight

@@ -8,60 +8,21 @@
 
 import Cocoa
 
-@objc public protocol FSIconDelegate : NSObjectProtocol {
-    optional func willDraw(sender: NSObject)
-    optional func didDraw(sender: NSObject)
+/**
+    Implements general mechanisms an Icon class might find useful.
+*/
+public class FSIcon : Icon, IconDrawerDelegate {
+    public var delegate : IconDelegate?
     
-    func willRedraw(sender: FSIcon) -> Bool
-}
-
-
-public class FSIcon : NSObject, FSIconDrawerDelegate {
-    
-    internal var isDirty = true
-    
-    public var font : CTFontRef = CTFontCreateWithName("Menlo Regular", 10.0, nil) {
-        didSet{
-            drawer.cellsHeight = CTFontGetSize(font)
-            isDirty = true
-        }
-    }
-    
-    var icon : NSImage {
-        get {
-            return drawer.icon
-        }
-    }
-    public var width : Double {
-        set(newVal){
-            drawer.width = CGFloat(newVal)
-            isDirty = true
-        }
-        get{
-            return Double(drawer.width)
-        }
-    }
-    public var height : Double {
-        set(newVal){
-            drawer.height = CGFloat(newVal)
-            isDirty = true
-        }
-        get{
-            return Double(drawer.height)
-        }
-    }
-    
-    public var delegate : FSIconDelegate?
-    
-    public var drawer : FSIconDrawer = FSIconDrawer() {
+    public var drawer : IconDrawer {
         didSet{
             drawer.delegate = self
         }
     }
     
     // MARK: Methods
-    override init () {
-        super.init()
+    init (aDrawer : IconDrawer = FSIconDrawer()) {
+        drawer = aDrawer;
         drawer.delegate = self
     }
     
@@ -78,27 +39,10 @@ public class FSIcon : NSObject, FSIconDrawerDelegate {
         
         return true;
     }
-    
-    internal func delegateWillDraw() {
-        // informs delegate
-        self.delegate?.willDraw?(self)
-    }
-    
-    internal func delegateDidDraw(){
-        // informs delegate
-        self.delegate?.didDraw?(self)
-    }
-    
+
     // MARK: delegate-receiving
-    public func didDraw(sender: FSIconDrawer) {
-        return delegateDidDraw()
-    }
     
-    public func willDraw(sender: FSIconDrawer) {
-        return delegateWillDraw()
-    }
-    
-    public func willRedraw(sender: FSIconDrawer) -> Bool {
+    public func willRedraw(sender: IconDrawer) -> Bool {
         return delegateWillRedraw()
     }
     

@@ -12,6 +12,11 @@ public class FSSampler: NSObject, Sampler {
     /// measured in seconds [s]
     public var sampleInterval: Double = 5.0 {
         didSet{
+            if(sampleInterval < 0){
+                // this should never be called, since it's the UI's responsibility to check the values
+                NSLog("Warning, tried to set sampleInterval to %f, changed to 1.0.", sampleInterval);
+                sampleInterval = 1.0;
+            }
             if(!samplingActivated || samplingInProgress){
                 return;
             }

@@ -81,14 +81,6 @@ public final class FSString : CustomStringConvertible, CustomDebugStringConverti
         str.initialize([CChar](count: buffLen, repeatedValue: ASCII.null.rawValue));
         aString.getCString(&str.memory, maxLength: buffLen, encoding: NSUTF8StringEncoding)
         
-        
-        
-        //aString.getCString(&str, maxLength: buffLen, encoding: NSUTF8StringEncoding);
-        
-        //let cStr : [CChar] = aString.cStringUsingEncoding(NSUTF8StringEncoding)!;
-        //strP = UnsafeMutablePointer<CChar>.alloc(1);
-        //str = UnsafeMutableBufferPointer<CChar>(start: strP, count: cStr.count);
-        //str.memory = cStr;
         rangeStart = 0;
         length = str.memory.count - 1;
         assert(length >= 0);
@@ -185,21 +177,6 @@ public final class FSString : CustomStringConvertible, CustomDebugStringConverti
         }
         return array;
     }
-    
-    /*
-    private func endPush(aChar : CChar) -> CChar{
-        let end = rangeEnd;
-        let tmp = str[end];
-        str[end] = aChar;
-        return tmp;
-    }
-    private func startPush(aChar : CChar) -> CChar {
-        let start = rangeStart;
-        let tmp = str[start];
-        str[start] = aChar;
-        return tmp;
-    }
-    */
     
     // MARK: findNext
     /**
