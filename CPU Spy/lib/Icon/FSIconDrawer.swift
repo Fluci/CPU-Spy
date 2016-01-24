@@ -87,10 +87,9 @@ public class FSIconDrawer: NSObject, IconDrawer {
         drawBars()
         drawText()
         drawCells()
-
     }
-    private func drawBars() {
 
+    private func drawBars() {
         /// lower horizontal edge y-coordinate
         var barBase: CGFloat = 0.0
 
@@ -103,7 +102,6 @@ public class FSIconDrawer: NSObject, IconDrawer {
         /// horizontal width
         let barWidth: CGFloat = width / CGFloat(bars.count)
 
-
         // coordinate system: (0,0) left bottom corner
 
         let ctx: CGContextRef = NSGraphicsContext.currentContext()!.CGContext
@@ -113,7 +111,8 @@ public class FSIconDrawer: NSObject, IconDrawer {
         for var x = 0; x < bars.count; x++ {
             let bar: [FSIconBar] = bars[x]
             barBase = 0.0
-            barStart = barWidth * CGFloat(x) // leftStartPoint: calculated absolute for
+            // leftStartPoint: calculated absolute for
+            barStart = barWidth * CGFloat(x)
             let barCount = bar.count
             for var y = 0; y < barCount; y++ {
                 let b: FSIconBar = bar[y]
