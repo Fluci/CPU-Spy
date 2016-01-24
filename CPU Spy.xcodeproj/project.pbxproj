@@ -1,0 +1,497 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		84149B6F1C54EF3000180115 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84149B6E1C54EF3000180115 /* AppDelegate.swift */; };
+		84149B711C54EF3000180115 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84149B701C54EF3000180115 /* ViewController.swift */; };
+		84149B731C54EF3000180115 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84149B721C54EF3000180115 /* Assets.xcassets */; };
+		84149B761C54EF3000180115 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84149B741C54EF3000180115 /* Main.storyboard */; };
+		84149B811C54EF3000180115 /* CPU_SpyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84149B801C54EF3000180115 /* CPU_SpyTests.swift */; };
+		84149B8C1C54EF3000180115 /* CPU_SpyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84149B8B1C54EF3000180115 /* CPU_SpyUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84149B7D1C54EF3000180115 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84149B631C54EF3000180115 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84149B6A1C54EF3000180115;
+			remoteInfo = "CPU Spy";
+		};
+		84149B881C54EF3000180115 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84149B631C54EF3000180115 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84149B6A1C54EF3000180115;
+			remoteInfo = "CPU Spy";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		84149B6B1C54EF3000180115 /* CPU Spy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CPU Spy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84149B6E1C54EF3000180115 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		84149B701C54EF3000180115 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		84149B721C54EF3000180115 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		84149B751C54EF3000180115 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		84149B771C54EF3000180115 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84149B7C1C54EF3000180115 /* CPU SpyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CPU SpyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84149B801C54EF3000180115 /* CPU_SpyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU_SpyTests.swift; sourceTree = "<group>"; };
+		84149B821C54EF3000180115 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84149B871C54EF3000180115 /* CPU SpyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CPU SpyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84149B8B1C54EF3000180115 /* CPU_SpyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU_SpyUITests.swift; sourceTree = "<group>"; };
+		84149B8D1C54EF3000180115 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		84149B681C54EF3000180115 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84149B791C54EF3000180115 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84149B841C54EF3000180115 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		84149B621C54EF3000180115 = {
+			isa = PBXGroup;
+			children = (
+				84149B6D1C54EF3000180115 /* CPU Spy */,
+				84149B7F1C54EF3000180115 /* CPU SpyTests */,
+				84149B8A1C54EF3000180115 /* CPU SpyUITests */,
+				84149B6C1C54EF3000180115 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		84149B6C1C54EF3000180115 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84149B6B1C54EF3000180115 /* CPU Spy.app */,
+				84149B7C1C54EF3000180115 /* CPU SpyTests.xctest */,
+				84149B871C54EF3000180115 /* CPU SpyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		84149B6D1C54EF3000180115 /* CPU Spy */ = {
+			isa = PBXGroup;
+			children = (
+				84149B6E1C54EF3000180115 /* AppDelegate.swift */,
+				84149B701C54EF3000180115 /* ViewController.swift */,
+				84149B721C54EF3000180115 /* Assets.xcassets */,
+				84149B741C54EF3000180115 /* Main.storyboard */,
+				84149B771C54EF3000180115 /* Info.plist */,
+			);
+			path = "CPU Spy";
+			sourceTree = "<group>";
+		};
+		84149B7F1C54EF3000180115 /* CPU SpyTests */ = {
+			isa = PBXGroup;
+			children = (
+				84149B801C54EF3000180115 /* CPU_SpyTests.swift */,
+				84149B821C54EF3000180115 /* Info.plist */,
+			);
+			path = "CPU SpyTests";
+			sourceTree = "<group>";
+		};
+		84149B8A1C54EF3000180115 /* CPU SpyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				84149B8B1C54EF3000180115 /* CPU_SpyUITests.swift */,
+				84149B8D1C54EF3000180115 /* Info.plist */,
+			);
+			path = "CPU SpyUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		84149B6A1C54EF3000180115 /* CPU Spy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84149B901C54EF3000180115 /* Build configuration list for PBXNativeTarget "CPU Spy" */;
+			buildPhases = (
+				84149B671C54EF3000180115 /* Sources */,
+				84149B681C54EF3000180115 /* Frameworks */,
+				84149B691C54EF3000180115 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CPU Spy";
+			productName = "CPU Spy";
+			productReference = 84149B6B1C54EF3000180115 /* CPU Spy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		84149B7B1C54EF3000180115 /* CPU SpyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84149B931C54EF3000180115 /* Build configuration list for PBXNativeTarget "CPU SpyTests" */;
+			buildPhases = (
+				84149B781C54EF3000180115 /* Sources */,
+				84149B791C54EF3000180115 /* Frameworks */,
+				84149B7A1C54EF3000180115 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84149B7E1C54EF3000180115 /* PBXTargetDependency */,
+			);
+			name = "CPU SpyTests";
+			productName = "CPU SpyTests";
+			productReference = 84149B7C1C54EF3000180115 /* CPU SpyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		84149B861C54EF3000180115 /* CPU SpyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84149B961C54EF3000180115 /* Build configuration list for PBXNativeTarget "CPU SpyUITests" */;
+			buildPhases = (
+				84149B831C54EF3000180115 /* Sources */,
+				84149B841C54EF3000180115 /* Frameworks */,
+				84149B851C54EF3000180115 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84149B891C54EF3000180115 /* PBXTargetDependency */,
+			);
+			name = "CPU SpyUITests";
+			productName = "CPU SpyUITests";
+			productReference = 84149B871C54EF3000180115 /* CPU SpyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		84149B631C54EF3000180115 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = Serena;
+				TargetAttributes = {
+					84149B6A1C54EF3000180115 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					84149B7B1C54EF3000180115 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 84149B6A1C54EF3000180115;
+					};
+					84149B861C54EF3000180115 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 84149B6A1C54EF3000180115;
+					};
+				};
+			};
+			buildConfigurationList = 84149B661C54EF3000180115 /* Build configuration list for PBXProject "CPU Spy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 84149B621C54EF3000180115;
+			productRefGroup = 84149B6C1C54EF3000180115 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84149B6A1C54EF3000180115 /* CPU Spy */,
+				84149B7B1C54EF3000180115 /* CPU SpyTests */,
+				84149B861C54EF3000180115 /* CPU SpyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		84149B691C54EF3000180115 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84149B731C54EF3000180115 /* Assets.xcassets in Resources */,
+				84149B761C54EF3000180115 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84149B7A1C54EF3000180115 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84149B851C54EF3000180115 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		84149B671C54EF3000180115 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84149B711C54EF3000180115 /* ViewController.swift in Sources */,
+				84149B6F1C54EF3000180115 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84149B781C54EF3000180115 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84149B811C54EF3000180115 /* CPU_SpyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84149B831C54EF3000180115 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84149B8C1C54EF3000180115 /* CPU_SpyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84149B7E1C54EF3000180115 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84149B6A1C54EF3000180115 /* CPU Spy */;
+			targetProxy = 84149B7D1C54EF3000180115 /* PBXContainerItemProxy */;
+		};
+		84149B891C54EF3000180115 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84149B6A1C54EF3000180115 /* CPU Spy */;
+			targetProxy = 84149B881C54EF3000180115 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		84149B741C54EF3000180115 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84149B751C54EF3000180115 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		84149B8E1C54EF3000180115 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		84149B8F1C54EF3000180115 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		84149B911C54EF3000180115 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CPU Spy/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.feliceserena.CPU-Spy";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		84149B921C54EF3000180115 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CPU Spy/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.feliceserena.CPU-Spy";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		84149B941C54EF3000180115 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CPU SpyTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.feliceserena.CPU-SpyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CPU Spy.app/Contents/MacOS/CPU Spy";
+			};
+			name = Debug;
+		};
+		84149B951C54EF3000180115 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CPU SpyTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.feliceserena.CPU-SpyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CPU Spy.app/Contents/MacOS/CPU Spy";
+			};
+			name = Release;
+		};
+		84149B971C54EF3000180115 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CPU SpyUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.feliceserena.CPU-SpyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "CPU Spy";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		84149B981C54EF3000180115 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CPU SpyUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.feliceserena.CPU-SpyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "CPU Spy";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84149B661C54EF3000180115 /* Build configuration list for PBXProject "CPU Spy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84149B8E1C54EF3000180115 /* Debug */,
+				84149B8F1C54EF3000180115 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84149B901C54EF3000180115 /* Build configuration list for PBXNativeTarget "CPU Spy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84149B911C54EF3000180115 /* Debug */,
+				84149B921C54EF3000180115 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		84149B931C54EF3000180115 /* Build configuration list for PBXNativeTarget "CPU SpyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84149B941C54EF3000180115 /* Debug */,
+				84149B951C54EF3000180115 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		84149B961C54EF3000180115 /* Build configuration list for PBXNativeTarget "CPU SpyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84149B971C54EF3000180115 /* Debug */,
+				84149B981C54EF3000180115 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 84149B631C54EF3000180115 /* Project object */;
+}
