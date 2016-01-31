@@ -8,26 +8,49 @@
 
 import Cocoa
 
+
 class ViewController: NSViewController {
+    let noteCenter = NSNotificationCenter.defaultCenter()
 
     @IBOutlet var sampleIntervalForeground: NSTextField?
-
-    @IBAction func sampleIntervalForegroundChanged(sender: NSTextField) {
-        if NSUserDefaults.standardUserDefaults()
-            .doubleForKey(settingSampleIntervalForeground) == sender.doubleValue {
-            return
-        }
-        NSNotificationCenter.defaultCenter()
-            .postNotificationName(msgNewSampleIntervalForeground, object: sender.doubleValue)
-    }
+    @IBOutlet var sampleIntervalBackground: NSTextField?
+    @IBOutlet var sampleIntervalHidden: NSTextField?
 
     var processTableViewController: ProcessTableViewController! = ProcessTableViewController()
+
     @IBOutlet var processTableView: NSTableView? {
         didSet {
             processTableViewController.processTable = processTableView
         }
     }
 
+
+    // MARK: Appearance control
+    override func viewWillAppear() {
+        super.viewWillAppear()
+
+        // read settings from UserDefaults
+        sampleIntervalForeground?.doubleValue = settings.sampleIntervalForeground
+        sampleIntervalBackground?.doubleValue = settings.sampleIntervalBackground
+        sampleIntervalHidden?.doubleValue     = settings.sampleIntervalHidden
+
+        // add self as observer for settings
+        noteCenter.addObserver(
+            self,
+            selector: Selector("newSample:"),
+            name: msgNewSample,
+            object: nil)
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+
+        // remove as observer, we're not showing anything anyway
+        noteCenter.removeObserver(self)
+
+    }
+
+    // MARK: newSample handling
     func newSample(aNote: NSNotification) {
         switch aNote.name {
         case msgNewSample:
@@ -39,31 +62,37 @@ class ViewController: NSViewController {
                     aNote.name)
             }
         default:
-            NSLog("Unknown notification name encountered: %@", aNote.name)
+            NSLog("newSample: Unknown notification name encountered: %@", aNote.name)
         }
     }
 
-    // MARK: Appearance control
-    override func viewWillAppear() {
-        super.viewWillAppear()
+    // MARK: sampleIntervalX handling
 
-        let defaults = NSUserDefaults.standardUserDefaults()
+    @IBAction func sampleIntervalChanged(sender: NSTextField) {
+        if sender.identifier == nil {
+            NSLog("No sender.identifier given for interval change.")
+            return
+        }
 
-        // read settings from UserDefaults
-        sampleIntervalForeground?.doubleValue = defaults
-            .doubleForKey(settingSampleIntervalForeground)
+        var newValue = sender.doubleValue
+        if newValue <= 0 {
+            // set to one if equal-less zero
+            sender.doubleValue = 1
+            newValue = 1
+        }
 
-        // add self as observer for settings
-        NSNotificationCenter.defaultCenter()
-            .addObserver(self, selector: Selector("newSample:"), name: msgNewSample, object: nil)
+        switch sender.identifier! {
+        case "sampleIntervalForeground":
+            settings.sampleIntervalForeground = newValue
+        case "sampleIntervalBackground":
+            settings.sampleIntervalBackground = newValue
+        case "sampleIntervalHidden":
+            settings.sampleIntervalHidden = newValue
+        default:
+            NSLog(
+                "Unknown sender identifier encountered for interval change: %@",
+                sender.identifier!)
+            return
+        }
     }
-
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
-
-        // remove as observer, we're not showing anything anyway
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-
-    }
-
 }

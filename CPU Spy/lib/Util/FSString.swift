@@ -18,8 +18,7 @@ public enum ASCII: CChar {
     case Backslash = 92
 }
 
-public final class FSString:
-    CustomStringConvertible,
+public final class FSString: CustomStringConvertible,
     CustomDebugStringConvertible,
     StringLiteralConvertible {
 

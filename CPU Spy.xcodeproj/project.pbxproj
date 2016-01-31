@@ -56,6 +56,8 @@
 		844B9EB01C540CCA00EE25CC /* Sampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9EA11C5409CE00EE25CC /* Sampler.swift */; settings = {ASSET_TAGS = (); }; };
 		844B9EB21C540DE000EE25CC /* SamplerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9EB11C540DE000EE25CC /* SamplerDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		844B9EB31C540DE000EE25CC /* SamplerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9EB11C540DE000EE25CC /* SamplerDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		844E7C321C5ABFFA008EEB86 /* FSAbstractAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E7C311C5ABFFA008EEB86 /* FSAbstractAppState.swift */; settings = {ASSET_TAGS = (); }; };
+		844E7C341C5AC07E008EEB86 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E7C331C5AC07E008EEB86 /* AppState.swift */; settings = {ASSET_TAGS = (); }; };
 		8488A1F21C5414B100DE565D /* SampleCollectorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1F11C5414B100DE565D /* SampleCollectorDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		8488A1F31C5414B400DE565D /* SampleCollectorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1F11C5414B100DE565D /* SampleCollectorDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		8488A1F51C5414D200DE565D /* SampleCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1F41C5414D200DE565D /* SampleCollector.swift */; settings = {ASSET_TAGS = (); }; };
@@ -64,13 +66,17 @@
 		8488A1F91C54175700DE565D /* CommandSplitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1F71C54175700DE565D /* CommandSplitter.swift */; settings = {ASSET_TAGS = (); }; };
 		8488A1FB1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */; settings = {ASSET_TAGS = (); }; };
 		8488A1FC1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */; settings = {ASSET_TAGS = (); }; };
-		8488A1FE1C5425E400DE565D /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1FD1C5425E400DE565D /* SettingsKeys.swift */; settings = {ASSET_TAGS = (); }; };
-		8488A1FF1C5425E400DE565D /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1FD1C5425E400DE565D /* SettingsKeys.swift */; settings = {ASSET_TAGS = (); }; };
 		84DEAF221C54FBE300060D34 /* IconDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF211C54FBE300060D34 /* IconDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		84DEAF251C54FC1D00060D34 /* IconDrawerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF241C54FC1D00060D34 /* IconDrawerDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		84DEAF281C54FC6000060D34 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF271C54FC6000060D34 /* Icon.swift */; settings = {ASSET_TAGS = (); }; };
 		84DEAF2A1C54FD3A00060D34 /* IconDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF291C54FD3A00060D34 /* IconDrawer.swift */; settings = {ASSET_TAGS = (); }; };
 		84DEAF2C1C5502BE00060D34 /* IconSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF2B1C5502BE00060D34 /* IconSample.swift */; settings = {ASSET_TAGS = (); }; };
+		84DEAF2F1C557A8E00060D34 /* RunMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF2E1C557A8E00060D34 /* RunMode.swift */; settings = {ASSET_TAGS = (); }; };
+		84DEAF301C557A8E00060D34 /* RunMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF2E1C557A8E00060D34 /* RunMode.swift */; settings = {ASSET_TAGS = (); }; };
+		84DEAF321C56DED900060D34 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF311C56DED900060D34 /* Settings.swift */; settings = {ASSET_TAGS = (); }; };
+		84DEAF331C56DED900060D34 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF311C56DED900060D34 /* Settings.swift */; settings = {ASSET_TAGS = (); }; };
+		84DEAF351C56DEE900060D34 /* FSAbstractSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF341C56DEE900060D34 /* FSAbstractSettings.swift */; settings = {ASSET_TAGS = (); }; };
+		84DEAF361C56DEE900060D34 /* FSAbstractSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF341C56DEE900060D34 /* FSAbstractSettings.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,16 +136,20 @@
 		844B9EA81C540B9E00EE25CC /* ProcessSampleStatic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProcessSampleStatic.swift; path = Protocols/ProcessSampleStatic.swift; sourceTree = "<group>"; };
 		844B9EAA1C540C0C00EE25CC /* ProcessStateAdditional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProcessStateAdditional.swift; path = Protocols/ProcessStateAdditional.swift; sourceTree = "<group>"; };
 		844B9EB11C540DE000EE25CC /* SamplerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SamplerDelegate.swift; path = Protocols/SamplerDelegate.swift; sourceTree = "<group>"; };
+		844E7C311C5ABFFA008EEB86 /* FSAbstractAppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSAbstractAppState.swift; sourceTree = "<group>"; };
+		844E7C331C5AC07E008EEB86 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		8488A1F11C5414B100DE565D /* SampleCollectorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SampleCollectorDelegate.swift; path = Protocols/SampleCollectorDelegate.swift; sourceTree = "<group>"; };
 		8488A1F41C5414D200DE565D /* SampleCollector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SampleCollector.swift; path = Protocols/SampleCollector.swift; sourceTree = "<group>"; };
 		8488A1F71C54175700DE565D /* CommandSplitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandSplitter.swift; path = Protocols/CommandSplitter.swift; sourceTree = "<group>"; };
 		8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationCenterKeys.swift; sourceTree = "<group>"; };
-		8488A1FD1C5425E400DE565D /* SettingsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		84DEAF211C54FBE300060D34 /* IconDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconDelegate.swift; path = Protocols/IconDelegate.swift; sourceTree = "<group>"; };
 		84DEAF241C54FC1D00060D34 /* IconDrawerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconDrawerDelegate.swift; path = Protocols/IconDrawerDelegate.swift; sourceTree = "<group>"; };
 		84DEAF271C54FC6000060D34 /* Icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Icon.swift; path = Protocols/Icon.swift; sourceTree = "<group>"; };
 		84DEAF291C54FD3A00060D34 /* IconDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconDrawer.swift; path = Protocols/IconDrawer.swift; sourceTree = "<group>"; };
 		84DEAF2B1C5502BE00060D34 /* IconSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconSample.swift; path = Protocols/IconSample.swift; sourceTree = "<group>"; };
+		84DEAF2E1C557A8E00060D34 /* RunMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunMode.swift; sourceTree = "<group>"; };
+		84DEAF311C56DED900060D34 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		84DEAF341C56DEE900060D34 /* FSAbstractSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSAbstractSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,7 +234,9 @@
 				844B9E441C52DE0E00EE25CC /* ProcessTableViewController.swift */,
 				844B9E451C52DE0E00EE25CC /* ViewController.swift */,
 				8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */,
-				8488A1FD1C5425E400DE565D /* SettingsKeys.swift */,
+				84DEAF2E1C557A8E00060D34 /* RunMode.swift */,
+				84DEAF311C56DED900060D34 /* Settings.swift */,
+				844E7C331C5AC07E008EEB86 /* AppState.swift */,
 			);
 			path = glue;
 			sourceTree = "<group>";
@@ -283,6 +295,8 @@
 			children = (
 				844B9E841C52E09700EE25CC /* FSStringTests.swift */,
 				844B9E691C52DE3000EE25CC /* FSString.swift */,
+				84DEAF341C56DEE900060D34 /* FSAbstractSettings.swift */,
+				844E7C311C5ABFFA008EEB86 /* FSAbstractAppState.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -473,10 +487,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8488A1F21C5414B100DE565D /* SampleCollectorDelegate.swift in Sources */,
+				84DEAF351C56DEE900060D34 /* FSAbstractSettings.swift in Sources */,
 				844B9E7F1C52DE3000EE25CC /* FSString.swift in Sources */,
 				844B9E7C1C52DE3000EE25CC /* PSCol.swift in Sources */,
 				844B9E6B1C52DE3000EE25CC /* FSIconBar.swift in Sources */,
 				844B9E481C52DE0E00EE25CC /* ViewController.swift in Sources */,
+				844E7C341C5AC07E008EEB86 /* AppState.swift in Sources */,
 				844B9EA51C540A9900EE25CC /* Sample.swift in Sources */,
 				8488A1F51C5414D200DE565D /* SampleCollector.swift in Sources */,
 				844B9E6C1C52DE3000EE25CC /* FSIconDrawer.swift in Sources */,
@@ -490,19 +506,21 @@
 				844B9E751C52DE3000EE25CC /* FSSampler.swift in Sources */,
 				844B9EA91C540B9E00EE25CC /* ProcessSampleStatic.swift in Sources */,
 				844B9E791C52DE3000EE25CC /* FSPSRowReader.swift in Sources */,
+				84DEAF321C56DED900060D34 /* Settings.swift in Sources */,
 				844B9E471C52DE0E00EE25CC /* ProcessTableViewController.swift in Sources */,
 				8488A1F81C54175700DE565D /* CommandSplitter.swift in Sources */,
 				84DEAF221C54FBE300060D34 /* IconDelegate.swift in Sources */,
 				844B9E701C52DE3000EE25CC /* FSProcessSample.swift in Sources */,
 				84DEAF281C54FC6000060D34 /* Icon.swift in Sources */,
 				844B9E6D1C52DE3000EE25CC /* FSIconSample.swift in Sources */,
+				844E7C321C5ABFFA008EEB86 /* FSAbstractAppState.swift in Sources */,
 				844B9E6E1C52DE3000EE25CC /* FSPriorityColors.swift in Sources */,
 				844B9E711C52DE3000EE25CC /* FSProcessSampleStatic.swift in Sources */,
 				84DEAF251C54FC1D00060D34 /* IconDrawerDelegate.swift in Sources */,
 				8488A1FB1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */,
-				8488A1FE1C5425E400DE565D /* SettingsKeys.swift in Sources */,
 				844B9EB21C540DE000EE25CC /* SamplerDelegate.swift in Sources */,
 				84DEAF2C1C5502BE00060D34 /* IconSample.swift in Sources */,
+				84DEAF2F1C557A8E00060D34 /* RunMode.swift in Sources */,
 				844B9E7E1C52DE3000EE25CC /* ProcessState.swift in Sources */,
 				844B9E741C52DE3000EE25CC /* FSSampleCollector.swift in Sources */,
 				84DEAF2A1C54FD3A00060D34 /* IconDrawer.swift in Sources */,
@@ -531,7 +549,6 @@
 				844B9EAC1C540CC000EE25CC /* ProcessStateAdditional.swift in Sources */,
 				8488A1F31C5414B400DE565D /* SampleCollectorDelegate.swift in Sources */,
 				844B9E8A1C52E53000EE25CC /* FSPSCommandSplitter.t.swift in Sources */,
-				8488A1FF1C5425E400DE565D /* SettingsKeys.swift in Sources */,
 				844B9E921C52F92D00EE25CC /* FSSample.swift in Sources */,
 				844B9E951C52F98000EE25CC /* FSProcessSampleStatic.swift in Sources */,
 				844B9E911C52F92900EE25CC /* FSSampler.swift in Sources */,
@@ -539,6 +556,9 @@
 				844B9E981C52F9BF00EE25CC /* FSPSRowReader.swift in Sources */,
 				844B9EAD1C540CC300EE25CC /* ProcessSample.swift in Sources */,
 				8488A1FC1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */,
+				84DEAF331C56DED900060D34 /* Settings.swift in Sources */,
+				84DEAF361C56DEE900060D34 /* FSAbstractSettings.swift in Sources */,
+				84DEAF301C557A8E00060D34 /* RunMode.swift in Sources */,
 				844B9EAF1C540CC800EE25CC /* ProcessSampleStatic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
