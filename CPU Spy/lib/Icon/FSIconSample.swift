@@ -103,7 +103,7 @@ public class FSIconSample: FSIcon, IconSample {
         /// keep track of string starts to give them the appropriate format
         var start = 0
         let len = min(entries, pSmpls.count)
-        for var i = 0; i < len; i++ {
+        for i in 0..<len {
             let pSmpl: ProcessSample = pSmpls[i]
             let line = padStringLeft(self.pSmplValSelector(pSmpl)*100, positions: 5)
                         + " "
@@ -173,7 +173,7 @@ public class FSIconSample: FSIcon, IconSample {
         // get bars
         var bar = [FSIconBar]()
         let scale = barScale * Double(drawer.height)
-        for var i = 0; i < orderedPartitions.count; ++i {
+        for i in 0..<orderedPartitions.count {
             let pSmpls: [ProcessSample] = orderedPartitions[i]
             let max = min(pSmpls.count, barPeek)
             var sum: Double = 0.0
@@ -200,11 +200,11 @@ public class FSIconSample: FSIcon, IconSample {
         }
         if drawer.bars.count >= maxSamples {
             // remove oldest
-            for var i = maxSamples-1; i < drawer.bars.count; ++i {
+            for _ in maxSamples-1..<drawer.bars.count {
                 drawer.bars.removeFirst()
             }
         } else if drawer.bars.count+1 < maxSamples {
-            for var i = drawer.bars.count+1; i < maxSamples; ++i {
+            for _ in drawer.bars.count+1..<maxSamples {
                 drawer.bars.append([])
             }
         }

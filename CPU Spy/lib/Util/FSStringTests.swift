@@ -42,11 +42,16 @@ class FSStringTests: XCTestCase {
         let c = arr.count
         var i = 0
         XCTAssertEqual(5, c)
-        XCTAssertEqual("a", arr[i++].string())
-        XCTAssertEqual("b", arr[i++].string())
-        XCTAssertEqual("c", arr[i++].string())
-        XCTAssertEqual("d", arr[i++].string())
-        XCTAssertEqual("e", arr[i++].string())
+        XCTAssertEqual("a", arr[i].string())
+        i += 1
+        XCTAssertEqual("b", arr[i].string())
+        i += 1
+        XCTAssertEqual("c", arr[i].string())
+        i += 1
+        XCTAssertEqual("d", arr[i].string())
+        i += 1
+        XCTAssertEqual("e", arr[i].string())
+        i += 1
     }
     func testComponentsSeparatedByStringMassive() {
         let myStr: FSString = "abc"
@@ -55,7 +60,8 @@ class FSStringTests: XCTestCase {
         let c = arr.count
         var i = 0
         XCTAssertEqual(1, c)
-        XCTAssertEqual("abc", arr[i++].string())
+        XCTAssertEqual("abc", arr[i].string())
+        i += 1
     }
     func testComponentsSeparatedByStringEmpty() {
         let myStr: FSString = ""
@@ -71,11 +77,16 @@ class FSStringTests: XCTestCase {
         let c = arr.count
         var i = 0
         XCTAssertEqual(5, c)
-        XCTAssertEqual("", arr[i++].string())
-        XCTAssertEqual("a", arr[i++].string())
-        XCTAssertEqual("b", arr[i++].string())
-        XCTAssertEqual("c", arr[i++].string())
-        XCTAssertEqual("", arr[i++].string())
+        XCTAssertEqual("", arr[i].string())
+        i += 1
+        XCTAssertEqual("a", arr[i].string())
+        i += 1
+        XCTAssertEqual("b", arr[i].string())
+        i += 1
+        XCTAssertEqual("c", arr[i].string())
+        i += 1
+        XCTAssertEqual("", arr[i].string())
+        i += 1
     }
     func testComponentsSeparatedByStringEmptyInbetween() {
         let myStr: FSString = ",a,,,c,"
@@ -84,12 +95,18 @@ class FSStringTests: XCTestCase {
         let c = arr.count
         var i = 0
         XCTAssertEqual(6, c)
-        XCTAssertEqual("", arr[i++].string())
-        XCTAssertEqual("a", arr[i++].string())
-        XCTAssertEqual("", arr[i++].string())
-        XCTAssertEqual("", arr[i++].string())
-        XCTAssertEqual("c", arr[i++].string())
-        XCTAssertEqual("", arr[i++].string())
+        XCTAssertEqual("", arr[i].string())
+        i += 1
+        XCTAssertEqual("a", arr[i].string())
+        i += 1
+        XCTAssertEqual("", arr[i].string())
+        i += 1
+        XCTAssertEqual("", arr[i].string())
+        i += 1
+        XCTAssertEqual("c", arr[i].string())
+        i += 1
+        XCTAssertEqual("", arr[i].string())
+        i += 1
     }
     func testComponentsSeparatedByStringWord() {
         let myStr: FSString = "abc123abcabc234abc"
@@ -98,11 +115,16 @@ class FSStringTests: XCTestCase {
         let c = arr.count
         var i = 0
         XCTAssertEqual(5, c)
-        XCTAssertEqual("", arr[i++].string())
-        XCTAssertEqual("123", arr[i++].string())
-        XCTAssertEqual("", arr[i++].string())
-        XCTAssertEqual("234", arr[i++].string())
-        XCTAssertEqual("", arr[i++].string())
+        XCTAssertEqual("", arr[i].string())
+        i += 1
+        XCTAssertEqual("123", arr[i].string())
+        i += 1
+        XCTAssertEqual("", arr[i].string())
+        i += 1
+        XCTAssertEqual("234", arr[i].string())
+        i += 1
+        XCTAssertEqual("", arr[i].string())
+        i += 1
     }
     func testComponentsSeparatedByStringWordIncomplete() {
         let myStr: FSString = "abc123abcabc234ab"
@@ -111,10 +133,14 @@ class FSStringTests: XCTestCase {
         let c = arr.count
         var i = 0
         XCTAssertEqual(4, c)
-        XCTAssertEqual("", arr[i++].string())
-        XCTAssertEqual("123", arr[i++].string())
-        XCTAssertEqual("", arr[i++].string())
-        XCTAssertEqual("234ab", arr[i++].string())
+        XCTAssertEqual("", arr[i].string())
+        i += 1
+        XCTAssertEqual("123", arr[i].string())
+        i += 1
+        XCTAssertEqual("", arr[i].string())
+        i += 1
+        XCTAssertEqual("234ab", arr[i].string())
+        i += 1
     }
 
     func testTrimNone() {

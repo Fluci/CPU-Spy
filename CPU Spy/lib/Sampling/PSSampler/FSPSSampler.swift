@@ -135,7 +135,7 @@ public class FSPSSampler: FSSampler {
         var trimmedEnd = buffer.length-1
         while buffer[trimmedEnd] == ASCII.NewLine.rawValue
             || buffer[trimmedEnd] == ASCII.Space.rawValue {
-                --trimmedEnd
+                trimmedEnd -= 1
         }
         buffer = buffer.substring(0, aLength: trimmedEnd)
 
@@ -165,7 +165,7 @@ public class FSPSSampler: FSSampler {
             // create titleMap
             do {
                 let header: [FSString] = try rowFromLine(headerString)
-                for var index = 0; index < header.count; ++index {
+                for index in 0..<header.count {
                     titleMap[header[index].string()] = index
                 }
                 // titleMap created
@@ -209,8 +209,8 @@ public class FSPSSampler: FSSampler {
         var out = ""
         var lastSym = -1
         for r in cols {
-            for var i = lastSym+1; i < r.start; ++i {
-                out += " "; // space between ranges
+            for i in lastSym+1..<r.start {
+                out += " " // space between ranges
             }
 
             out += "S"; // rangeStart
@@ -218,8 +218,8 @@ public class FSPSSampler: FSSampler {
             if r.end == Int.max {
                 end = r.start+10
             }
-            for var i = r.start+1; i < end; ++i {
-                out += "_"; // space in range
+            for i in r.start+1..<end {
+                out += "_" // space in range
             }
             out += "E"; // rangeEnd
             lastSym = r.end
@@ -237,18 +237,20 @@ public class FSPSSampler: FSSampler {
 
         var i = 0
 
-        for ; i < lineLen && line[i] == ASCII.Space.rawValue; ++i {
+        while i < lineLen && line[i] == ASCII.Space.rawValue {
             // find first non space character
+            i += 1
         }
         start = i
 
-        for ; i < lineLen; ++i {
+        while i < lineLen {
             i = line.findNext(ASCII.Space.rawValue, start: i); // iterate over title characters
 
             cols.append(PSCol(start: start, end: i))
 
             i = line.findNextUneq(ASCII.Space.rawValue, start: i); // iterate over spaces
             start = i
+            i += 1
         }
 
         cols[0].start = 0
@@ -259,7 +261,7 @@ public class FSPSSampler: FSSampler {
     private func widenColsWithLine(aLine: FSString, var cols: [PSCol]) throws -> [PSCol] {
         // widen range according to new knowledge
 
-        for var i = 1; i < cols.count; ++i {
+        for i in 1..<cols.count {
             let pInd = i-1; // index of predecessor
             let c = cols[i]; // active range
             let p = cols[pInd]; // predecessor range
@@ -283,8 +285,8 @@ public class FSPSSampler: FSSampler {
                 // we need to check the data of the line we're looking at to at least widen the range
                 var end = p.end
                 var start = c.start
-                while aLine[end] != ASCII.Space.rawValue {++end;}
-                while aLine[start] != ASCII.Space.rawValue {--start;}
+                while aLine[end] != ASCII.Space.rawValue {end += 1}
+                while aLine[start] != ASCII.Space.rawValue {start -= 1}
                 if end >= start {
                     NSLog("Anomalie in %@ for indexes %d to %d", aLine.string(), start, end)
                     throw RangeWideningError.NoFit
@@ -307,7 +309,7 @@ public class FSPSSampler: FSSampler {
         // assumption: if the end col and the start col of two neighbours differ by 1, they are exact
         // we only look at the cols with a predecessor, so we look only at the space between this and its predecessor
 
-        for var i = 0; i < cols.count; ++i {
+        for i in 0..<cols.count {
             let c = cols[i]
             if .Unknown != c.alignment {
                 continue
@@ -363,7 +365,7 @@ public class FSPSSampler: FSSampler {
 
 
         // let's look at the neighbours for alignment deduction
-        for var i = 0; i < cols.count; ++i {
+        for i in 0..<cols.count {
             let c = cols[i]
 
             if c.alignment != .Unknown {
@@ -412,7 +414,7 @@ public class FSPSSampler: FSSampler {
 
         row.reserveCapacity(cols.count)
 
-        for var i = 0; i < cols.count; ++i {
+        for i in 0..<cols.count {
             var start = cols[i].start
             var end = cols[i].end
 
@@ -433,14 +435,19 @@ public class FSPSSampler: FSSampler {
             if 0 < i && start - cols[i-1].end > 1 {
                 // there's a gap, make sure it's empty
                 var empty = true
-                for(var t = start + 1; t < cols[i-1].end; ++t) {
+                for t in cols[i-1].end..<start {
                     if line[t] != ASCII.Space.rawValue {
                         empty = false
                         break
                     }
                 }
                 if !empty {
-                    NSLog("special gap \"%@\" in line between %d and %d in %@", line.substring(cols[i-1].end, aLength: start - cols[i-1].end).string(), start, end, line.string())
+                    NSLog("special gap \"%@\" in line between %d and %d in %@",
+                        line.substring(
+                            cols[i-1].end,
+                            aLength: start - cols[i-1].end
+                            ).string(),
+                        start, end, line.string())
                 }
             }
 
