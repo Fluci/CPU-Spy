@@ -1,4 +1,0 @@
-language: objective-c
-osx_image: xcode7.3
-xcode_project: CPU Spy.xcodeproj
-xcode_scheme: CPU Spy

@@ -210,7 +210,7 @@ public class FSPSSampler: FSSampler {
         var lastSym = -1
         for r in cols {
             for i in lastSym+1..<r.start {
-                out += " "; // space between ranges
+                out += " " // space between ranges
             }
 
             out += "S"; // rangeStart
@@ -219,7 +219,7 @@ public class FSPSSampler: FSSampler {
                 end = r.start+10
             }
             for i in r.start+1..<end {
-                out += "_"; // space in range
+                out += "_" // space in range
             }
             out += "E"; // rangeEnd
             lastSym = r.end
