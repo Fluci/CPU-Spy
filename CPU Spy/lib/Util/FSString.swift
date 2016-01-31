@@ -101,7 +101,7 @@ public final class FSString: CustomStringConvertible,
         rfc = aRfc
     }
     deinit {
-        --rfc.memory
+        rfc.memory -= 1
         if rfc.memory == 0 {
             str.destroy()
             str.dealloc(1)
@@ -144,12 +144,10 @@ public final class FSString: CustomStringConvertible,
         }
         assert(start < length)
 
-
-        //rfc[0]++
         let childStart = rangeStart + start
         aLength = min(aLength, length - start)
 
-        ++rfc.memory
+        rfc.memory += 1
 
         let child = FSString(
             aStr: str,
@@ -192,20 +190,21 @@ public final class FSString: CustomStringConvertible,
     */
     public func findNext(needle: FSString, start: Int = 0) -> Int {
         let firstChar = needle[0]
-        var i: Int
-        for i = start; i < length; ++i {
+        var i: Int = start
+        while i < length {
             i = findNext(firstChar, start: i)
             if i == length {
                 // no match
                 break
             }
 
-            var j: Int
+            var j: Int = 1
             let cI = rangeStart + i; // constant
-            for j = 1; j < needle.length; ++j {
+            while j < needle.length {
                 if str.memory[cI + j] != needle[j] || i + j == length {
                     break
                 }
+                j += 1
             }
             if j == needle.length {
                 // found
@@ -217,6 +216,7 @@ public final class FSString: CustomStringConvertible,
             // this optimization is not possible,
             // since the needle could be in the just searched string
             // i = i + j
+            i += 1
         }
         return i
     }
@@ -244,7 +244,7 @@ public final class FSString: CustomStringConvertible,
         var pos: Int = start + rangeStart
         let s = str.memory
         while pos < rangeEnd && !isMatch(s[pos]) {
-            ++pos
+            pos += 1
         }
         return pos - rangeStart
     }
@@ -270,7 +270,7 @@ public final class FSString: CustomStringConvertible,
         var pos = start + rangeStart
 
         while rangeStart <= pos && !isMatch(str.memory[pos]) {
-            --pos
+            pos -= 1
         }
 
         return pos - rangeStart
@@ -283,18 +283,19 @@ public final class FSString: CustomStringConvertible,
         } else if trimChars.count == 0 {
             return self.substring(0, aLength: length)
         }
-        var start: Int
         var end: Int
-        for end = length-1; -1 < end; --end {
+        for end = length-1; -1 < end; end -= 1 {
             if !trimChars.contains(self[end]) {
                 break
             }
         }
-        ++end
-        for start = 0; start < end; ++start {
+        end += 1
+        var start = 0
+        while start < end {
             if !trimChars.contains(self[start]) {
                 break
             }
+            start += 1
         }
         if start >= end {
             return FSString()
@@ -307,12 +308,12 @@ public final class FSString: CustomStringConvertible,
         var start: Int
         var end: Int
         let rStart = rangeStart
-        for end = rStart + length-1; rStart <= end; --end {
+        for end = rStart + length-1; rStart <= end; end -= 1 {
             if trimChar != str.memory[end] {
                 break
             }
         }
-        ++end
+        end += 1
         for start = rStart; start < end; ++start {
             if trimChar != str.memory[start] {
                 break

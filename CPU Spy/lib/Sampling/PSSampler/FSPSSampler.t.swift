@@ -30,75 +30,92 @@ class FSPSSamplerTests: XCTestCase {
 
         // PID
         XCTAssertEqual(0, ranges[i].start)
-        XCTAssertEqual(5, ranges[i++].end)
+        XCTAssertEqual(5, ranges[i].end)
+        i += 1
 
         // %CPU
         XCTAssertEqual(6, ranges[i].start)
-        XCTAssertEqual(11, ranges[i++].end)
+        XCTAssertEqual(11, ranges[i].end)
+        i += 1
 
         // PPID
         XCTAssertEqual(12, ranges[i].start)
-        XCTAssertEqual(17, ranges[i++].end)
+        XCTAssertEqual(17, ranges[i].end)
+        i += 1
 
         // PGID
         XCTAssertEqual(18, ranges[i].start)
-        XCTAssertEqual(23, ranges[i++].end)
+        XCTAssertEqual(23, ranges[i].end)
+        i += 1
 
         // GID
         XCTAssertEqual(24, ranges[i].start)
-        XCTAssertEqual(29, ranges[i++].end)
+        XCTAssertEqual(29, ranges[i].end)
+        i += 1
 
         // UID
         XCTAssertEqual(30, ranges[i].start)
-        XCTAssertEqual(35, ranges[i++].end)
+        XCTAssertEqual(35, ranges[i].end)
+        i += 1
 
         // USER
         XCTAssertEqual(36, ranges[i].start)
-        XCTAssertEqual(48, ranges[i++].end)
+        XCTAssertEqual(48, ranges[i].end)
+        i += 1
 
         // undecidable
 
         // RGID
         XCTAssertEqual(53, ranges[i].start)
-        XCTAssertEqual(57, ranges[i++].end)
+        XCTAssertEqual(57, ranges[i].end)
+        i += 1
 
         // RUID
         XCTAssertEqual(58, ranges[i].start)
-        XCTAssertEqual(63, ranges[i++].end)
+        XCTAssertEqual(63, ranges[i].end)
+        i += 1
 
         // RUSER
         XCTAssertEqual(64, ranges[i].start)
-        XCTAssertEqual(79, ranges[i++].end)
+        XCTAssertEqual(79, ranges[i].end)
+        i += 1
 
         // STARTED
         XCTAssertEqual(80, ranges[i].start)
-        XCTAssertEqual(108, ranges[i++].end)
+        XCTAssertEqual(108, ranges[i].end)
+        i += 1
 
         // undecidable
 
         // STAT
         XCTAssertEqual(109, ranges[i].start)
-        XCTAssertEqual(113, ranges[i++].end)
+        XCTAssertEqual(113, ranges[i].end)
+        i += 1
 
         // XSTAT
         XCTAssertEqual(114, ranges[i].start)
-        XCTAssertEqual(119, ranges[i++].end)
+        XCTAssertEqual(119, ranges[i].end)
+        i += 1
 
         // PENDING
         XCTAssertEqual(120, ranges[i].start)
-        XCTAssertEqual(128, ranges[i++].end)
+        XCTAssertEqual(128, ranges[i].end)
+        i += 1
 
         // BLOCKED
         XCTAssertEqual(129, ranges[i].start)
-        XCTAssertEqual(137, ranges[i++].end)
+        XCTAssertEqual(137, ranges[i].end)
+        i += 1
 
         // SESS
         XCTAssertEqual(138, ranges[i].start)
-        XCTAssertEqual(144, ranges[i++].end)
+        XCTAssertEqual(144, ranges[i].end)
+        i += 1
 
         // COMMAND
         XCTAssertEqual(145, ranges[i].start)
-        XCTAssertEqual(Int.max, ranges[i++].end)
+        XCTAssertEqual(Int.max, ranges[i].end)
+        i += 1
 
     }
     func testGetRangesCase2() {
@@ -117,19 +134,23 @@ class FSPSSamplerTests: XCTestCase {
         var i = 0
         // PID
         XCTAssertEqual(0, ranges[i].start)
-        XCTAssertEqual(5, ranges[i++].end)
+        XCTAssertEqual(5, ranges[i].end)
+        i += 1
 
         // %CPU
         XCTAssertEqual(6, ranges[i].start)
-        XCTAssertEqual(11, ranges[i++].end)
+        XCTAssertEqual(11, ranges[i].end)
+        i += 1
 
         // PPID
         XCTAssertEqual(12, ranges[i].start)
-        XCTAssertEqual(17, ranges[i++].end)
+        XCTAssertEqual(17, ranges[i].end)
+        i += 1
 
         // PGID
         XCTAssertEqual(18, ranges[i].start)
-        XCTAssertEqual(Int.max, ranges[i++].end)
+        XCTAssertEqual(Int.max, ranges[i].end)
+        i += 1
     }
     func testGetRangesCase3() {
         /*
@@ -148,37 +169,45 @@ class FSPSSamplerTests: XCTestCase {
 
         // PID
         XCTAssertEqual(0, ranges[i].start)
-        XCTAssertEqual(5, ranges[i++].end)
+        XCTAssertEqual(5, ranges[i].end)
+        i += 1
 
         // %CPU
         XCTAssertEqual(6, ranges[i].start)
-        XCTAssertEqual(11, ranges[i++].end)
+        XCTAssertEqual(11, ranges[i].end)
+        i += 1
 
         // PPID
         XCTAssertEqual(12, ranges[i].start)
-        XCTAssertEqual(17, ranges[i++].end)
+        XCTAssertEqual(17, ranges[i].end)
+        i += 1
 
         // PGID
         XCTAssertEqual(18, ranges[i].start)
-        XCTAssertEqual(23, ranges[i++].end)
+        XCTAssertEqual(23, ranges[i].end)
+        i += 1
 
         // GID
         XCTAssertEqual(24, ranges[i].start)
-        XCTAssertEqual(29, ranges[i++].end)
+        XCTAssertEqual(29, ranges[i].end)
+        i += 1
 
         // UID
         XCTAssertEqual(30, ranges[i].start)
-        XCTAssertEqual(35, ranges[i++].end)
+        XCTAssertEqual(35, ranges[i].end)
+        i += 1
 
         // USER
         XCTAssertEqual(36, ranges[i].start)
-        XCTAssertEqual(51, ranges[i++].end)
+        XCTAssertEqual(51, ranges[i].end)
+        i += 1
 
         // undecidable
 
         // RGID
         XCTAssertEqual(53, ranges[i].start)
-        XCTAssertEqual(Int.max, ranges[i++].end)
+        XCTAssertEqual(Int.max, ranges[i].end)
+        i += 1
     }
     func testSharedStr() {
         let full: FSString = "123456789"
