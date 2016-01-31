@@ -25,13 +25,20 @@ public class FSPSRowReader {
     let dateFormatter = NSDateFormatter()
 
     /// main entry: defines mapping between ps-cols and corresponding processorSample attributes
-    public func readRow(let line: [FSString]) -> FSProcessSample {
+    public func readRow(let line: [FSString]) -> ProcessSample {
         let pSmpl = FSProcessSample()
         activeLine = line
 
         pSmpl.staticDat = staticDatFromActiveLine()
 
-        pSmpl.cpuUsagePerc = getFromLine("%CPU", transform: {Double($0)! * 0.01})
+        if let percStr = getFromLine("%CPU")?
+            .stringByReplacingOccurrencesOfString(",", withString: ".") {
+            if let perc = Double(percStr) {
+                pSmpl.cpuUsagePerc = perc * 0.01
+            } else {
+                NSLog("%@", "Could not read cpu value: \(percStr)")
+            }
+        }
 
         pSmpl.xstat = getFromLine("XSTAT", transform: {Int($0)})
         //pSmpl.stat = getFromLine("STAT", transform: {FSProcessSample});
@@ -86,7 +93,7 @@ public class FSPSRowReader {
         return staticDat
     }
     private func splitCommand(command: FSString) -> (path: String!, exec: String, args: [String]) {
-        let (p, e, arguments) = commandSplitter.split(activeLine[titleMap["COMMAND"]!])
+        let (p, e, arguments) = commandSplitter.split(command)
         var args = [String]()
 
         for arg in arguments {
@@ -97,6 +104,9 @@ public class FSPSRowReader {
     }
 
     // MARK: read row helper
+    private func getFromLine(titleKey: String) -> String? {
+        return getFromLine(titleKey, transform: {$0})
+    }
     private func getFromLine<T>(titleKey: String, transform: (String) -> T) -> T! {
         let index = titleMap[titleKey]
         return getVal(activeLine, index: index, transform: transform)
