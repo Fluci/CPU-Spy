@@ -14,7 +14,10 @@ class ViewController: NSViewController {
 
     @IBOutlet var sampleIntervalForeground: NSTextField?
     @IBOutlet var sampleIntervalBackground: NSTextField?
-    @IBOutlet var sampleIntervalHidden: NSTextField?
+    @IBOutlet var sampleIntervalHidden:     NSTextField?
+    @IBOutlet var refreshForeground: NSButton?
+    @IBOutlet var refreshBackground: NSButton?
+    @IBOutlet var refreshHidden:     NSButton?
 
     var processTableViewController: ProcessTableViewController! = ProcessTableViewController()
 
@@ -34,6 +37,11 @@ class ViewController: NSViewController {
         sampleIntervalBackground?.doubleValue = settings.sampleIntervalBackground
         sampleIntervalHidden?.doubleValue     = settings.sampleIntervalHidden
 
+        refreshForeground?.state = settings.refreshForeground ? NSOnState : NSOffState
+        refreshBackground?.state = settings.refreshBackground ? NSOnState : NSOffState
+        refreshHidden?.state     = settings.refreshHidden     ? NSOnState : NSOffState
+
+
         // add self as observer for settings
         noteCenter.addObserver(
             self,
@@ -52,6 +60,11 @@ class ViewController: NSViewController {
 
     // MARK: newSample handling
     func newSample(aNote: NSNotification) {
+        if     (appState.runMode == .Foreground && !settings.refreshForeground)
+            || (appState.runMode == .Background && !settings.refreshBackground)
+            || (appState.runMode == .Hidden     && !settings.refreshHidden) {
+            return
+        }
         switch aNote.name {
         case msgNewSample:
             if let sample = aNote.object as? Sample {
@@ -67,6 +80,36 @@ class ViewController: NSViewController {
     }
 
     // MARK: sampleIntervalX handling
+
+    @IBAction func refreshChanged(sender: NSButton) {
+        if sender.identifier == nil {
+            NSLog("No sender.identifier given for interval change.")
+            return
+        }
+
+        var newValue = sender.state
+
+        if newValue == NSMixedState {
+            // set to one if equal-less zero
+            sender.state = NSOnState
+            newValue = NSOnState
+        }
+
+        switch sender.identifier! {
+        case "refreshForeground":
+            settings.refreshForeground = newValue == NSOnState
+        case "refreshBackground":
+            settings.refreshBackground = newValue == NSOnState
+        case "refreshHidden":
+            settings.refreshHidden = newValue == NSOnState
+        default:
+            NSLog(
+                "Unknown sender identifier encountered for refresh change: %@",
+                sender.identifier!)
+            return
+        }
+
+    }
 
     @IBAction func sampleIntervalChanged(sender: NSTextField) {
         if sender.identifier == nil {

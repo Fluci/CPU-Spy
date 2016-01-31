@@ -66,35 +66,57 @@ class CPUSpyUITests: XCTestCase {
     func testStoring() {
         // Use recording to get started writing UI tests.
 
-        let rand1 = Double((arc4random_uniform(600) + 1))/100.0
-        let rand2 = Double((arc4random_uniform(600) + 1))/100.0
-        let rand3 = Double((arc4random_uniform(600) + 1))/100.0
+        let rand1 = Double((arc4random_uniform(600) + 10))/100.0
+        let rand2 = Double((arc4random_uniform(600) + 10))/100.0
+        let rand3 = Double((arc4random_uniform(600) + 10))/100.0
 
         var window = XCUIApplication().windows["Window"]
-        var foreground = window.textFields["sampleIntervalForeground"]
-        var background = window.textFields["sampleIntervalBackground"]
-        var hidden = window.textFields["sampleIntervalHidden"]
+        var intervalForeground = window.textFields["sampleIntervalForeground"]
+        var intervalBackground = window.textFields["sampleIntervalBackground"]
+        var intervalHidden     = window.textFields["sampleIntervalHidden"]
 
-        foreground.click()
-        foreground.typeText("\r\(rand1)")
+        var refreshForeground = window.checkBoxes["refreshForeground"]
+        var refreshBackground = window.checkBoxes["refreshBackground"]
+        var refreshHidden     = window.checkBoxes["refreshHidden"]
 
-        background.click()
-        background.typeText("\r\(rand2)")
+        intervalForeground.click()
+        intervalForeground.typeText("\r\(rand1)")
 
-        hidden.click()
-        hidden.typeText("\r\(rand3)\t")
+        intervalBackground.click()
+        intervalBackground.typeText("\r\(rand2)")
 
-        XCUIApplication().terminate()
+        intervalHidden.click()
+        intervalHidden.typeText("\r\(rand3)\t")
+
+        refreshForeground.click()
+        refreshBackground.click()
+        refreshHidden.click()
+
+        let refreshForegroundSet = (refreshForeground.value as? Int)!
+        let refreshBackgroundSet = (refreshBackground.value as? Int)!
+        let refreshHiddenSet     = (refreshHidden.value as? Int)!
+
         // restart
+        XCUIApplication().terminate()
         XCUIApplication().launch()
-        window = XCUIApplication().windows["Window"]
-        foreground = window.textFields["sampleIntervalForeground"]
-        background = window.textFields["sampleIntervalBackground"]
-        hidden = window.textFields["sampleIntervalHidden"]
 
-        XCTAssertEqual(rand1, Double((foreground.value as? String)!))
-        XCTAssertEqual(rand2, Double((background.value as? String)!))
-        XCTAssertEqual(rand3, Double((hidden.value as? String)!))
+        window = XCUIApplication().windows["Window"]
+        intervalForeground = window.textFields["sampleIntervalForeground"]
+        intervalBackground = window.textFields["sampleIntervalBackground"]
+        intervalHidden     = window.textFields["sampleIntervalHidden"]
+
+        refreshForeground = window.checkBoxes["refreshForeground"]
+        refreshBackground = window.checkBoxes["refreshBackground"]
+        refreshHidden     = window.checkBoxes["refreshHidden"]
+
+        XCTAssertEqual(rand1, Double((intervalForeground.value as? String)!))
+        XCTAssertEqual(rand2, Double((intervalBackground.value as? String)!))
+        XCTAssertEqual(rand3, Double((intervalHidden.value as? String)!))
+
+        XCTAssertEqual(refreshForegroundSet, (refreshForeground.value as? Int)!)
+        XCTAssertEqual(refreshBackgroundSet, (refreshBackground.value as? Int)!)
+        XCTAssertEqual(refreshHiddenSet,     (refreshHidden.value as? Int)!)
+
     }
 
 }

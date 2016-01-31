@@ -13,13 +13,6 @@ public class FSAbstractSettings {
     public let noteCenter: NSNotificationCenter
 
     /// should be called in didSet
-    func update(newValue: Double, oldValue: Double, setKey: String, msgKey: String) {
-        if oldValue == newValue {
-            return
-        }
-        userDefaults.setDouble(newValue, forKey: setKey)
-        noteCenter.postNotificationName(msgKey, object: newValue)
-    }
     func update<T: Equatable>(newValue: T, oldValue: T, setKey: String, msgKey: String) {
         if oldValue == newValue {
             return
@@ -42,21 +35,21 @@ public class FSAbstractSettings {
         - parameter setKey: key used by *userDefaults*
         - parameter validityCheck: Shall return true iff passed value is valid and can be used.
         - returns: The value now stored in userDefaults.
-    */
-    func getSetDefault(
-        defaultValue: Double,
+     */
+    func getSetDefault<T>(
+        defaultValue: T,
         setKey: String,
-        validityCheck: Double -> Bool = {true || $0 == 0.0}) -> Double {
-        if userDefaults.objectForKey(setKey) == nil {
-            userDefaults.setDouble(defaultValue, forKey: setKey)
-            return defaultValue
-        }
-        let there = userDefaults.doubleForKey(setKey)
-        if !validityCheck(there) {
-            userDefaults.setDouble(defaultValue, forKey: setKey)
-            return defaultValue
-        }
-        return there
+        validityCheck: T -> Bool = {_ in true}) -> T {
+            let obj = defaultValue as? AnyObject
+            if obj == nil {
+                NSLog("%@", "Value \(defaultValue) for key \(setKey) not convertible to AnyObject.")
+            }
+            let there = userDefaults.objectForKey(setKey) as? T
+            if there == nil || !validityCheck(there!) {
+                userDefaults.setObject(obj, forKey: setKey)
+                return defaultValue
+            }
+            return there!
     }
 
     init(someUserDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults(),
