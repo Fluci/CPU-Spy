@@ -418,7 +418,6 @@ public class FSPSSampler: FSSampler {
 
             if (0 < start && line[start-1] != ASCII.Space.rawValue)
                 || (end < line.length && line[end] != ASCII.Space.rawValue) {
-                NSLog("updating cols with: %@", line.string())
                 try cols = self.widenColsWithLine(line, cols: cols)
 
                 start = cols[i].start

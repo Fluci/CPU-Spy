@@ -15,4 +15,5 @@ public protocol Sampler {
     var sample: Sample? { get }
 
     func start ()
+    func stop ()
 }

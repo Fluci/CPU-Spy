@@ -82,7 +82,7 @@ public class FSSampler: NSObject, Sampler {
             repeats: true)
     }
     /// stops the sampling
-    func stop () {
+    public func stop () {
         if !samplingActivated {
             return
         }

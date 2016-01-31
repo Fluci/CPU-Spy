@@ -10,10 +10,7 @@ import Cocoa
 
 
 class ViewController: NSViewController {
-    let userDefaults = NSUserDefaults.standardUserDefaults()
     let noteCenter = NSNotificationCenter.defaultCenter()
-
-    var runMode: RunMode = .Foreground
 
     @IBOutlet var sampleIntervalForeground: NSTextField?
     @IBOutlet var sampleIntervalBackground: NSTextField?
@@ -33,10 +30,9 @@ class ViewController: NSViewController {
         super.viewWillAppear()
 
         // read settings from UserDefaults
-        let ud = userDefaults
-        sampleIntervalForeground?.doubleValue = ud.doubleForKey(settingSampleIntervalForeground)
-        sampleIntervalBackground?.doubleValue = ud.doubleForKey(settingSampleIntervalBackground)
-        sampleIntervalHidden?.doubleValue     = ud.doubleForKey(settingSampleIntervalHidden)
+        sampleIntervalForeground?.doubleValue = settings.sampleIntervalForeground
+        sampleIntervalBackground?.doubleValue = settings.sampleIntervalBackground
+        sampleIntervalHidden?.doubleValue     = settings.sampleIntervalHidden
 
         // add self as observer for settings
         noteCenter.addObserver(
@@ -44,20 +40,13 @@ class ViewController: NSViewController {
             selector: Selector("newSample:"),
             name: msgNewSample,
             object: nil)
-
-        // add self as observer for runMode
-        noteCenter.addObserver(
-            self,
-            selector: Selector("runModeChanged:"),
-            name: msgRunModeChanged,
-            object: nil)
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
 
         // remove as observer, we're not showing anything anyway
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        noteCenter.removeObserver(self)
 
     }
 
@@ -85,62 +74,25 @@ class ViewController: NSViewController {
             return
         }
 
-        let settingKey: String
-        let msgKey: String
-        let newValue = sender.doubleValue
+        var newValue = sender.doubleValue
+        if newValue <= 0 {
+            // set to one if equal-less zero
+            sender.doubleValue = 1
+            newValue = 1
+        }
 
         switch sender.identifier! {
         case "sampleIntervalForeground":
-            settingKey = settingSampleIntervalForeground
-            msgKey = msgNewSampleIntervalForeground
+            settings.sampleIntervalForeground = newValue
         case "sampleIntervalBackground":
-            settingKey = settingSampleIntervalBackground
-            msgKey = msgNewSampleIntervalBackground
+            settings.sampleIntervalBackground = newValue
         case "sampleIntervalHidden":
-            settingKey = settingSampleIntervalHidden
-            msgKey = msgNewSampleIntervalHidden
+            settings.sampleIntervalHidden = newValue
         default:
             NSLog(
                 "Unknown sender identifier encountered for interval change: %@",
                 sender.identifier!)
             return
         }
-
-        if newValue <= 0 {
-            // set to one if equal-less zero
-            sender.doubleValue = 1
-            return
-        }
-
-        if userDefaults.doubleForKey(settingKey) == newValue {
-            return
-        }
-
-        noteCenter.postNotificationName(msgKey, object: newValue)
     }
-
-    // MARK: runMode handling
-
-    func runModeChanged(aNote: NSNotification) {
-        switch aNote.name {
-        case msgRunModeChanged:
-
-            let newModeRaw = aNote.object as? String
-            if newModeRaw == nil {
-                NSLog("Could not downcast object to RunMode in notification with name %@.", aNote.name)
-                return
-            }
-
-            let newMode = RunMode(rawValue: newModeRaw!)
-            if newMode == nil {
-                NSLog("Unknown raw value for RunMode encountered: %@.", newModeRaw!)
-                return
-            }
-
-            runMode = newMode!
-        default:
-            NSLog("runModeChanged: Unknown notification name encountered: %@", aNote.name)
-        }
-    }
-
 }

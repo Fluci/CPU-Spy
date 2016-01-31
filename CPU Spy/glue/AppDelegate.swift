@@ -15,16 +15,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
     private var sampler: Sampler!
     private var sampleCollector: SampleCollector!
 
-    private var myIcon: IconSample!
+    private var myIcon: IconSample?
     private var myApp: NSApplication = NSApplication.sharedApplication()
 
-    private let userDefaults = NSUserDefaults.standardUserDefaults()
     private let noteCenter = NSNotificationCenter.defaultCenter()
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
-
-        setDefaults()
 
         // set up sampling
         sampler = FSPSSampler()
@@ -34,17 +31,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
         sampleCollector.delegate = self
 
         // set up dock icon
-        myIcon = FSIconSample()
-        myIcon.delegate = self
-        myIcon.cores = NSProcessInfo.processInfo().processorCount
-        myIcon.maxSamples = 64
-        myIcon.username = NSUserName()
-        myIcon.drawer.width = 128
-        myIcon.drawer.height = 128
-        myIcon.font = CTFontCreateWithName("Menlo Regular", CGFloat(10.0), nil)
+        let icon = FSIconSample()
+        icon.delegate = self
+        icon.cores = NSProcessInfo.processInfo().processorCount
+        icon.maxSamples = 64
+        icon.username = NSUserName()
+        icon.drawer.width = 128
+        icon.drawer.height = 128
+        icon.font = CTFontCreateWithName("Menlo Regular", CGFloat(10.0), nil)
+        myIcon = icon
+
         updateSampleInterval()
 
-        myApp.applicationIconImage = myIcon.drawer.icon
+        myApp.applicationIconImage = myIcon?.drawer.icon
 
         // start sampling
         sampler.start()
@@ -58,11 +57,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
 
     func didLoadSample(sender: SampleCollector, sample: Sample) {
         // trigger passing of sample
-        myIcon.addSample(sample)
-        myApp.applicationIconImage = myIcon.drawer.icon
-        let obj = sample as? AnyObject;
+        if let icon = myIcon {
+            icon.addSample(sample)
+            myApp.applicationIconImage = icon.drawer.icon
+        }
+        let obj = sample as? AnyObject
         if obj == nil {
-            NSLog("Couldn't cast Sample to AnyObject.");
+            NSLog("Couldn't cast Sample to AnyObject.")
         }
         noteCenter.postNotificationName(msgNewSample, object: obj)
     }
@@ -73,21 +74,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
+        sampler.stop()
     }
 
     // MARK: Settings handling
-
-    private func setDefaults() {
-        if userDefaults.objectForKey(settingSampleIntervalForeground) == nil {
-            userDefaults.setDouble(1, forKey: settingSampleIntervalForeground)
-        }
-        if userDefaults.objectForKey(settingSampleIntervalBackground) == nil {
-            userDefaults.setDouble(5, forKey: settingSampleIntervalBackground)
-        }
-        if userDefaults.objectForKey(settingSampleIntervalHidden) == nil {
-            userDefaults.setDouble(10, forKey: settingSampleIntervalHidden)
-        }
-    }
 
     func settingChange(aNote: NSNotification) {
         let val = aNote.object as? Double
@@ -95,30 +85,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
             NSLog("Couldn't unwrap new sampleInterval from message, name: %@", aNote.name)
             return
         }
-
-        switch aNote.name {
-        case msgNewSampleIntervalForeground:
-            userDefaults.setDouble(val!, forKey: settingSampleIntervalForeground)
-        case msgNewSampleIntervalBackground:
-            userDefaults.setDouble(val!, forKey: settingSampleIntervalBackground)
-        case msgNewSampleIntervalHidden:
-            userDefaults.setDouble(val!, forKey: settingSampleIntervalHidden)
-        default:
-            NSLog("Unknown setting key encountered: %@", aNote.name)
-            return
-        }
         updateSampleInterval()
     }
 
     func observeSettings() {
         let observedSettings: [String] = [
-            msgNewSampleIntervalForeground,
-            msgNewSampleIntervalBackground,
-            msgNewSampleIntervalHidden
+            settings.msgNewSampleIntervalForeground,
+            settings.msgNewSampleIntervalBackground,
+            settings.msgNewSampleIntervalHidden
         ]
 
         for s in observedSettings {
-            noteCenter.addObserver(
+            settings.noteCenter.addObserver(
                 self,
                 selector: Selector("settingChange:"),
                 name: s,
@@ -127,8 +105,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
     }
 
     // MARK: runMode
-
-    private var runMode: RunMode = .Foreground
 
     func applicationWillBecomeActive(notification: NSNotification) {
         // user is in the application, focus on app
@@ -150,25 +126,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
     }
 
     func updateRunMode(newMode: RunMode) {
-        if newMode == runMode {
+        if newMode == appState.runMode {
             // nothing changed
             return
         }
-        runMode = newMode
+        appState.runMode = newMode
         updateSampleInterval()
-        noteCenter.postNotificationName(msgRunModeChanged, object: runMode.rawValue)
     }
 
     // MARK: Sampler updating
 
     func updateSampleInterval() {
-        switch runMode {
+        switch appState.runMode {
         case .Foreground:
-            sampler.sampleInterval = userDefaults.doubleForKey(settingSampleIntervalForeground)
+            sampler.sampleInterval = settings.sampleIntervalForeground
         case .Background:
-            sampler.sampleInterval = userDefaults.doubleForKey(settingSampleIntervalBackground)
+            sampler.sampleInterval = settings.sampleIntervalBackground
         case .Hidden:
-            sampler.sampleInterval = userDefaults.doubleForKey(settingSampleIntervalHidden)
+            sampler.sampleInterval = settings.sampleIntervalHidden
 
         }
     }
