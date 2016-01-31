@@ -1,2 +1,3 @@
 *.pbxproj binary merge=union -diff
 *.storyboard -diff
+*.xcscheme -diff
