@@ -1,6 +1,10 @@
 CPU Spy
 ==========
 
+master: [![Build Status](https://travis-ci.org/Fluci/CPU-Spy.svg?branch=master)](https://travis-ci.org/Fluci/CPU-Spy)
+
+dev: [![Build Status](https://travis-ci.org/Fluci/CPU-Spy.svg?branch=dev)](https://travis-ci.org/Fluci/CPU-Spy)
+
 A light weighted activity monitor.
 
 While studying, I tend to use my computer a lot running on battery.

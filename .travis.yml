@@ -1,0 +1,15 @@
+language: objective-c
+osx_image: xcode7.3
+xcode_project: CPU Spy.xcodeproj
+xcode_scheme: CPU Spy
+xcode_sdk: macosx10.11
+
+#before_install:
+#- brew update
+#- brew upgrade
+
+#install:
+#- brew install swiftlint
+
+script:
+- xcodebuild clean build test -project CPU\ Spy.xcodeproj -scheme TravisTests -destination 'platform=OS X' ONLY_ACTIVE_ARCH=NO
