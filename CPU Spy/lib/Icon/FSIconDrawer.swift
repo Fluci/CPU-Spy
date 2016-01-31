@@ -108,13 +108,12 @@ public class FSIconDrawer: NSObject, IconDrawer {
 
         CGContextSetLineWidth(ctx, 0.0)
 
-        for var x = 0; x < bars.count; x++ {
+        for x in 0..<bars.count {
             let bar: [FSIconBar] = bars[x]
             barBase = 0.0
             // leftStartPoint: calculated absolute for
             barStart = barWidth * CGFloat(x)
-            let barCount = bar.count
-            for var y = 0; y < barCount; y++ {
+            for y in 0..<bar.count {
                 let b: FSIconBar = bar[y]
                 barHeight = b.height
                 //CGContextSetFillColor(ctx, &b.color)
@@ -149,7 +148,7 @@ public class FSIconDrawer: NSObject, IconDrawer {
         var txtRect: NSRect = NSRect(x: 0.0, y: 0.0, width: cellWidth*4, height: cellHeight)
         let emptyRange = CFRangeMake(0, 0)
 
-        for var i = 0; i < cellCount; i++ {
+        for i in 0..<cellCount {
             cell = cells[i]
 
             // left-start of cell

@@ -51,7 +51,7 @@ class FSPSCommandSplitterTests: XCTestCase {
         runCase(2)
     }
     func testAll() {
-        for var i = 0; i < cases.count; ++i {
+        for i in 0..<cases.count {
             runCase(i)
         }
     }
@@ -63,7 +63,7 @@ class FSPSCommandSplitterTests: XCTestCase {
         XCTAssertEqual(c.exec, exec.string(), "case \(caseI) failed: exec: \(c.command)")
         XCTAssertEqual(c.args.count, args.count, "case \(caseI) failed: args: \(c.command)")
         let m = min(c.args.count, args.count)
-        for var j = 0; j < m; ++j {
+        for j in 0..<m {
             XCTAssertEqual(c.args[j], args[j].string(), "case \(caseI) failed: arg \(j): \(c.command)")
         }
     }
