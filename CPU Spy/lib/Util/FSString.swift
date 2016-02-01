@@ -12,6 +12,7 @@ public enum ASCII: CChar {
     case Null = 0
     case NewLine = 10
     case Space = 32
+    case Comma = 44
     case Slash = 47
     case UpperA = 65
     case UpperZ = 90

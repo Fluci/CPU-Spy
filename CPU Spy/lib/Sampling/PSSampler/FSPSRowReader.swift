@@ -20,30 +20,33 @@ public class FSPSRowReader {
 
     // MARK: read row to processSample
 
-    private var activeLine = [FSString]()
-
     let dateFormatter = NSDateFormatter()
 
     /// main entry: defines mapping between ps-cols and corresponding processorSample attributes
-    public func readRow(let line: [FSString]) -> ProcessSample {
+    public func readRow(line: [FSString]) -> ProcessSample {
         let pSmpl = FSProcessSample()
-        activeLine = line
 
-        pSmpl.staticDat = staticDatFromActiveLine()
+        pSmpl.staticDat = staticDatFromLine(line)
 
-        if let percStr = getFromLine("%CPU")?
-            .stringByReplacingOccurrencesOfString(",", withString: ".") {
-            if let perc = Double(percStr) {
-                pSmpl.cpuUsagePerc = perc * 0.01
-            } else {
-                NSLog("%@", "Could not read cpu value: \(percStr)")
-            }
+        let percFStr: FSString = line[titleMap["%CPU"]!]
+        let percStr: String
+
+        if percFStr.findNext(ASCII.Comma.rawValue as CChar) != percFStr.length {
+            percStr = percFStr.string().stringByReplacingOccurrencesOfString(",", withString: ".")
+        } else {
+            percStr = percFStr.string()
         }
 
-        pSmpl.xstat = getFromLine("XSTAT", transform: {Int($0)})
+        if let perc = Double(percStr) {
+            pSmpl.cpuUsagePerc = perc * 0.01
+        } else {
+            NSLog("%@", "Could not read cpu value: \(percStr)")
+        }
+
+        pSmpl.xstat = getFromLine(line, titleKey: "XSTAT", transform: {Int($0)})
         //pSmpl.stat = getFromLine("STAT", transform: {FSProcessSample});
-        pSmpl.signalsPending = getFromLine("PENDING", transform: {$0})
-        pSmpl.signalsBlocked = getFromLine("BLOCKED", transform: {$0})
+        pSmpl.signalsPending = getFromLine(line, titleKey: "PENDING", transform: {$0})
+        pSmpl.signalsBlocked = getFromLine(line, titleKey: "BLOCKED", transform: {$0})
 
         assert(pSmpl.cpuUsagePerc != nil)
         assert(pSmpl.staticDat.exec != nil)
@@ -51,10 +54,10 @@ public class FSPSRowReader {
         return pSmpl
     }
     var staticDats = [Int : FSProcessSampleStatic]()
-    private func staticDatFromActiveLine() -> FSProcessSampleStatic {
+    private func staticDatFromLine(line: [FSString]) -> FSProcessSampleStatic {
 
-        let pid = getFromLine("PID", transform: {Int($0)!})
-        let command = getFromLine("COMMAND", transform: {$0})
+        let pid = getFromLine(line, titleKey: "PID", transform: {Int($0)!})
+        let command = getFromLine(line, titleKey: "COMMAND", transform: {$0})
 
         // search cache
         if let candidate = staticDats[pid] {
@@ -67,24 +70,25 @@ public class FSPSRowReader {
         staticDat.command = command
 
         // parse command
-        let (p, e, a) = splitCommand(activeLine[titleMap["COMMAND"]!])
+        let (p, e, a) = splitCommand(line[titleMap["COMMAND"]!])
         staticDat.executionPath = p
         staticDat.exec = e
         staticDat.executionArguments = a
 
         // command parsing end
 
-        staticDat.user = getFromLine("USER", transform: {$0})
+        staticDat.user = getFromLine(line, titleKey: "USER", transform: {$0})
 
-        staticDat.ppid = getFromLine("PPID", transform: {Int($0)})
-        staticDat.pgid = getFromLine("PGID", transform: {Int($0)})
-        staticDat.gid = getFromLine("GID", transform: {Int($0)})
-        staticDat.uid = getFromLine("UID", transform: {Int($0)})
-        staticDat.rgid = getFromLine("RGID", transform: {Int($0)})
-        staticDat.ruid = getFromLine("RUID", transform: {Int($0)})
-        staticDat.ruser = getFromLine("RUSER", transform: {$0})
+        staticDat.ppid = getFromLine(line, titleKey: "PPID", transform: {Int($0)})
+        staticDat.pgid = getFromLine(line, titleKey: "PGID", transform: {Int($0)})
+        staticDat.gid = getFromLine(line, titleKey: "GID", transform: {Int($0)})
+        staticDat.uid = getFromLine(line, titleKey: "UID", transform: {Int($0)})
+        staticDat.rgid = getFromLine(line, titleKey: "RGID", transform: {Int($0)})
+        staticDat.ruid = getFromLine(line, titleKey: "RUID", transform: {Int($0)})
+        staticDat.ruser = getFromLine(line, titleKey: "RUSER", transform: {$0})
         staticDat.startDate = getFromLine(
-            "STARTED",
+            line,
+            titleKey: "STARTED",
             transform: {self.dateFormatter.dateFromString($0)})
 
         // might overwrite an old one
@@ -104,12 +108,12 @@ public class FSPSRowReader {
     }
 
     // MARK: read row helper
-    private func getFromLine(titleKey: String) -> String? {
-        return getFromLine(titleKey, transform: {$0})
+    private func getFromLine(line: [FSString], titleKey: String) -> String? {
+        return getFromLine(line, titleKey: titleKey, transform: {$0})
     }
-    private func getFromLine<T>(titleKey: String, transform: (String) -> T) -> T! {
+    private func getFromLine<T>(line: [FSString], titleKey: String, transform: (String) -> T) -> T! {
         let index = titleMap[titleKey]
-        return getVal(activeLine, index: index, transform: transform)
+        return getVal(line, index: index, transform: transform)
     }
 
     private func getVal<T>(line: [FSString], index: Int!, transform: (String) -> T) -> T! {
