@@ -15,6 +15,7 @@ public class FSIconSample: FSIcon, IconSample {
     public var cores: Int = 1
 
     /// how many processes should be listed explicitly?
+    /// -1: as many as possible
     public var entries: Int = 7
 
     /// how many "subbars" should be displayed in bars (1 subbar corresponds to one processSample)
@@ -77,15 +78,15 @@ public class FSIconSample: FSIcon, IconSample {
     public var username = "aUser"
     public var partitionsOrder = ["system", "user", "other"]
     private let pSmplValSelector: (ProcessSample) -> Double = {$0.cpuUsagePerc}
-    private let pSmplPartitionKey: (ProcessSample) -> String = {
-        switch $0.staticDat.user {
-        case "root":
-            return "system"
-        case "feliceserena":
-            return "user"
-        default:
-            return "other"
-        }
+    private func pSmplPartitionKey (pSmpl: ProcessSample) -> String {
+            switch pSmpl.staticDat.user {
+            case "root":
+                return "system"
+            case username:
+                return "user"
+            default:
+                return "other"
+            }
     }
     private let pSmplDisplayName: (ProcessSample) -> String = {$0.staticDat.exec}
 
@@ -102,7 +103,7 @@ public class FSIconSample: FSIcon, IconSample {
         CFAttributedStringBeginEditing(str) // turn off internal checking
         /// keep track of string starts to give them the appropriate format
         var start = 0
-        let len = min(entries, pSmpls.count)
+        let len = min(entries == -1 ? Int.max : entries, pSmpls.count)
         for i in 0..<len {
             let pSmpl: ProcessSample = pSmpls[i]
             let line = padStringLeft(self.pSmplValSelector(pSmpl)*100, positions: 5)
@@ -132,7 +133,8 @@ public class FSIconSample: FSIcon, IconSample {
 
         // repartition
 
-        let pSmplsPartition: [String: [ProcessSample]] = partition(pSmpls) {self.pSmplPartitionKey($0)}
+        let pSmplsPartition: [String: [ProcessSample]] = partition(pSmpls)
+            {self.pSmplPartitionKey($0)}
 
         // place partitions in order in the list
         var orderedPartitions = [[ProcessSample]]()
@@ -143,7 +145,8 @@ public class FSIconSample: FSIcon, IconSample {
         var sum = 0.0
         for orderKey in partitionsOrder {
             if let p = pSmplsPartition[orderKey] {
-                let value: Double = p.reduce(0.0) {(l: Double, r) in l + self.pSmplValSelector(r)}*100
+                let value: Double = p.reduce(0.0)
+                    {(l: Double, r) in l + self.pSmplValSelector(r)} * 100
                 sum += value
                 let attr = [
                     NSForegroundColorAttributeName: CGColorCreate(
@@ -198,6 +201,10 @@ public class FSIconSample: FSIcon, IconSample {
                 bar.append(subBar)
             }
         }
+
+        // TODO: get a queue implementation to replace the array with
+
+        // make sure drawer.bars.count == maxSamples
         if drawer.bars.count >= maxSamples {
             // remove oldest
             for _ in maxSamples-1..<drawer.bars.count {
@@ -205,7 +212,7 @@ public class FSIconSample: FSIcon, IconSample {
             }
         } else if drawer.bars.count+1 < maxSamples {
             for _ in drawer.bars.count+1..<maxSamples {
-                drawer.bars.append([])
+                drawer.bars.insert([], atIndex: 0)
             }
         }
         drawer.bars.append(bar)

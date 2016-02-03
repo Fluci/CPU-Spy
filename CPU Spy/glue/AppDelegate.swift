@@ -34,7 +34,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
         let icon = FSIconSample()
         icon.delegate = self
         icon.cores = NSProcessInfo.processInfo().processorCount
-        icon.maxSamples = 64
+        icon.maxSamples = settings.iconSamples
+        icon.entries = settings.iconProcesses
         icon.username = NSUserName()
         icon.drawer.width = 128
         icon.drawer.height = 128
@@ -82,17 +83,34 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
     func settingChange(aNote: NSNotification) {
         let val = aNote.object as? Double
         if val == nil {
-            NSLog("Couldn't unwrap new sampleInterval from message, name: %@", aNote.name)
+            NSLog("Couldn't unwrap new setting from message, name: %@", aNote.name)
             return
         }
-        updateSampleInterval()
+        switch aNote.name {
+        case settings.msgNewSampleIntervalForeground:
+            updateSampleInterval()
+        case settings.msgNewSampleIntervalBackground:
+            updateSampleInterval()
+        case settings.msgNewSampleIntervalHidden:
+            updateSampleInterval()
+        case settings.msgNewIconSamples:
+            myIcon?.maxSamples = settings.iconSamples
+        case settings.msgNewIconProcesses:
+            myIcon?.entries = settings.iconProcesses
+        default:
+            NSLog("Unconfigured notification name encountered: %@",
+                aNote.name
+            )
+        }
     }
 
     func observeSettings() {
         let observedSettings: [String] = [
             settings.msgNewSampleIntervalForeground,
             settings.msgNewSampleIntervalBackground,
-            settings.msgNewSampleIntervalHidden
+            settings.msgNewSampleIntervalHidden,
+            settings.msgNewIconSamples,
+            settings.msgNewIconProcesses
         ]
 
         for s in observedSettings {

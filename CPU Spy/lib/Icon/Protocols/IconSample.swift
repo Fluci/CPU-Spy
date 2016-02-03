@@ -13,6 +13,7 @@ public protocol IconSample: Icon {
     /// how many samples (bars) to show
     var maxSamples: Int { get set }
 
+    /// how many cores does the measured machine posses?
     var cores: Int { get set }
 
     /// how many processes should be listed explicitly?

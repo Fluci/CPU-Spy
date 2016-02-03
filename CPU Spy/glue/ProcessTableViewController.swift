@@ -42,7 +42,9 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
 
     var sample: Sample? {
         didSet {
-            if maxSamples == 0 || sample == nil {
+            let mSamples = maxSamples
+
+            if mSamples == 0 || sample == nil {
                 samples = nil
                 return
             }
@@ -51,8 +53,8 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
             if filter != nil {
                 samples = samples!.filter(filter)
             }
-            if maxSamples > 0 {
-                samples = Array(samples!.prefix(maxSamples))
+            if mSamples > 0 {
+                samples = Array(samples!.prefix(mSamples))
             }
             if !sorts.isEmpty {
                 for sort in sorts {
@@ -62,8 +64,14 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
             }
         }
     }
+    var settings: Settings?
+
     var samples: [ProcessSample]?
-    var maxSamples = -1
+    var maxSamples : Int {
+        get {
+            return settings == nil ? -1 : settings!.maxTableEntries
+        }
+    }
     var filter: (ProcessSample -> Bool)! = {$0.cpuUsagePerc != 0.0}
 
     /// Evaluated from top to bottom. The last comparator decides the total order etc.

@@ -15,9 +15,14 @@ class ViewController: NSViewController {
     @IBOutlet var sampleIntervalForeground: NSTextField?
     @IBOutlet var sampleIntervalBackground: NSTextField?
     @IBOutlet var sampleIntervalHidden:     NSTextField?
+
     @IBOutlet var refreshForeground: NSButton?
     @IBOutlet var refreshBackground: NSButton?
     @IBOutlet var refreshHidden:     NSButton?
+
+    @IBOutlet var maxTableEntries: NSTextField?
+    @IBOutlet var iconSamples:     NSTextField?
+    @IBOutlet var iconProcesses:   NSTextField?
 
     var processTableViewController: ProcessTableViewController! = ProcessTableViewController()
 
@@ -41,6 +46,11 @@ class ViewController: NSViewController {
         refreshBackground?.state = settings.refreshBackground ? NSOnState : NSOffState
         refreshHidden?.state     = settings.refreshHidden     ? NSOnState : NSOffState
 
+        maxTableEntries?.integerValue = settings.maxTableEntries
+        iconSamples?.integerValue     = settings.iconSamples
+        iconProcesses?.integerValue   = settings.iconProcesses
+
+        processTableViewController.settings = settings
 
         // add self as observer for settings
         noteCenter.addObserver(
@@ -135,6 +145,33 @@ class ViewController: NSViewController {
             NSLog(
                 "Unknown sender identifier encountered for interval change: %@",
                 sender.identifier!)
+            return
+        }
+    }
+
+    @IBAction func textEntriesChanged(sender: NSTextField) {
+        if sender.identifier == nil {
+            NSLog("No sender.identifier given for entries change.")
+            return
+        }
+
+        var newValue = sender.integerValue
+        if newValue < -1 {
+            newValue = 5
+        }
+        // Always update to remove decimal points
+        sender.integerValue = newValue
+
+        switch sender.identifier! {
+        case "tableEntries":
+            settings.maxTableEntries = newValue
+        case "iconSamples":
+            settings.iconSamples = newValue
+        case "iconProcesses":
+            settings.iconProcesses = newValue
+        default:
+            NSLog("Unknown sender identifier encountered for entries change: %@",
+            sender.identifier!)
             return
         }
     }
