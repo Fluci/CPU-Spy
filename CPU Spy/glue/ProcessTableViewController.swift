@@ -57,13 +57,24 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
                 samples = Array(samples!.prefix(mSamples))
             }
             if !sorts.isEmpty {
-                for sort in sorts {
-                    // TODO: not stable yet!
-                    samples = samples!.sort(sort)
-                }
+                samples = samples!.sort({
+                    (a: ProcessSample, b: ProcessSample) -> Bool in
+                    for sort in self.sorts {
+                        switch sort(a, b){
+                        case 1:
+                            return true
+                        case -1:
+                            return false
+                        default:
+                            ()
+                        }
+                    }
+                    return false
+                })
             }
         }
     }
+
     var settings: Settings?
 
     var samples: [ProcessSample]?
@@ -72,11 +83,15 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
             return settings == nil ? -1 : settings!.maxTableEntries
         }
     }
-    var filter: (ProcessSample -> Bool)! = {$0.cpuUsagePerc != 0.0}
 
-    /// Evaluated from top to bottom. The last comparator decides the total order etc.
-    /// Note: not stable yet
-    var sorts: [((ProcessSample, ProcessSample) -> Bool)] = [ {$0.cpuUsagePerc > $1.cpuUsagePerc}
+    /// example: {$0.cpuUsagePerc != 0.0}
+    var filter: (ProcessSample -> Bool)! = {_ in true}
+
+    /// compared from first to last, the first rule returning != 0 decides
+    /// -1 means end of list, 1 means start of list
+    var sorts: [((ProcessSample, ProcessSample) -> Int)] = [
+        {$0.cpuUsagePerc > $1.cpuUsagePerc ? 1 : ($0.cpuUsagePerc == $1.cpuUsagePerc ? 0 : -1)},
+        {$0.staticDat.pid > $1.staticDat.pid ? -1 : ($0.staticDat.pid == $1.staticDat.pid ? 0 : 1)}
     ]
 
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
