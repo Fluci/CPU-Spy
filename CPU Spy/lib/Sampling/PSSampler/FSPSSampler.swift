@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum RangeWideningError: ErrorType {
+private enum RangeWideningError: ErrorType {
     case NoFit
 }
 
