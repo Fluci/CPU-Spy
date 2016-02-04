@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+ Provides a skeletton for a sample. It mainly cares about proper timer triggering.
+ A child has to implement sampleNow().
+*/
 public class FSSampler: NSObject, Sampler {
     /// measured in seconds [s]
     public var sampleInterval: Double = 5.0 {

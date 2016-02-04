@@ -8,6 +8,12 @@
 
 import Cocoa
 
+/**
+ This class represent's the logic behind an Icon object. 
+ It has to decide which values should be drawn in which way on an abstract level
+ corresponding to the model the IconDrawer provides. The class itself does not 
+ interact with any drawing API.
+ */
 public class FSIconSample: FSIcon, IconSample {
     /// how many samples (bars) to show
     public var maxSamples: Int = 16

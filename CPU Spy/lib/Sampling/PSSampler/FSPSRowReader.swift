@@ -8,6 +8,12 @@
 
 import Foundation
 
+/*
+    Reads a single row and produces a ProcessSample.
+    titleMap has to be set by the client to map the collumns correctly 
+    to process sample attributes.
+*/
+
 public class FSPSRowReader {
 
     private let commandSplitter: CommandSplitter

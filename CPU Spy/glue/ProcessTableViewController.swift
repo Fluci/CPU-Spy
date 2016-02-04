@@ -8,7 +8,9 @@
 
 import Cocoa
 
-
+/**
+ This class is responsible to handle the interaction with the ProcessTable in the main window.
+ */
 class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
     @IBOutlet var processTable: NSTableView? {
         didSet {

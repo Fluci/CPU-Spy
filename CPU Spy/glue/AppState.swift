@@ -8,6 +8,12 @@
 
 import Foundation
 
+/**
+    This singleton tries to solve the problem of propagating value changes through the 
+    application.
+    These are temporary values, they are not stored on disk and not loaded at start up.
+*/
+
 let appState = AppState()
 
 class AppState: FSAbstractAppState {

@@ -8,6 +8,14 @@
 
 import Foundation
 
+/**
+ Allows to propagate value changes through the application and efficient value querying.
+ An inheriting class should create a member for each value, providing an associated msgKey
+ used in NSNotificationCenter. Triggering the propagation should be implemented by
+ calling update() in the members didSet{} observer.
+ The initial values can be set either in the member initialization or by overriding
+ initValues.
+*/
 
 public class FSAbstractAppState {
     internal let noteCenter: NSNotificationCenter
@@ -26,8 +34,8 @@ public class FSAbstractAppState {
         noteCenter = someNotificationCenter
         initValues()
     }
-
+    /// can be implemented by child, called after initalization of object
     func initValues() {
-        preconditionFailure("initValues must be overwritten")
+        // placeholder
     }
 }

@@ -8,7 +8,12 @@
 
 import Foundation
 
-// interface object, every object inside should be hidden from the outside as good as possible
+/**
+ Highest level within the model. At the moment, this is mainly a placeholder.
+ It is intended to work accross multiple samples.
+ Possible use cases might be the linking of processSamples to linked lists or
+ analysis of the data within time.
+*/
 
 public class FSSampleCollector: SampleCollector, SamplerDelegate {
 

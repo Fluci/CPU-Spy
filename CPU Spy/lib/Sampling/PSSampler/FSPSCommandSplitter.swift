@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+ Analyses a command (like in command line within a console/terminal) and 
+ splits it to path, executable name and arguments array.
+ */
+
 public class FSPSCommandSplitter: CommandSplitter {
 
     private let commandArgsUpperBounds: [FSString] = [" --", " /", " ./"]

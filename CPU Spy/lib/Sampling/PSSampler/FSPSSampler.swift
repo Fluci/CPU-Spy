@@ -12,6 +12,12 @@ enum RangeWideningError: ErrorType {
     case NoFit
 }
 
+/**
+    Sample implementation using the unix command ps as data source.
+    The command gets split in a table (a two dimensional array of Strings)
+    and then parsed by the rowReader. 
+ */
+
 public class FSPSSampler: FSSampler {
 
     private let lstartFormatter = NSDateFormatter()

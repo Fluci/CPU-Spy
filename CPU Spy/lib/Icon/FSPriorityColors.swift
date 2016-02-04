@@ -8,7 +8,11 @@
 
 import Foundation
 
-
+/**
+ Low indices have high priorities. prioColors corresponds to the color of the
+first <prioColors.count> indices. If the requested index overflows the array size,
+ the default color is returned.
+ */
 public class FSPriorityColors {
     public var defaultColor: [CGFloat]
     public var prioColors: [[CGFloat]]
