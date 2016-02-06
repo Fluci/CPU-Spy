@@ -119,7 +119,7 @@ public final class FSString: CustomStringConvertible,
     }
     public var first: CChar! {
         get {
-            if length == 0 {
+            if isEmpty {
                 return nil
             }
             return str.memory[rangeStart]
@@ -127,10 +127,15 @@ public final class FSString: CustomStringConvertible,
     }
     public var last: CChar! {
         get {
-            if length == 0 {
+            if isEmpty {
                 return nil
             }
             return str.memory[rangeEnd-1]
+        }
+    }
+    public var isEmpty: Bool {
+        get {
+            return length == 0
         }
     }
     public func substring(start: Int, var aLength: Int = Int.max) -> FSString {

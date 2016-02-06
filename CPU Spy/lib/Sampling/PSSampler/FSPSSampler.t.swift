@@ -22,8 +22,8 @@ class FSPSSamplerTests: XCTestCase {
         */
         let headerLine: FSString = "  PID  %CPU  PPID  PGID   GID   UID USER             RGID  RUID RUSER           STARTED                      STAT XSTAT  PENDING  BLOCKED   SESS COMMAND"
         let bodyLine: FSString = "  482  19.1     1   482    20   501 feliceserena       20   501 feliceserena    Thu Dec 17 22:57:11 2015     S        0        0        0      0 /Applications/Feeds/Vienna.app/Contents/MacOS/Vienna -psn_0_135201"
-        let sampler = FSPSSampler()
-        let ranges = sampler.getColsFromLines(headerLine, bodyLine: bodyLine)
+        let tokenizer = FSPSTokenizer()
+        let ranges = tokenizer.getColsFromLines(headerLine, bodyLine: bodyLine)
 
         XCTAssertEqual(17, ranges.count)
         var i = 0
@@ -127,8 +127,9 @@ class FSPSSamplerTests: XCTestCase {
         */
         let headerLine: FSString = "  PID  %CPU  PPID  PGID"
         let bodyLine: FSString = "49555  23.0     1 49555"
-        let sampler = FSPSSampler()
-        let ranges = sampler.getColsFromLines(headerLine, bodyLine: bodyLine)
+
+        let tokenizer = FSPSTokenizer()
+        let ranges = tokenizer.getColsFromLines(headerLine, bodyLine: bodyLine)
 
         XCTAssertEqual(4, ranges.count)
         var i = 0
@@ -161,8 +162,8 @@ class FSPSSamplerTests: XCTestCase {
         */
         let headerLine: FSString = "  PID  %CPU  PPID  PGID   GID   UID USER             RGID"
         let bodyLine: FSString = "  575   0,0     1   575   200   200 _softwareupdate   200"
-        let sampler = FSPSSampler()
-        let ranges = sampler.getColsFromLines(headerLine, bodyLine: bodyLine)
+        let tokenizer = FSPSTokenizer()
+        let ranges = tokenizer.getColsFromLines(headerLine, bodyLine: bodyLine)
 
         XCTAssertEqual(8, ranges.count)
         var i = 0

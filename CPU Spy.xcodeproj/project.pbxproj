@@ -34,7 +34,6 @@
 		844B9E8B1C52E53400EE25CC /* FSPSCommandSplitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E611C52DE3000EE25CC /* FSPSCommandSplitter.swift */; };
 		844B9E8C1C52E53800EE25CC /* FSPSCommandSplitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E611C52DE3000EE25CC /* FSPSCommandSplitter.swift */; };
 		844B9E8D1C52E53D00EE25CC /* FSPSSampler.t.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E871C52E0B800EE25CC /* FSPSSampler.t.swift */; };
-		844B9E8E1C52E62500EE25CC /* FSPSSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E641C52DE3000EE25CC /* FSPSSampler.swift */; };
 		844B9E8F1C52E66200EE25CC /* FSStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E841C52E09700EE25CC /* FSStringTests.swift */; };
 		844B9E911C52F92900EE25CC /* FSSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E5D1C52DE3000EE25CC /* FSSampler.swift */; };
 		844B9E921C52F92D00EE25CC /* FSSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B9E5A1C52DE3000EE25CC /* FSSample.swift */; };
@@ -70,6 +69,12 @@
 		84A544391C62B1FC00D4A86B /* PowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A544381C62B1FC00D4A86B /* PowerSource.swift */; };
 		84A5443B1C64025400D4A86B /* FSStringASCII.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5443A1C64025400D4A86B /* FSStringASCII.swift */; };
 		84A5443C1C6402A700D4A86B /* FSStringASCII.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5443A1C64025400D4A86B /* FSStringASCII.swift */; };
+		84C32D1D1C6651F500807C06 /* FSPSTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C32D1C1C6651F500807C06 /* FSPSTokenizer.swift */; };
+		84C32D1E1C6656E300807C06 /* FSPSTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C32D1C1C6651F500807C06 /* FSPSTokenizer.swift */; };
+		84C32D211C666A7000807C06 /* RowReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C32D201C666A7000807C06 /* RowReader.swift */; };
+		84C32D231C666B4200807C06 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C32D221C666B4200807C06 /* Tokenizer.swift */; };
+		84C32D241C66719400807C06 /* RowReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C32D201C666A7000807C06 /* RowReader.swift */; };
+		84C32D251C66726500807C06 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C32D221C666B4200807C06 /* Tokenizer.swift */; };
 		84DEAF221C54FBE300060D34 /* IconDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF211C54FBE300060D34 /* IconDelegate.swift */; };
 		84DEAF251C54FC1D00060D34 /* IconDrawerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF241C54FC1D00060D34 /* IconDrawerDelegate.swift */; };
 		84DEAF281C54FC6000060D34 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF271C54FC6000060D34 /* Icon.swift */; };
@@ -148,6 +153,9 @@
 		84A544361C62ACB900D4A86B /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		84A544381C62B1FC00D4A86B /* PowerSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSource.swift; sourceTree = "<group>"; };
 		84A5443A1C64025400D4A86B /* FSStringASCII.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSStringASCII.swift; sourceTree = "<group>"; };
+		84C32D1C1C6651F500807C06 /* FSPSTokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPSTokenizer.swift; sourceTree = "<group>"; };
+		84C32D201C666A7000807C06 /* RowReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RowReader.swift; path = Protocols/RowReader.swift; sourceTree = "<group>"; };
+		84C32D221C666B4200807C06 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tokenizer.swift; path = Protocols/Tokenizer.swift; sourceTree = "<group>"; };
 		84DEAF211C54FBE300060D34 /* IconDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconDelegate.swift; path = Protocols/IconDelegate.swift; sourceTree = "<group>"; };
 		84DEAF241C54FC1D00060D34 /* IconDrawerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconDrawerDelegate.swift; path = Protocols/IconDrawerDelegate.swift; sourceTree = "<group>"; };
 		84DEAF271C54FC6000060D34 /* Icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Icon.swift; path = Protocols/Icon.swift; sourceTree = "<group>"; };
@@ -289,10 +297,12 @@
 		844B9E5F1C52DE3000EE25CC /* PSSampler */ = {
 			isa = PBXGroup;
 			children = (
+				84C32D1F1C66633900807C06 /* Protocols */,
 				844B9E611C52DE3000EE25CC /* FSPSCommandSplitter.swift */,
 				844B9E861C52E0B800EE25CC /* FSPSCommandSplitter.t.swift */,
 				844B9E621C52DE3000EE25CC /* FSPSRowReader.swift */,
 				844B9E641C52DE3000EE25CC /* FSPSSampler.swift */,
+				84C32D1C1C6651F500807C06 /* FSPSTokenizer.swift */,
 				844B9E871C52E0B800EE25CC /* FSPSSampler.t.swift */,
 				844B9E651C52DE3000EE25CC /* PSCol.swift */,
 			);
@@ -334,6 +344,15 @@
 				844B9EAA1C540C0C00EE25CC /* ProcessStateAdditional.swift */,
 				844B9E671C52DE3000EE25CC /* ProcessState.swift */,
 				8488A1F71C54175700DE565D /* CommandSplitter.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		84C32D1F1C66633900807C06 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				84C32D201C666A7000807C06 /* RowReader.swift */,
+				84C32D221C666B4200807C06 /* Tokenizer.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -523,7 +542,9 @@
 				84A5443B1C64025400D4A86B /* FSStringASCII.swift in Sources */,
 				844B9E6A1C52DE3000EE25CC /* FSIcon.swift in Sources */,
 				844B9E7B1C52DE3000EE25CC /* FSPSSampler.swift in Sources */,
+				84C32D231C666B4200807C06 /* Tokenizer.swift in Sources */,
 				844B9EAB1C540C0C00EE25CC /* ProcessStateAdditional.swift in Sources */,
+				84C32D211C666A7000807C06 /* RowReader.swift in Sources */,
 				84A544391C62B1FC00D4A86B /* PowerSource.swift in Sources */,
 				844B9E8C1C52E53800EE25CC /* FSPSCommandSplitter.swift in Sources */,
 				844B9E751C52DE3000EE25CC /* FSSampler.swift in Sources */,
@@ -538,6 +559,7 @@
 				844B9E6D1C52DE3000EE25CC /* FSIconSample.swift in Sources */,
 				844E7C321C5ABFFA008EEB86 /* FSAbstractAppState.swift in Sources */,
 				844B9E6E1C52DE3000EE25CC /* FSPriorityColors.swift in Sources */,
+				84C32D1D1C6651F500807C06 /* FSPSTokenizer.swift in Sources */,
 				844B9E711C52DE3000EE25CC /* FSProcessSampleStatic.swift in Sources */,
 				84DEAF251C54FC1D00060D34 /* IconDrawerDelegate.swift in Sources */,
 				8488A1FB1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */,
@@ -562,7 +584,7 @@
 				844B9E811C52E04E00EE25CC /* FSString.swift in Sources */,
 				844B9E9E1C538E8B00EE25CC /* PSCol.swift in Sources */,
 				844B9E8B1C52E53400EE25CC /* FSPSCommandSplitter.swift in Sources */,
-				844B9E8E1C52E62500EE25CC /* FSPSSampler.swift in Sources */,
+				84C32D1E1C6656E300807C06 /* FSPSTokenizer.swift in Sources */,
 				844B9EB01C540CCA00EE25CC /* Sampler.swift in Sources */,
 				844B9E8F1C52E66200EE25CC /* FSStringTests.swift in Sources */,
 				844B9E971C52F9B000EE25CC /* ProcessState.swift in Sources */,
@@ -572,6 +594,8 @@
 				844B9EAC1C540CC000EE25CC /* ProcessStateAdditional.swift in Sources */,
 				8488A1F31C5414B400DE565D /* SampleCollectorDelegate.swift in Sources */,
 				844B9E8A1C52E53000EE25CC /* FSPSCommandSplitter.t.swift in Sources */,
+				84C32D241C66719400807C06 /* RowReader.swift in Sources */,
+				84C32D251C66726500807C06 /* Tokenizer.swift in Sources */,
 				844B9E921C52F92D00EE25CC /* FSSample.swift in Sources */,
 				844B9E951C52F98000EE25CC /* FSProcessSampleStatic.swift in Sources */,
 				844B9E911C52F92900EE25CC /* FSSampler.swift in Sources */,
@@ -708,6 +732,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "CPU Spy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -723,11 +748,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_FAST_MATH = YES;
 				INFOPLIST_FILE = "CPU Spy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LLVM_LTO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.feliceserena.CPU-Spy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_DISABLE_SAFETY_CHECKS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "CPU Spy/CPU Spy-Bridging-Header.h";
 			};
 			name = Release;

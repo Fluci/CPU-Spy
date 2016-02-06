@@ -8,31 +8,36 @@
 
 import Foundation
 
+enum ReaderError: ErrorType {
+    case NoPid
+    case NoCommand
+}
+
 /*
     Reads a single row and produces a ProcessSample.
-    titleMap has to be set by the client to map the collumns correctly 
+    titleMap has to be set by the client to map the collumns correctly
     to process sample attributes.
 */
 
-public class FSPSRowReader {
+final class FSPSRowReader: RowReader {
 
     private let commandSplitter: CommandSplitter
 
-    init(aSplitter: CommandSplitter = FSPSCommandSplitter()) {
+    required init(aSplitter: CommandSplitter = FSPSCommandSplitter()) {
         commandSplitter = aSplitter
     }
 
-    public var titleMap: [String : Int]!
+    var titleMap: [String : Int]!
 
     // MARK: read row to processSample
 
     let dateFormatter = NSDateFormatter()
 
     /// main entry: defines mapping between ps-cols and corresponding processorSample attributes
-    public func readRow(line: [FSString]) -> ProcessSample {
+    func readRow(line: [FSString]) throws -> ProcessSample {
         let pSmpl = FSProcessSample()
 
-        pSmpl.staticDat = staticDatFromLine(line)
+        pSmpl.staticDat = try staticDatFromLine(line)
 
         let percFStr: FSString = line[titleMap["%CPU"]!]
         let percStr: String
@@ -60,10 +65,18 @@ public class FSPSRowReader {
         return pSmpl
     }
     var staticDats = [Int : FSProcessSampleStatic]()
-    private func staticDatFromLine(line: [FSString]) -> FSProcessSampleStatic {
+    private func staticDatFromLine(line: [FSString]) throws -> FSProcessSampleStatic {
 
-        let pid = getFromLine(line, titleKey: "PID", transform: {Int($0)!})
-        let command = getFromLine(line, titleKey: "COMMAND", transform: {$0})
+        let pidTmp: Int? = getFromLine(line, titleKey: "PID", transform: {Int($0)})!
+
+        if pidTmp == nil {
+            throw ReaderError.NoPid
+        }
+
+        let command: String! = getFromLine(line, titleKey: "COMMAND", transform: {$0})
+
+        let pid: Int = pidTmp!
+
 
         // search cache
         if let candidate = staticDats[pid] {
