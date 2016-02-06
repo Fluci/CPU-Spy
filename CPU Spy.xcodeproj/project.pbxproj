@@ -238,8 +238,7 @@
 				844B9E451C52DE0E00EE25CC /* ViewController.swift */,
 				8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */,
 				84DEAF2E1C557A8E00060D34 /* RunMode.swift */,
-				84DEAF311C56DED900060D34 /* Settings.swift */,
-				844E7C331C5AC07E008EEB86 /* AppState.swift */,
+				84CA377C1C663E67001C8452 /* Global */,
 			);
 			path = glue;
 			sourceTree = "<group>";
@@ -330,6 +329,15 @@
 				8488A1F71C54175700DE565D /* CommandSplitter.swift */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		84CA377C1C663E67001C8452 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				84DEAF311C56DED900060D34 /* Settings.swift */,
+				844E7C331C5AC07E008EEB86 /* AppState.swift */,
+			);
+			name = Global;
 			sourceTree = "<group>";
 		};
 		84DEAF231C54FBF700060D34 /* Protocols */ = {

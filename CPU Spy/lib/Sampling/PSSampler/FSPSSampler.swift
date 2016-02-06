@@ -178,7 +178,7 @@ public class FSPSSampler: FSSampler {
                 rowReader.titleMap = titleMap
             } catch {
                 // this really shouldn't happen
-                NSLog("Failed to read header row form line.")
+                NSLog("Failed to read header row form line: %@", headerString.string())
             }
         }
 
@@ -294,7 +294,7 @@ public class FSPSSampler: FSSampler {
                 while aLine[end] != ASCII.Space.rawValue {end += 1}
                 while aLine[start] != ASCII.Space.rawValue {start -= 1}
                 if end >= start {
-                    NSLog("Anomalie in %@ for indexes %d to %d", aLine.string(), start, end)
+                    NSLog("Anomaly in %@ for indexes %d to %d", aLine.string(), start, end)
                     throw RangeWideningError.NoFit
                 }
 
