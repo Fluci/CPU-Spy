@@ -8,6 +8,14 @@
 
 import Foundation
 
+/** 
+ Allows to uniformly configure setting properties.
+ Every update triggers a Notification with the corresponding msgKey.
+ The setKey is used as key for the storage in NSUserDefaults.
+ An inheriting class must implement initValues using getSetDefault.
+ The initialization value of a member is ignored this way.
+ */
+
 public class FSAbstractSettings {
     public let userDefaults: NSUserDefaults
     public let noteCenter: NSNotificationCenter

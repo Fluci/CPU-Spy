@@ -8,7 +8,9 @@
 
 import Cocoa
 
-
+/**
+ This class is responsible to handle the interaction with the ProcessTable in the main window.
+ */
 class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
     @IBOutlet var processTable: NSTableView? {
         didSet {
@@ -108,7 +110,7 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
             return "<no col>"
         }
         if samples == nil {
-            NSLog("no process sample set for row %d", row)
+            NSLog("No process sample set for row %d", row)
             return "<no sample>"
         }
 

@@ -8,10 +8,15 @@
 
 import Foundation
 
+/**
+ Provides a skeletton for a sample. It mainly cares about proper timer triggering.
+ A child has to implement sampleNow().
+*/
 public class FSSampler: NSObject, Sampler {
     /// measured in seconds [s]
     public var sampleInterval: Double = 5.0 {
         didSet {
+            debugPrint("SampleInterval to: \(sampleInterval)")
             if sampleInterval < 0 {
                 // this should never be called,
                 // since it's the UI's responsibility to check the values
@@ -28,8 +33,9 @@ public class FSSampler: NSObject, Sampler {
             let passedTime = oldValue - samplingTimer.fireDate.timeIntervalSinceNow
             if passedTime > oldValue {
                 // that means the fireDate is in the past
-                // which means something went wrong (race condition)
-                NSLog("encountered fireDate in the past while samplingActivated but not in progress, restarting sampling")
+                debugPrint(
+                    "Encountered fireDate in the past (overdue by \(passedTime - oldValue) s) "
+                    + "while samplingActivated but not in progress, restarting sampling")
                 stop()
                 run()
                 start()
@@ -98,11 +104,11 @@ public class FSSampler: NSObject, Sampler {
 
     public func run() {
         if !samplingActivated {
-            NSLog("called run with samplingActivated = false, not taking sample")
+            debugPrint("called run with samplingActivated = false, not taking sample")
             return
         }
         if samplingInProgress {
-            NSLog("last sampling is still running, skipping this sample")
+            debugPrint("last sampling is still running, skipping this sample")
             return
         }
         samplingInProgress = true

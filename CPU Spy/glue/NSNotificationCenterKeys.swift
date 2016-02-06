@@ -8,5 +8,8 @@
 
 import Foundation
 
+/**
+    Keys, that don't find a place anywhere else.
+*/
 
 let msgNewSample = "NEW_SAMPLE"

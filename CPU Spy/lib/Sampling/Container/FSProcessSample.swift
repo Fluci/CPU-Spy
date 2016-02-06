@@ -8,7 +8,10 @@
 
 import Foundation
 
-
+/**
+ Models the state of a process at a single point of time.
+ Corresponds to a line of ps or Activity Monitor.
+ */
 
 public class FSProcessSample: ProcessSample {
     public internal(set) var staticDat: ProcessSampleStatic = FSProcessSampleStatic()

@@ -8,7 +8,10 @@
 
 import Cocoa
 
-
+/**
+ Handles the interaction with the MainWindow, except the processTable which is mainly
+ controlled by processTableViewController.
+*/
 class ViewController: NSViewController {
     let noteCenter = NSNotificationCenter.defaultCenter()
 

@@ -10,8 +10,22 @@ import Cocoa
 
 
 /*
-    concept:
-    loop over bars array, drawing the low indexes at the bottom, high indexes at the top
+    This class provides a template that can be filled with values by a client.
+    IconDrawer provides the member icon, an NSImage. If NSImage is called to draw itself,
+    it delegates the call to FSIconDrawer which draws the image.
+
+    Concept:
+    Cells: the first text line is divided in equally sized cells and filled with the string content.
+    No clipping is performed.
+
+    Bar: One bar is divided in multiple IconBars (an array of IconBars). 
+    Low indices are at the bottom, high indices at the top.
+    Bars with low indices are at the left of the image, Bars with high indices at the right.
+    A bar has no concept of width. Every bar has a width of ImageWidth/bars.count.
+    If something should "move" from one side to the other, the empty space has to be padded
+    with empty bars.
+
+    Text: Unclipped text starting at the second text line in the image.
 
 */
 

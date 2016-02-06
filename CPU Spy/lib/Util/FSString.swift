@@ -8,16 +8,11 @@
 
 import Foundation
 
-public enum ASCII: CChar {
-    case Null = 0
-    case NewLine = 10
-    case Space = 32
-    case Comma = 44
-    case Slash = 47
-    case UpperA = 65
-    case UpperZ = 90
-    case Backslash = 92
-}
+/**
+ Allows fast substring and copy operations.
+ A FSString created by a substring operation on another FSString
+ shares the underlying string representation, this implies that changes are shared.
+ */
 
 public final class FSString: CustomStringConvertible,
     CustomDebugStringConvertible,
@@ -81,10 +76,10 @@ public final class FSString: CustomStringConvertible,
         rfc = UnsafeMutablePointer<Int>.alloc(1)
         rfc.initialize(1)
 
-        let buffLen = aString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)+1
+        let buffLen = aString.lengthOfBytesUsingEncoding(NSASCIIStringEncoding)+1
         str = UnsafeMutablePointer<[CChar]>.alloc(1)
         str.initialize([CChar](count: buffLen, repeatedValue: ASCII.Null.rawValue))
-        aString.getCString(&str.memory, maxLength: buffLen, encoding: NSUTF8StringEncoding)
+        aString.getCString(&str.memory, maxLength: buffLen, encoding: NSASCIIStringEncoding)
 
         rangeStart = 0
         length = str.memory.count - 1

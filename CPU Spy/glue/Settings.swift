@@ -8,6 +8,12 @@
 
 import Foundation
 
+/**
+    This singleton tries to solve the problem of propagating value changes through the system.
+    Additionally these properties are stored on the useres machine and reloaded at start up.
+    Every change is stored immediatly.
+*/
+
 let settings = Settings()
 
 public class Settings: FSAbstractSettings {

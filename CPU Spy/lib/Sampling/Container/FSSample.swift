@@ -8,6 +8,10 @@
 
 import Foundation
 
+/*
+    Models the state of all processes at a single point in time.
+*/
+
 public class FSSample: Sample {
     // FAQ: why arrays and not linked lists? it's simpler for maintaining
 

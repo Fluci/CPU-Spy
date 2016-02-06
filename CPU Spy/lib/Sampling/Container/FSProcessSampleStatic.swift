@@ -8,6 +8,11 @@
 
 import Foundation
 
+/*
+    Static part of a process' state. The values, that don't change within 
+    the life time of a process.
+*/
+
 public class FSProcessSampleStatic: ProcessSampleStatic {
     /// executing binary; substring of executionPath
     public internal(set) var exec: String!

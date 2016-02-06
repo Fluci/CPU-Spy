@@ -14,6 +14,9 @@ enum Alignment {
     case Unknown
 }
 
+/**
+ Models a collumn in the output of ps.
+ */
 internal struct PSCol {
     var start: Int = 0
     var end: Int = Int.max
