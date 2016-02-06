@@ -76,10 +76,10 @@ public final class FSString: CustomStringConvertible,
         rfc = UnsafeMutablePointer<Int>.alloc(1)
         rfc.initialize(1)
 
-        let buffLen = aString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)+1
+        let buffLen = aString.lengthOfBytesUsingEncoding(NSASCIIStringEncoding)+1
         str = UnsafeMutablePointer<[CChar]>.alloc(1)
         str.initialize([CChar](count: buffLen, repeatedValue: ASCII.Null.rawValue))
-        aString.getCString(&str.memory, maxLength: buffLen, encoding: NSUTF8StringEncoding)
+        aString.getCString(&str.memory, maxLength: buffLen, encoding: NSASCIIStringEncoding)
 
         rangeStart = 0
         length = str.memory.count - 1

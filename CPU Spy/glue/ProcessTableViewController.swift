@@ -112,7 +112,7 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
             return "<no col>"
         }
         if samples == nil {
-            NSLog("no process sample set for row %d", row)
+            NSLog("No process sample set for row %d", row)
             return "<no sample>"
         }
 
