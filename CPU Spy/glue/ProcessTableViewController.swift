@@ -75,12 +75,10 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
         }
     }
 
-    var settings: Settings?
-
     var samples: [ProcessSample]?
     var maxSamples : Int {
         get {
-            return settings == nil ? -1 : settings!.maxTableEntries
+            return settings.maxTableEntries
         }
     }
 
@@ -119,7 +117,7 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
         case "PID":
             return psmpl.staticDat.pid
         case "%CPU":
-            return psmpl.cpuUsagePerc*100
+            return psmpl.cpuUsagePerc * 100
         case "EXEC":
             return psmpl.staticDat.exec
         case "COMMAND":

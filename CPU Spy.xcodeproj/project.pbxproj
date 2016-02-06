@@ -65,16 +65,15 @@
 		8488A1F81C54175700DE565D /* CommandSplitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1F71C54175700DE565D /* CommandSplitter.swift */; };
 		8488A1F91C54175700DE565D /* CommandSplitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1F71C54175700DE565D /* CommandSplitter.swift */; };
 		8488A1FB1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */; };
-		8488A1FC1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */; };
+		84A544371C62ACB900D4A86B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A544361C62ACB900D4A86B /* IOKit.framework */; };
+		84A544391C62B1FC00D4A86B /* PowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A544381C62B1FC00D4A86B /* PowerSource.swift */; };
 		84DEAF221C54FBE300060D34 /* IconDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF211C54FBE300060D34 /* IconDelegate.swift */; };
 		84DEAF251C54FC1D00060D34 /* IconDrawerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF241C54FC1D00060D34 /* IconDrawerDelegate.swift */; };
 		84DEAF281C54FC6000060D34 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF271C54FC6000060D34 /* Icon.swift */; };
 		84DEAF2A1C54FD3A00060D34 /* IconDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF291C54FD3A00060D34 /* IconDrawer.swift */; };
 		84DEAF2C1C5502BE00060D34 /* IconSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF2B1C5502BE00060D34 /* IconSample.swift */; };
 		84DEAF2F1C557A8E00060D34 /* RunMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF2E1C557A8E00060D34 /* RunMode.swift */; };
-		84DEAF301C557A8E00060D34 /* RunMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF2E1C557A8E00060D34 /* RunMode.swift */; };
 		84DEAF321C56DED900060D34 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF311C56DED900060D34 /* Settings.swift */; };
-		84DEAF331C56DED900060D34 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF311C56DED900060D34 /* Settings.swift */; };
 		84DEAF351C56DEE900060D34 /* FSAbstractSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF341C56DEE900060D34 /* FSAbstractSettings.swift */; };
 		84DEAF361C56DEE900060D34 /* FSAbstractSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF341C56DEE900060D34 /* FSAbstractSettings.swift */; };
 /* End PBXBuildFile section */
@@ -142,6 +141,9 @@
 		8488A1F41C5414D200DE565D /* SampleCollector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SampleCollector.swift; path = Protocols/SampleCollector.swift; sourceTree = "<group>"; };
 		8488A1F71C54175700DE565D /* CommandSplitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandSplitter.swift; path = Protocols/CommandSplitter.swift; sourceTree = "<group>"; };
 		8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationCenterKeys.swift; sourceTree = "<group>"; };
+		84A544331C62AB8200D4A86B /* CPU Spy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CPU Spy-Bridging-Header.h"; sourceTree = "<group>"; };
+		84A544361C62ACB900D4A86B /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		84A544381C62B1FC00D4A86B /* PowerSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSource.swift; sourceTree = "<group>"; };
 		84DEAF211C54FBE300060D34 /* IconDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconDelegate.swift; path = Protocols/IconDelegate.swift; sourceTree = "<group>"; };
 		84DEAF241C54FC1D00060D34 /* IconDrawerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconDrawerDelegate.swift; path = Protocols/IconDrawerDelegate.swift; sourceTree = "<group>"; };
 		84DEAF271C54FC6000060D34 /* Icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Icon.swift; path = Protocols/Icon.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A544371C62ACB900D4A86B /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +208,8 @@
 				844B9DE81C52DB2400EE25CC /* Assets.xcassets */,
 				844B9DEA1C52DB2400EE25CC /* Main.storyboard */,
 				844B9DED1C52DB2400EE25CC /* Info.plist */,
+				84A544331C62AB8200D4A86B /* CPU Spy-Bridging-Header.h */,
+				84A544361C62ACB900D4A86B /* IOKit.framework */,
 			);
 			path = "CPU Spy";
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */,
 				84DEAF2E1C557A8E00060D34 /* RunMode.swift */,
 				84DEAF311C56DED900060D34 /* Settings.swift */,
+				84A544381C62B1FC00D4A86B /* PowerSource.swift */,
 				844E7C331C5AC07E008EEB86 /* AppState.swift */,
 			);
 			path = glue;
@@ -404,6 +410,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Serena;
 				TargetAttributes = {
@@ -503,6 +510,7 @@
 				844B9E6A1C52DE3000EE25CC /* FSIcon.swift in Sources */,
 				844B9E7B1C52DE3000EE25CC /* FSPSSampler.swift in Sources */,
 				844B9EAB1C540C0C00EE25CC /* ProcessStateAdditional.swift in Sources */,
+				84A544391C62B1FC00D4A86B /* PowerSource.swift in Sources */,
 				844B9E8C1C52E53800EE25CC /* FSPSCommandSplitter.swift in Sources */,
 				844B9E751C52DE3000EE25CC /* FSSampler.swift in Sources */,
 				844B9EA91C540B9E00EE25CC /* ProcessSampleStatic.swift in Sources */,
@@ -556,10 +564,7 @@
 				8488A1F61C5414D200DE565D /* SampleCollector.swift in Sources */,
 				844B9E981C52F9BF00EE25CC /* FSPSRowReader.swift in Sources */,
 				844B9EAD1C540CC300EE25CC /* ProcessSample.swift in Sources */,
-				8488A1FC1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */,
-				84DEAF331C56DED900060D34 /* Settings.swift in Sources */,
 				84DEAF361C56DEE900060D34 /* FSAbstractSettings.swift in Sources */,
-				84DEAF301C557A8E00060D34 /* RunMode.swift in Sources */,
 				844B9EAF1C540CC800EE25CC /* ProcessSampleStatic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -686,11 +691,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "CPU Spy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.feliceserena.CPU-Spy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CPU Spy/CPU Spy-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -698,11 +706,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "CPU Spy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.feliceserena.CPU-Spy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CPU Spy/CPU Spy-Bridging-Header.h";
 			};
 			name = Release;
 		};

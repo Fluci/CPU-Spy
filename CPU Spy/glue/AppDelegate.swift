@@ -8,6 +8,10 @@
 
 import Cocoa
 
+private let powerSourceCallback: IOPowerSourceCallbackType = { (ptr: UnsafeMutablePointer<Void>) in
+    let appDel = Unmanaged<AppDelegate>.fromOpaque(COpaquePointer(ptr)).takeUnretainedValue()
+    appDel.batteryChanged()
+}
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, IconDelegate {
@@ -23,11 +27,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
 
+        if let runLoopSource = IOPSCreateLimitedPowerNotification(
+            powerSourceCallback,
+            UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))?.takeRetainedValue() {
+                CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopDefaultMode);
+        } else {
+            NSLog("Observing of powerSource failed.")
+        }
+
         // set up sampling
         sampler = FSPSSampler()
         sampleCollector = FSSampleCollector(aSampler: sampler)
 
-        sampleCollector.maxSamples = 32
+        sampleCollector.maxSamples = 1 // we don't need more for the moment
         sampleCollector.delegate = self
 
         // set up dock icon
@@ -43,6 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
         myIcon = icon
 
         updateSampleInterval()
+        batteryChanged()
 
         myApp.applicationIconImage = myIcon?.drawer.icon
 
@@ -81,17 +94,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
     // MARK: Settings handling
 
     func settingChange(aNote: NSNotification) {
-        let val = aNote.object as? Double
-        if val == nil {
-            NSLog("Couldn't unwrap new setting from message, name: %@", aNote.name)
-            return
-        }
         switch aNote.name {
-        case settings.msgNewSampleIntervalForeground:
+        case settings.msgNewSampleIntervalForegroundAC:
             updateSampleInterval()
-        case settings.msgNewSampleIntervalBackground:
+        case settings.msgNewSampleIntervalBackgroundAC:
             updateSampleInterval()
-        case settings.msgNewSampleIntervalHidden:
+        case settings.msgNewSampleIntervalHiddenAC:
+            updateSampleInterval()
+        case settings.msgNewSampleIntervalForegroundBattery:
+            updateSampleInterval()
+        case settings.msgNewSampleIntervalBackgroundBattery:
+            updateSampleInterval()
+        case settings.msgNewSampleIntervalHiddenBattery:
             updateSampleInterval()
         case settings.msgNewIconSamples:
             myIcon?.maxSamples = settings.iconSamples
@@ -104,11 +118,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
         }
     }
 
+    func batteryChanged() {
+        let source = IOPSGetProvidingPowerSourceType(nil)!.takeRetainedValue() as String
+        appState.powerSource = kIOPMACPowerKey == source ? .AC : .Battery
+        updateSampleInterval()
+        debugPrint("Changed to powerSource: \(appState.powerSource)")
+    }
+
     func observeSettings() {
         let observedSettings: [String] = [
-            settings.msgNewSampleIntervalForeground,
-            settings.msgNewSampleIntervalBackground,
-            settings.msgNewSampleIntervalHidden,
+            settings.msgNewSampleIntervalForegroundAC,
+            settings.msgNewSampleIntervalBackgroundAC,
+            settings.msgNewSampleIntervalHiddenAC,
+            settings.msgNewSampleIntervalForegroundBattery,
+            settings.msgNewSampleIntervalBackgroundBattery,
+            settings.msgNewSampleIntervalHiddenBattery,
             settings.msgNewIconSamples,
             settings.msgNewIconProcesses
         ]
@@ -155,13 +179,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
     // MARK: Sampler updating
 
     func updateSampleInterval() {
-        switch appState.runMode {
-        case .Foreground:
-            sampler.sampleInterval = settings.sampleIntervalForeground
-        case .Background:
-            sampler.sampleInterval = settings.sampleIntervalBackground
-        case .Hidden:
-            sampler.sampleInterval = settings.sampleIntervalHidden
+        switch (appState.runMode, appState.powerSource) {
+        case (.Foreground, .AC):
+            sampler.sampleInterval = settings.sampleIntervalForegroundAC
+        case (.Background, .AC):
+            sampler.sampleInterval = settings.sampleIntervalBackgroundAC
+        case (.Hidden, .AC):
+            sampler.sampleInterval = settings.sampleIntervalHiddenAC
+        case (.Foreground, .Battery):
+            sampler.sampleInterval = settings.sampleIntervalForegroundBattery
+        case (.Background, .Battery):
+            sampler.sampleInterval = settings.sampleIntervalBackgroundBattery
+        case (.Hidden, .Battery):
+            sampler.sampleInterval = settings.sampleIntervalHiddenBattery
 
         }
     }

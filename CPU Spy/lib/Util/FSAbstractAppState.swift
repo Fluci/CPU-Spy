@@ -17,8 +17,7 @@ public class FSAbstractAppState {
         if oldValue == newValue {
             return
         }
-        let obj = newValue as? AnyObject
-        noteCenter.postNotificationName(msgKey, object: obj)
+        noteCenter.postNotificationName(msgKey, object: nil)
     }
 
     init(

@@ -19,10 +19,10 @@ public class FSAbstractSettings {
         }
         let obj = newValue as? AnyObject
         if obj == nil {
-            NSLog("%@", "Couldn't cast value \"\(newValue)\" to AnyObject, setKey: \(setKey), msgKey: \(msgKey)")
+            NSLog("Couldn't cast value \"\(newValue)\" to AnyObject, setKey: \(setKey), msgKey: \(msgKey)")
         }
         userDefaults.setObject(obj, forKey: setKey)
-        noteCenter.postNotificationName(msgKey, object: obj)
+        noteCenter.postNotificationName(msgKey, object: nil)
     }
     /**
         Tries to read the value in userDefaults, falls back to defaultValue if this fails.
@@ -44,11 +44,12 @@ public class FSAbstractSettings {
             if obj == nil {
                 NSLog("%@", "Value \(defaultValue) for key \(setKey) not convertible to AnyObject.")
             }
-            let there = userDefaults.objectForKey(setKey) as? T
+            var there = userDefaults.objectForKey(setKey) as? T
             if there == nil || !validityCheck(there!) {
                 userDefaults.setObject(obj, forKey: setKey)
-                return defaultValue
+                there = defaultValue
             }
+            debugPrint("loaded setting \(setKey): \(there!)")
             return there!
     }
 

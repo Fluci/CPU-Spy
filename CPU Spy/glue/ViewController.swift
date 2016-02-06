@@ -24,6 +24,8 @@ class ViewController: NSViewController {
     @IBOutlet var iconSamples:     NSTextField?
     @IBOutlet var iconProcesses:   NSTextField?
 
+    @IBOutlet var powerSource: NSPopUpButton?
+
     var processTableViewController: ProcessTableViewController! = ProcessTableViewController()
 
     @IBOutlet var processTableView: NSTableView? {
@@ -38,19 +40,14 @@ class ViewController: NSViewController {
         super.viewWillAppear()
 
         // read settings from UserDefaults
-        sampleIntervalForeground?.doubleValue = settings.sampleIntervalForeground
-        sampleIntervalBackground?.doubleValue = settings.sampleIntervalBackground
-        sampleIntervalHidden?.doubleValue     = settings.sampleIntervalHidden
 
-        refreshForeground?.state = settings.refreshForeground ? NSOnState : NSOffState
-        refreshBackground?.state = settings.refreshBackground ? NSOnState : NSOffState
-        refreshHidden?.state     = settings.refreshHidden     ? NSOnState : NSOffState
+        powerSource?.selectItemWithTag(settings.powerSource == .AC ? 1 : 2)
+
+        updatePowerSourceDependent()
 
         maxTableEntries?.integerValue = settings.maxTableEntries
         iconSamples?.integerValue     = settings.iconSamples
         iconProcesses?.integerValue   = settings.iconProcesses
-
-        processTableViewController.settings = settings
 
         // add self as observer for settings
         noteCenter.addObserver(
@@ -58,6 +55,27 @@ class ViewController: NSViewController {
             selector: Selector("newSample:"),
             name: msgNewSample,
             object: nil)
+    }
+
+    private func updatePowerSourceDependent(){
+        switch settings.powerSource {
+        case .AC:
+            sampleIntervalForeground?.doubleValue = settings.sampleIntervalForegroundAC
+            sampleIntervalBackground?.doubleValue = settings.sampleIntervalBackgroundAC
+            sampleIntervalHidden?.doubleValue     = settings.sampleIntervalHiddenAC
+
+            refreshForeground?.state = settings.refreshForegroundAC ? NSOnState : NSOffState
+            refreshBackground?.state = settings.refreshBackgroundAC ? NSOnState : NSOffState
+            refreshHidden?.state     = settings.refreshHiddenAC     ? NSOnState : NSOffState
+        default:
+            sampleIntervalForeground?.doubleValue = settings.sampleIntervalForegroundBattery
+            sampleIntervalBackground?.doubleValue = settings.sampleIntervalBackgroundBattery
+            sampleIntervalHidden?.doubleValue     = settings.sampleIntervalHiddenBattery
+
+            refreshForeground?.state = settings.refreshForegroundBattery ? NSOnState : NSOffState
+            refreshBackground?.state = settings.refreshBackgroundBattery ? NSOnState : NSOffState
+            refreshHidden?.state     = settings.refreshHiddenBattery     ? NSOnState : NSOffState
+        }
     }
 
     override func viewDidDisappear() {
@@ -68,11 +86,26 @@ class ViewController: NSViewController {
 
     }
 
+    func shouldAcceptNewSample() -> Bool {
+        switch (appState.runMode, appState.powerSource) {
+        case (.Foreground, .AC):
+            return settings.refreshForegroundAC
+        case (.Background, .AC):
+            return settings.refreshBackgroundAC
+        case (.Hidden, .AC):
+            return settings.refreshHiddenAC
+        case (.Foreground, .Battery):
+            return settings.refreshForegroundBattery
+        case (.Background, .Battery):
+            return settings.refreshBackgroundBattery
+        case (.Hidden, .Battery):
+            return settings.refreshHiddenBattery
+        }
+    }
+
     // MARK: newSample handling
     func newSample(aNote: NSNotification) {
-        if     (appState.runMode == .Foreground && !settings.refreshForeground)
-            || (appState.runMode == .Background && !settings.refreshBackground)
-            || (appState.runMode == .Hidden     && !settings.refreshHidden) {
+        if     !shouldAcceptNewSample() {
             return
         }
         switch aNote.name {
@@ -89,11 +122,38 @@ class ViewController: NSViewController {
         }
     }
 
-    // MARK: sampleIntervalX handling
+    // MARK: settings handling
 
+    @IBAction func buttonChanged(sender: NSButton) {
+        if sender.identifier == nil {
+            NSLog("No sender.identifier given for button change.")
+            return
+        }
+
+        if sender.identifier != "powerSource" {
+            NSLog("Unconfigured identifier encountered: %@", sender.identifier!)
+            return
+        }
+
+        var psTag = powerSource?.selectedItem?.tag
+
+        if psTag == nil {
+            NSLog("No tag detected.")
+            return
+        }
+
+        if psTag != 1 && psTag != 2 {
+            NSLog("Unexpected tag value of powerSource encountered: %@", psTag!)
+            psTag = 1
+        }
+
+        settings.powerSource = 1 == psTag ? .AC : .Battery
+
+        updatePowerSourceDependent()
+    }
     @IBAction func refreshChanged(sender: NSButton) {
         if sender.identifier == nil {
-            NSLog("No sender.identifier given for interval change.")
+            NSLog("No sender.identifier given for refresh change.")
             return
         }
 
@@ -105,13 +165,19 @@ class ViewController: NSViewController {
             newValue = NSOnState
         }
 
-        switch sender.identifier! {
-        case "refreshForeground":
-            settings.refreshForeground = newValue == NSOnState
-        case "refreshBackground":
-            settings.refreshBackground = newValue == NSOnState
-        case "refreshHidden":
-            settings.refreshHidden = newValue == NSOnState
+        switch (settings.powerSource, sender.identifier!) {
+        case (.AC, "refreshForeground"):
+            settings.refreshForegroundAC = newValue == NSOnState
+        case (.AC, "refreshBackground"):
+            settings.refreshBackgroundAC = newValue == NSOnState
+        case (.AC, "refreshHidden"):
+            settings.refreshHiddenAC = newValue == NSOnState
+        case (.Battery, "refreshForeground"):
+            settings.refreshForegroundBattery = newValue == NSOnState
+        case (.Battery, "refreshBackground"):
+            settings.refreshBackgroundBattery = newValue == NSOnState
+        case (.Battery, "refreshHidden"):
+            settings.refreshHiddenBattery = newValue == NSOnState
         default:
             NSLog(
                 "Unknown sender identifier encountered for refresh change: %@",
@@ -134,13 +200,19 @@ class ViewController: NSViewController {
             newValue = 1
         }
 
-        switch sender.identifier! {
-        case "sampleIntervalForeground":
-            settings.sampleIntervalForeground = newValue
-        case "sampleIntervalBackground":
-            settings.sampleIntervalBackground = newValue
-        case "sampleIntervalHidden":
-            settings.sampleIntervalHidden = newValue
+        switch (settings.powerSource, sender.identifier!) {
+        case (.AC, "sampleIntervalForeground"):
+            settings.sampleIntervalForegroundAC = newValue
+        case (.AC, "sampleIntervalBackground"):
+            settings.sampleIntervalBackgroundAC = newValue
+        case (.AC, "sampleIntervalHidden"):
+            settings.sampleIntervalHiddenAC = newValue
+        case (.Battery, "sampleIntervalForeground"):
+            settings.sampleIntervalForegroundBattery = newValue
+        case (.Battery, "sampleIntervalBackground"):
+            settings.sampleIntervalBackgroundBattery = newValue
+        case (.Battery, "sampleIntervalHidden"):
+            settings.sampleIntervalHiddenBattery = newValue
         default:
             NSLog(
                 "Unknown sender identifier encountered for interval change: %@",

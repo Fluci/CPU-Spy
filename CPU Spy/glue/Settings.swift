@@ -12,80 +12,172 @@ let settings = Settings()
 
 public class Settings: FSAbstractSettings {
 
-    let settingSampleIntervalForeground = "SAMPLE_INTERVAL_FOREGROUND"
-    let msgNewSampleIntervalForeground = "NEW_SAMPLE_INTERVAL_FOREGROUND"
-    var sampleIntervalForeground: Double = 0 {
+    let settingPowerSource = "POWER_SOURCE"
+    let msgNewPowerSource = "NEW_POWER_SOURCE"
+    var powerSource: PowerSource = .AC {
         didSet {
             update(
-                sampleIntervalForeground,
-                oldValue: oldValue,
-                setKey: settingSampleIntervalForeground,
-                msgKey: msgNewSampleIntervalForeground
+                powerSource.rawValue,
+                oldValue: oldValue.rawValue,
+                setKey: settingPowerSource,
+                msgKey: msgNewPowerSource
             )
         }
     }
 
-    let settingSampleIntervalBackground = "SAMPLE_INTERVAL_BACKGROUND"
-    let msgNewSampleIntervalBackground = "NEW_SAMPLE_INTERVAL_BACKGROUND"
-    var sampleIntervalBackground: Double = 0 {
+    let settingSampleIntervalForegroundAC = "SAMPLE_INTERVAL_FOREGROUND_AC"
+    let msgNewSampleIntervalForegroundAC = "NEW_SAMPLE_INTERVAL_FOREGROUND_AC"
+    var sampleIntervalForegroundAC: Double = 0 {
         didSet {
             update(
-                sampleIntervalBackground,
+                sampleIntervalForegroundAC,
                 oldValue: oldValue,
-                setKey: settingSampleIntervalBackground,
-                msgKey: msgNewSampleIntervalBackground
+                setKey: settingSampleIntervalForegroundAC,
+                msgKey: msgNewSampleIntervalForegroundAC
             )
         }
     }
 
-    let settingSampleIntervalHidden = "SAMPLE_INTERVAL_HIDDEN"
-    let msgNewSampleIntervalHidden  = "NEW_SAMPLE_INTERVAL_HIDDEN"
-    var sampleIntervalHidden: Double = 0 {
+    let settingSampleIntervalBackgroundAC = "SAMPLE_INTERVAL_BACKGROUND_AC"
+    let msgNewSampleIntervalBackgroundAC = "NEW_SAMPLE_INTERVAL_BACKGROUND_AC"
+    var sampleIntervalBackgroundAC: Double = 0 {
         didSet {
             update(
-                sampleIntervalHidden,
+                sampleIntervalBackgroundAC,
                 oldValue: oldValue,
-                setKey: settingSampleIntervalHidden,
-                msgKey: msgNewSampleIntervalHidden
+                setKey: settingSampleIntervalBackgroundAC,
+                msgKey: msgNewSampleIntervalBackgroundAC
             )
         }
     }
 
-    let settingRefreshForeground = "REFRESH_FOREGROUND"
-    let msgNewRefreshForeground  = "NEW_REFRESH_FOREGROUND"
-    var refreshForeground = true {
+    let settingSampleIntervalHiddenAC = "SAMPLE_INTERVAL_HIDDEN_AC"
+    let msgNewSampleIntervalHiddenAC  = "NEW_SAMPLE_INTERVAL_HIDDEN_AC"
+    var sampleIntervalHiddenAC: Double = 0 {
         didSet {
             update(
-                refreshForeground,
+                sampleIntervalHiddenAC,
                 oldValue: oldValue,
-                setKey: settingRefreshForeground,
-                msgKey: msgNewRefreshForeground
+                setKey: settingSampleIntervalHiddenAC,
+                msgKey: msgNewSampleIntervalHiddenAC
             )
         }
     }
 
-    let settingRefreshBackground = "REFRESH_BACKGROUND"
-    let msgNewRefreshBackground  = "NEW_REFRESH_BACKGROUND"
-    var refreshBackground = true {
+    let settingRefreshForegroundAC = "REFRESH_FOREGROUND_AC"
+    let msgNewRefreshForegroundAC  = "NEW_REFRESH_FOREGROUND_AC"
+    var refreshForegroundAC = true {
         didSet {
             update(
-                refreshBackground,
+                refreshForegroundAC,
                 oldValue: oldValue,
-                setKey: settingRefreshBackground,
-                msgKey: msgNewRefreshBackground
+                setKey: settingRefreshForegroundAC,
+                msgKey: msgNewRefreshForegroundAC
             )
         }
     }
 
-    let settingRefreshHidden = "REFRESH_HIDDEN"
-    let msgNewRefreshHidden  = "NEW_REFRESH_HIDDEN"
-    var refreshHidden = true {
+    let settingRefreshBackgroundAC = "REFRESH_BACKGROUND_AC"
+    let msgNewRefreshBackgroundAC  = "NEW_REFRESH_BACKGROUND_AC"
+    var refreshBackgroundAC = true {
         didSet {
             update(
-                refreshHidden,
+                refreshBackgroundAC,
                 oldValue: oldValue,
-                setKey: settingRefreshHidden,
-                msgKey: msgNewRefreshHidden
+                setKey: settingRefreshBackgroundAC,
+                msgKey: msgNewRefreshBackgroundAC
+            )
+        }
+    }
+
+    let settingRefreshHiddenAC = "REFRESH_HIDDEN_AC"
+    let msgNewRefreshHiddenAC  = "NEW_REFRESH_HIDDEN_AC"
+    var refreshHiddenAC = true {
+        didSet {
+            update(
+                refreshHiddenAC,
+                oldValue: oldValue,
+                setKey: settingRefreshHiddenAC,
+                msgKey: msgNewRefreshHiddenAC
+            )
+        }
+    }
+
+
+    let settingSampleIntervalForegroundBattery = "SAMPLE_INTERVAL_FOREGROUND_BATTERY"
+    let msgNewSampleIntervalForegroundBattery = "NEW_SAMPLE_INTERVAL_FOREGROUND_BATTERY"
+    var sampleIntervalForegroundBattery: Double = 0 {
+        didSet {
+            update(
+                sampleIntervalForegroundAC,
+                oldValue: oldValue,
+                setKey: settingSampleIntervalForegroundAC,
+                msgKey: msgNewSampleIntervalForegroundAC
+            )
+        }
+    }
+
+    let settingSampleIntervalBackgroundBattery = "SAMPLE_INTERVAL_BACKGROUND_BATTERY"
+    let msgNewSampleIntervalBackgroundBattery = "NEW_SAMPLE_INTERVAL_BACKGROUND_BATTERY"
+    var sampleIntervalBackgroundBattery: Double = 0 {
+        didSet {
+            update(
+                sampleIntervalBackgroundAC,
+                oldValue: oldValue,
+                setKey: settingSampleIntervalBackgroundAC,
+                msgKey: msgNewSampleIntervalBackgroundAC
+            )
+        }
+    }
+
+    let settingSampleIntervalHiddenBattery = "SAMPLE_INTERVAL_HIDDEN_BATTERY"
+    let msgNewSampleIntervalHiddenBattery  = "NEW_SAMPLE_INTERVAL_HIDDEN_BATTERY"
+    var sampleIntervalHiddenBattery: Double = 0 {
+        didSet {
+            update(
+                sampleIntervalHiddenAC,
+                oldValue: oldValue,
+                setKey: settingSampleIntervalHiddenAC,
+                msgKey: msgNewSampleIntervalHiddenAC
+            )
+        }
+    }
+
+    let settingRefreshForegroundBattery = "REFRESH_FOREGROUND_BATTERY"
+    let msgNewRefreshForegroundBattery  = "NEW_REFRESH_FOREGROUND_BATTERY"
+    var refreshForegroundBattery = true {
+        didSet {
+            update(
+                refreshForegroundAC,
+                oldValue: oldValue,
+                setKey: settingRefreshForegroundAC,
+                msgKey: msgNewRefreshForegroundAC
+            )
+        }
+    }
+
+    let settingRefreshBackgroundBattery = "REFRESH_BACKGROUND_BATTERY"
+    let msgNewRefreshBackgroundBattery  = "NEW_REFRESH_BACKGROUND_BATTERY"
+    var refreshBackgroundBattery = true {
+        didSet {
+            update(
+                refreshBackgroundAC,
+                oldValue: oldValue,
+                setKey: settingRefreshBackgroundAC,
+                msgKey: msgNewRefreshBackgroundAC
+            )
+        }
+    }
+
+    let settingRefreshHiddenBattery = "REFRESH_HIDDEN_BATTERY"
+    let msgNewRefreshHiddenBattery  = "NEW_REFRESH_HIDDEN_BATTERY"
+    var refreshHiddenBattery = true {
+        didSet {
+            update(
+                refreshHiddenAC,
+                oldValue: oldValue,
+                setKey: settingRefreshHiddenAC,
+                msgKey: msgNewRefreshHiddenAC
             )
         }
     }
@@ -128,19 +220,37 @@ public class Settings: FSAbstractSettings {
     }
 
     override func initValues() {
-        sampleIntervalForeground = getSetDefault(1.0,
-            setKey: settingSampleIntervalForeground) {$0 > 0}
-        sampleIntervalBackground = getSetDefault(5.0,
-            setKey: settingSampleIntervalBackground) {$0 > 0}
-        sampleIntervalHidden = getSetDefault(10.0,
-            setKey: settingSampleIntervalHidden) {$0 > 0}
+        sampleIntervalForegroundAC = getSetDefault(1.0,
+            setKey: settingSampleIntervalForegroundAC) {$0 > 0}
+        sampleIntervalBackgroundAC = getSetDefault(5.0,
+            setKey: settingSampleIntervalBackgroundAC) {$0 > 0}
+        sampleIntervalHiddenAC = getSetDefault(10.0,
+            setKey: settingSampleIntervalHiddenAC) {$0 > 0}
 
-        refreshForeground = getSetDefault(true, setKey: settingRefreshForeground)
-        refreshBackground = getSetDefault(false, setKey: settingRefreshBackground)
-        refreshHidden     = getSetDefault(false, setKey: settingRefreshHidden)
+        sampleIntervalForegroundBattery = getSetDefault(1.0,
+            setKey: settingSampleIntervalForegroundBattery) {$0 > 0}
+        sampleIntervalBackgroundBattery = getSetDefault(5.0,
+            setKey: settingSampleIntervalBackgroundBattery) {$0 > 0}
+        sampleIntervalHiddenBattery = getSetDefault(10.0,
+            setKey: settingSampleIntervalHiddenBattery) {$0 > 0}
+
+        refreshForegroundAC = getSetDefault(true, setKey: settingRefreshForegroundAC)
+        refreshBackgroundAC = getSetDefault(false, setKey: settingRefreshBackgroundAC)
+        refreshHiddenAC     = getSetDefault(false, setKey: settingRefreshHiddenAC)
+
+        refreshForegroundBattery = getSetDefault(true, setKey: settingRefreshForegroundBattery)
+        refreshBackgroundBattery = getSetDefault(false, setKey: settingRefreshBackgroundBattery)
+        refreshHiddenBattery     = getSetDefault(false, setKey: settingRefreshHiddenBattery)
 
         maxTableEntries = getSetDefault(0, setKey: settingMaxTableEntries) {$0 >= -1}
         iconSamples     = getSetDefault(64, setKey: settingIconSamples) {$0 >= -1}
         iconProcesses   = getSetDefault(7, setKey: settingIconProcesses) {$0 >= -1}
+
+        if let psTmp = PowerSource(rawValue: getSetDefault(
+                PowerSource.AC.rawValue,
+                setKey: settingPowerSource)
+            ) {
+            powerSource = psTmp
+        }
     }
 }

@@ -11,8 +11,8 @@ import Foundation
 let appState = AppState()
 
 class AppState: FSAbstractAppState {
-    let msgRunModeChanged = "RUN_MODE_CHANGED"
 
+    let msgRunModeChanged = "RUN_MODE_CHANGED"
     var runMode: RunMode = .Foreground {
         didSet {
             update(
@@ -23,8 +23,20 @@ class AppState: FSAbstractAppState {
         }
     }
 
+    let msgPowerSourceChanged = "POWER_SOURCE_CHANGED"
+    var powerSource: PowerSource = .Battery {
+        didSet {
+            update(
+                powerSource,
+                oldValue: oldValue,
+                msgKey: msgPowerSourceChanged
+            )
+        }
+    }
+
     override func initValues() {
         runMode = .Foreground
+        powerSource = .Battery
     }
 
 }
