@@ -65,9 +65,9 @@
 		8488A1F81C54175700DE565D /* CommandSplitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1F71C54175700DE565D /* CommandSplitter.swift */; };
 		8488A1F91C54175700DE565D /* CommandSplitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1F71C54175700DE565D /* CommandSplitter.swift */; };
 		8488A1FB1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */; };
+		8488A1FC1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */; };
 		84A544371C62ACB900D4A86B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A544361C62ACB900D4A86B /* IOKit.framework */; };
 		84A544391C62B1FC00D4A86B /* PowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A544381C62B1FC00D4A86B /* PowerSource.swift */; };
-		8488A1FC1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */; };
 		84A5443B1C64025400D4A86B /* FSStringASCII.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5443A1C64025400D4A86B /* FSStringASCII.swift */; };
 		84A5443C1C6402A700D4A86B /* FSStringASCII.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5443A1C64025400D4A86B /* FSStringASCII.swift */; };
 		84DEAF221C54FBE300060D34 /* IconDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEAF211C54FBE300060D34 /* IconDelegate.swift */; };
@@ -244,9 +244,7 @@
 				844B9E451C52DE0E00EE25CC /* ViewController.swift */,
 				8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */,
 				84DEAF2E1C557A8E00060D34 /* RunMode.swift */,
-				84DEAF311C56DED900060D34 /* Settings.swift */,
 				84A544381C62B1FC00D4A86B /* PowerSource.swift */,
-				844E7C331C5AC07E008EEB86 /* AppState.swift */,
 				84CA377C1C663E67001C8452 /* Global */,
 			);
 			path = glue;
@@ -582,7 +580,6 @@
 				844B9EAD1C540CC300EE25CC /* ProcessSample.swift in Sources */,
 				8488A1FC1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */,
 				84A5443C1C6402A700D4A86B /* FSStringASCII.swift in Sources */,
-				84DEAF331C56DED900060D34 /* Settings.swift in Sources */,
 				84DEAF361C56DEE900060D34 /* FSAbstractSettings.swift in Sources */,
 				844B9EAF1C540CC800EE25CC /* ProcessSampleStatic.swift in Sources */,
 			);

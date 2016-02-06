@@ -8,10 +8,22 @@
 
 import Cocoa
 
+/**
+ Main entry point of application.
+ 
+ The AppDelegate is the core of the application.
+ It sets everything up and handles application related events.
+ AppDelegate propagates value changes from the view to the model and other views
+ by listening to the NSNotificationCenter. didLoadSample triggers the propagation
+ from the model (sampler) towards the views.
+
+*/
 private let powerSourceCallback: IOPowerSourceCallbackType = { (ptr: UnsafeMutablePointer<Void>) in
     let appDel = Unmanaged<AppDelegate>.fromOpaque(COpaquePointer(ptr)).takeUnretainedValue()
     appDel.batteryChanged()
 }
+
+
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, IconDelegate {
