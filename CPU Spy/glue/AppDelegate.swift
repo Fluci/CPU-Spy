@@ -207,4 +207,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
 
         }
     }
+
+    var overviewController: NSWindowController?
+
+    @IBAction func openOverview(sender: AnyObject) {
+        let app = NSApplication.sharedApplication()
+        app.activateIgnoringOtherApps(true)
+        overviewController?.window?.makeKeyAndOrderFront(self)
+        debugPrint("opening overview")
+    }
 }
