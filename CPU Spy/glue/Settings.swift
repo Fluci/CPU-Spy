@@ -14,7 +14,6 @@ import Foundation
     Every change is stored immediatly.
 */
 
-let settings = Settings()
 
 public class Settings: FSAbstractSettings {
 
@@ -26,7 +25,9 @@ public class Settings: FSAbstractSettings {
                 powerSource.rawValue,
                 oldValue: oldValue.rawValue,
                 setKey: settingPowerSource,
-                msgKey: msgNewPowerSource
+                msgKey: msgNewPowerSource,
+                undoTarget: self,
+                undoAction: { $0.powerSource = oldValue }
             )
         }
     }
@@ -39,7 +40,9 @@ public class Settings: FSAbstractSettings {
                 sampleIntervalForegroundAC,
                 oldValue: oldValue,
                 setKey: settingSampleIntervalForegroundAC,
-                msgKey: msgNewSampleIntervalForegroundAC
+                msgKey: msgNewSampleIntervalForegroundAC,
+                undoTarget: self,
+                undoAction: { $0.sampleIntervalForegroundAC = oldValue }
             )
         }
     }
@@ -52,7 +55,9 @@ public class Settings: FSAbstractSettings {
                 sampleIntervalBackgroundAC,
                 oldValue: oldValue,
                 setKey: settingSampleIntervalBackgroundAC,
-                msgKey: msgNewSampleIntervalBackgroundAC
+                msgKey: msgNewSampleIntervalBackgroundAC,
+                undoTarget: self,
+                undoAction: { $0.sampleIntervalBackgroundAC = oldValue }
             )
         }
     }
@@ -65,7 +70,9 @@ public class Settings: FSAbstractSettings {
                 sampleIntervalHiddenAC,
                 oldValue: oldValue,
                 setKey: settingSampleIntervalHiddenAC,
-                msgKey: msgNewSampleIntervalHiddenAC
+                msgKey: msgNewSampleIntervalHiddenAC,
+                undoTarget: self,
+                undoAction: { $0.sampleIntervalHiddenAC = oldValue }
             )
         }
     }
@@ -78,7 +85,9 @@ public class Settings: FSAbstractSettings {
                 refreshForegroundAC,
                 oldValue: oldValue,
                 setKey: settingRefreshForegroundAC,
-                msgKey: msgNewRefreshForegroundAC
+                msgKey: msgNewRefreshForegroundAC,
+                undoTarget: self,
+                undoAction: { $0.refreshForegroundAC = oldValue }
             )
         }
     }
@@ -91,7 +100,9 @@ public class Settings: FSAbstractSettings {
                 refreshBackgroundAC,
                 oldValue: oldValue,
                 setKey: settingRefreshBackgroundAC,
-                msgKey: msgNewRefreshBackgroundAC
+                msgKey: msgNewRefreshBackgroundAC,
+                undoTarget: self,
+                undoAction: { $0.refreshBackgroundAC = oldValue }
             )
         }
     }
@@ -104,7 +115,9 @@ public class Settings: FSAbstractSettings {
                 refreshHiddenAC,
                 oldValue: oldValue,
                 setKey: settingRefreshHiddenAC,
-                msgKey: msgNewRefreshHiddenAC
+                msgKey: msgNewRefreshHiddenAC,
+                undoTarget: self,
+                undoAction: { $0.refreshHiddenAC = oldValue }
             )
         }
     }
@@ -118,7 +131,9 @@ public class Settings: FSAbstractSettings {
                 sampleIntervalForegroundAC,
                 oldValue: oldValue,
                 setKey: settingSampleIntervalForegroundAC,
-                msgKey: msgNewSampleIntervalForegroundAC
+                msgKey: msgNewSampleIntervalForegroundAC,
+                undoTarget: self,
+                undoAction: { $0.sampleIntervalForegroundBattery = oldValue }
             )
         }
     }
@@ -131,7 +146,9 @@ public class Settings: FSAbstractSettings {
                 sampleIntervalBackgroundAC,
                 oldValue: oldValue,
                 setKey: settingSampleIntervalBackgroundAC,
-                msgKey: msgNewSampleIntervalBackgroundAC
+                msgKey: msgNewSampleIntervalBackgroundAC,
+                undoTarget: self,
+                undoAction: { $0.sampleIntervalBackgroundBattery = oldValue }
             )
         }
     }
@@ -144,7 +161,9 @@ public class Settings: FSAbstractSettings {
                 sampleIntervalHiddenAC,
                 oldValue: oldValue,
                 setKey: settingSampleIntervalHiddenAC,
-                msgKey: msgNewSampleIntervalHiddenAC
+                msgKey: msgNewSampleIntervalHiddenAC,
+                undoTarget: self,
+                undoAction: { $0.sampleIntervalHiddenBattery = oldValue }
             )
         }
     }
@@ -154,10 +173,12 @@ public class Settings: FSAbstractSettings {
     var refreshForegroundBattery = true {
         didSet {
             update(
-                refreshForegroundAC,
+                refreshForegroundBattery,
                 oldValue: oldValue,
-                setKey: settingRefreshForegroundAC,
-                msgKey: msgNewRefreshForegroundAC
+                setKey: settingRefreshForegroundBattery,
+                msgKey: msgNewRefreshForegroundBattery,
+                undoTarget: self,
+                undoAction: { $0.refreshForegroundBattery = oldValue }
             )
         }
     }
@@ -167,10 +188,12 @@ public class Settings: FSAbstractSettings {
     var refreshBackgroundBattery = true {
         didSet {
             update(
-                refreshBackgroundAC,
+                refreshBackgroundBattery,
                 oldValue: oldValue,
-                setKey: settingRefreshBackgroundAC,
-                msgKey: msgNewRefreshBackgroundAC
+                setKey: settingRefreshBackgroundBattery,
+                msgKey: msgNewRefreshBackgroundBattery,
+                undoTarget: self,
+                undoAction: { $0.refreshBackgroundBattery = oldValue }
             )
         }
     }
@@ -180,10 +203,12 @@ public class Settings: FSAbstractSettings {
     var refreshHiddenBattery = true {
         didSet {
             update(
-                refreshHiddenAC,
+                refreshHiddenBattery,
                 oldValue: oldValue,
-                setKey: settingRefreshHiddenAC,
-                msgKey: msgNewRefreshHiddenAC
+                setKey: settingRefreshHiddenBattery,
+                msgKey: msgNewRefreshHiddenBattery,
+                undoTarget: self,
+                undoAction: { $0.refreshHiddenBattery = oldValue }
             )
         }
     }
@@ -196,7 +221,9 @@ public class Settings: FSAbstractSettings {
                 maxTableEntries,
                 oldValue: oldValue,
                 setKey: settingMaxTableEntries,
-                msgKey: msgNewMaxTableEntries
+                msgKey: msgNewMaxTableEntries,
+                undoTarget: self,
+                undoAction: { $0.maxTableEntries = oldValue }
             )
         }
     }
@@ -208,7 +235,9 @@ public class Settings: FSAbstractSettings {
                 iconSamples,
                 oldValue: oldValue,
                 setKey: settingIconSamples,
-                msgKey: msgNewIconSamples
+                msgKey: msgNewIconSamples,
+                undoTarget: self,
+                undoAction: { $0.iconSamples = oldValue }
             )
         }
     }
@@ -220,7 +249,9 @@ public class Settings: FSAbstractSettings {
                 iconProcesses,
                 oldValue: oldValue,
                 setKey: settingIconProcesses,
-                msgKey: msgNewIconProcesses
+                msgKey: msgNewIconProcesses,
+                undoTarget: self,
+                undoAction: { $0.iconProcesses = oldValue }
             )
         }
     }

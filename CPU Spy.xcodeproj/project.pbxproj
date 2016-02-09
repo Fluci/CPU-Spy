@@ -66,6 +66,7 @@
 		8488A1FB1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */; };
 		8488A1FC1C541FD800DE565D /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */; };
 		84981CBD1C6A0185005C8235 /* OverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84981CBC1C6A0185005C8235 /* OverviewController.swift */; };
+		84981CBF1C6A1AE6005C8235 /* GlobalDecl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84981CBE1C6A1AE6005C8235 /* GlobalDecl.swift */; };
 		84A544371C62ACB900D4A86B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A544361C62ACB900D4A86B /* IOKit.framework */; };
 		84A544391C62B1FC00D4A86B /* PowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A544381C62B1FC00D4A86B /* PowerSource.swift */; };
 		84A5443B1C64025400D4A86B /* FSStringASCII.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5443A1C64025400D4A86B /* FSStringASCII.swift */; };
@@ -151,6 +152,7 @@
 		8488A1F71C54175700DE565D /* CommandSplitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandSplitter.swift; path = Protocols/CommandSplitter.swift; sourceTree = "<group>"; };
 		8488A1FA1C541FD800DE565D /* NSNotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationCenterKeys.swift; sourceTree = "<group>"; };
 		84981CBC1C6A0185005C8235 /* OverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverviewController.swift; sourceTree = "<group>"; };
+		84981CBE1C6A1AE6005C8235 /* GlobalDecl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDecl.swift; sourceTree = "<group>"; };
 		84A544331C62AB8200D4A86B /* CPU Spy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CPU Spy-Bridging-Header.h"; sourceTree = "<group>"; };
 		84A544361C62ACB900D4A86B /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		84A544381C62B1FC00D4A86B /* PowerSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSource.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 		84CA377C1C663E67001C8452 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				84981CBE1C6A1AE6005C8235 /* GlobalDecl.swift */,
 				84DEAF311C56DED900060D34 /* Settings.swift */,
 				844E7C331C5AC07E008EEB86 /* AppState.swift */,
 			);
@@ -551,6 +554,7 @@
 				84C32D211C666A7000807C06 /* RowReader.swift in Sources */,
 				84A544391C62B1FC00D4A86B /* PowerSource.swift in Sources */,
 				844B9E8C1C52E53800EE25CC /* FSPSCommandSplitter.swift in Sources */,
+				84981CBF1C6A1AE6005C8235 /* GlobalDecl.swift in Sources */,
 				844B9E751C52DE3000EE25CC /* FSSampler.swift in Sources */,
 				844B9EA91C540B9E00EE25CC /* ProcessSampleStatic.swift in Sources */,
 				844B9E791C52DE3000EE25CC /* FSPSRowReader.swift in Sources */,

@@ -37,20 +37,14 @@ class ViewController: NSViewController {
         }
     }
 
-
     // MARK: Appearance control
     override func viewWillAppear() {
         super.viewWillAppear()
 
         // read settings from UserDefaults
+        updateView()
 
-        powerSource?.selectItemWithTag(settings.powerSource == .AC ? 1 : 2)
-
-        updatePowerSourceDependent()
-
-        maxTableEntries?.integerValue = settings.maxTableEntries
-        iconSamples?.integerValue     = settings.iconSamples
-        iconProcesses?.integerValue   = settings.iconProcesses
+        settings.undoManager = undoManager
 
         // add self as observer for settings
         noteCenter.addObserver(
@@ -58,9 +52,48 @@ class ViewController: NSViewController {
             selector: Selector("newSample:"),
             name: msgNewSample,
             object: nil)
+
+        let viewKeys: [String] = [
+            settings.msgNewIconProcesses,
+            settings.msgNewIconSamples,
+            settings.msgNewMaxTableEntries,
+            settings.msgNewPowerSource,
+            settings.msgNewRefreshBackgroundAC,
+            settings.msgNewRefreshBackgroundBattery,
+            settings.msgNewRefreshForegroundAC,
+            settings.msgNewRefreshForegroundBattery,
+            settings.msgNewRefreshHiddenAC,
+            settings.msgNewRefreshHiddenBattery,
+            settings.msgNewSampleIntervalBackgroundAC,
+            settings.msgNewSampleIntervalBackgroundBattery,
+            settings.msgNewSampleIntervalForegroundAC,
+            settings.msgNewSampleIntervalForegroundBattery,
+            settings.msgNewSampleIntervalHiddenAC,
+            settings.msgNewSampleIntervalHiddenBattery
+        ]
+        for key in viewKeys {
+            noteCenter.addObserver(
+                self,
+                selector: Selector("viewValueChanged:"),
+                name: key,
+                object: nil)
+        }
     }
 
-    private func updatePowerSourceDependent(){
+    func viewValueChanged(aNote: NSNotification) {
+        updateView()
+    }
+
+    private func updateView() {
+        powerSource?.selectItemWithTag(settings.powerSource == .AC ? 1 : 2)
+
+        updatePowerSourceDependent()
+
+        maxTableEntries?.integerValue = settings.maxTableEntries
+        iconSamples?.integerValue     = settings.iconSamples
+        iconProcesses?.integerValue   = settings.iconProcesses
+    }
+    private func updatePowerSourceDependent() {
         switch settings.powerSource {
         case .AC:
             sampleIntervalForeground?.doubleValue = settings.sampleIntervalForegroundAC
@@ -146,10 +179,9 @@ class ViewController: NSViewController {
         }
 
         if psTag != 1 && psTag != 2 {
-            NSLog("Unexpected tag value of powerSource encountered: %@", psTag!)
+            NSLog("Unexpected tag value of powerSource encountered: %@, set to 1", psTag!)
             psTag = 1
         }
-
         settings.powerSource = 1 == psTag ? .AC : .Battery
 
         updatePowerSourceDependent()
@@ -162,9 +194,9 @@ class ViewController: NSViewController {
 
         var newValue = sender.state
 
-        if newValue == NSMixedState {
+        if newValue != NSOnState && newValue != NSOffState {
             // set to one if equal-less zero
-            sender.state = NSOnState
+            NSLog("Unexpected checkbox state encountered: \(newValue), set to \(NSOnState)")
             newValue = NSOnState
         }
 
@@ -199,7 +231,6 @@ class ViewController: NSViewController {
         var newValue = sender.doubleValue
         if newValue <= 0 {
             // set to one if equal-less zero
-            sender.doubleValue = 1
             newValue = 1
         }
 
@@ -235,7 +266,6 @@ class ViewController: NSViewController {
             newValue = 5
         }
         // Always update to remove decimal points
-        sender.integerValue = newValue
 
         switch sender.identifier! {
         case "tableEntries":

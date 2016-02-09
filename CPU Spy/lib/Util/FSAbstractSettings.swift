@@ -17,20 +17,32 @@ import Foundation
  */
 
 public class FSAbstractSettings {
-    public let userDefaults: NSUserDefaults
-    public let noteCenter: NSNotificationCenter
+    public var userDefaults: NSUserDefaults
+    public var noteCenter: NSNotificationCenter
+
+    public var undoManager: NSUndoManager?
 
     /// should be called in didSet
-    func update<T: Equatable>(newValue: T, oldValue: T, setKey: String, msgKey: String) {
-        if oldValue == newValue {
-            return
-        }
-        let obj = newValue as? AnyObject
-        if obj == nil {
-            NSLog("Couldn't cast value \"\(newValue)\" to AnyObject, setKey: \(setKey), msgKey: \(msgKey)")
-        }
-        userDefaults.setObject(obj, forKey: setKey)
-        noteCenter.postNotificationName(msgKey, object: nil)
+    func update<T: Equatable, TargetType: AnyObject>(
+        newValue: T,
+        oldValue: T,
+        setKey: String,
+        msgKey: String,
+        undoTarget: TargetType?,
+        undoAction: TargetType -> ()
+        ) {
+            if oldValue == newValue {
+                return
+            }
+            let obj = newValue as? AnyObject
+            if obj == nil {
+                NSLog("%@", "Couldn't cast value \"\(newValue)\" to AnyObject, setKey: \(setKey), msgKey: \(msgKey)")
+            }
+            userDefaults.setObject(obj, forKey: setKey)
+            noteCenter.postNotificationName(msgKey, object: nil)
+            if let target = undoTarget {
+                undoManager?.registerUndoWithTarget(target, handler: undoAction)
+            }
     }
     /**
         Tries to read the value in userDefaults, falls back to defaultValue if this fails.

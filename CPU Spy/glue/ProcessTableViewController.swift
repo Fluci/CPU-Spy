@@ -62,7 +62,7 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
                 samples = samples!.sort({
                     (a: ProcessSample, b: ProcessSample) -> Bool in
                     for sort in self.sorts {
-                        switch sort(a, b){
+                        switch sort(a, b) {
                         case 1:
                             return true
                         case -1:

@@ -14,7 +14,6 @@ import Foundation
     These are temporary values, they are not stored on disk and not loaded at start up.
 */
 
-let appState = AppState()
 
 class AppState: FSAbstractAppState {
 

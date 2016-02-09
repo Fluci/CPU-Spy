@@ -37,12 +37,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, SampleCollectorDelegate, Ico
     private let noteCenter = NSNotificationCenter.defaultCenter()
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Insert code here to initialize your application
-
+        // App initialization
         if let runLoopSource = IOPSCreateLimitedPowerNotification(
             powerSourceCallback,
             UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))?.takeRetainedValue() {
-                CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopDefaultMode);
+                CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopDefaultMode)
         } else {
             NSLog("Observing of powerSource failed.")
         }
