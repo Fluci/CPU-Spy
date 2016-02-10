@@ -312,8 +312,8 @@ final class FSPSTokenizer: Tokenizer {
 
                     if (0 < start && line[start-1] != ASCII.Space.rawValue)
                         || (end < line.length && line[end] != ASCII.Space.rawValue) {
-                            NSLog("updating cols failed: %@", line.string())
-                            continue
+                            NSLog("Updating cols failed: %@", line.string())
+                            throw RangeWideningError.NoFit
                     }
 
             }

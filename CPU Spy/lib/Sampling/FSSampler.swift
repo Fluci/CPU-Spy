@@ -51,7 +51,6 @@ public class FSSampler: NSObject, Sampler {
                 // updated fire point was in past, timer has to be fired now
                 // trigger now
                 stop()
-                run()
                 start()
             }
         }
@@ -74,11 +73,20 @@ public class FSSampler: NSObject, Sampler {
 
     /// starts the sampling
     public func start () {
-        startIn(sampleInterval)
+        runEvery(sampleInterval)
         // trigger first sample now
         run()
     }
-    internal func startIn(interval: NSTimeInterval) {
+    func startIn(interval: NSTimeInterval) {
+        samplingActivated = true
+        samplingTimer = NSTimer.scheduledTimerWithTimeInterval(
+            interval,
+            target: self,
+            selector: Selector("start"),
+            userInfo: nil,
+            repeats: false)
+    }
+    func runEvery(interval: NSTimeInterval) {
         samplingActivated = true
         samplingTimer = NSTimer.scheduledTimerWithTimeInterval(
             interval,
@@ -87,6 +95,7 @@ public class FSSampler: NSObject, Sampler {
             userInfo: nil,
             repeats: true)
     }
+
     /// stops the sampling
     public func stop () {
         if !samplingActivated {
