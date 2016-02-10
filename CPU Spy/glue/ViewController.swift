@@ -141,8 +141,15 @@ class ViewController: NSViewController {
 
     // MARK: newSample handling
     func newSample(aNote: NSNotification) {
-        if     !shouldAcceptNewSample() {
+        if !shouldAcceptNewSample() {
+            if processTableViewController.refresh {
+                processTableViewController.refresh = false
+                processTableViewController.processTable?.reloadData()
+            }
             return
+        }
+        if !processTableViewController.refresh {
+            processTableViewController.refresh = true
         }
         switch aNote.name {
         case msgNewSample:

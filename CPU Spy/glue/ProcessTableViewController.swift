@@ -11,7 +11,7 @@ import Cocoa
 /**
  This class is responsible to handle the interaction with the ProcessTable in the main window.
  */
-class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+class ProcessTableViewController: NSViewController, NSTableViewDelegate, FSMergedTableViewDataSource {
     @IBOutlet var processTable: NSTableView? {
         didSet {
             processTable!.setDataSource(self)
@@ -42,12 +42,16 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
         }
     }
 
+    var refresh = true
+
+    var clippedSamples = 0
+
     var sample: Sample? {
         didSet {
             let mSamples = maxSamples
 
-            if mSamples == 0 || sample == nil {
-                samples = nil
+            if sample == nil {
+                samples = Array()
                 return
             }
             samples = sample!.processesAll
@@ -55,8 +59,10 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
             if filter != nil {
                 samples = samples!.filter(filter)
             }
-            if mSamples > 0 {
+            if mSamples >= 0 {
+                clippedSamples = samples!.count
                 samples = Array(samples!.prefix(mSamples))
+                clippedSamples -= samples!.count
             }
             if !sorts.isEmpty {
                 samples = samples!.sort({
@@ -78,7 +84,7 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
     }
 
     var samples: [ProcessSample]?
-    var maxSamples : Int {
+    var maxSamples: Int {
         get {
             return settings.maxTableEntries
         }
@@ -94,9 +100,18 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
         {$0.staticDat.pid > $1.staticDat.pid ? -1 : ($0.staticDat.pid == $1.staticDat.pid ? 0 : 1)}
     ]
 
+
+    // MARK: delegate methods
+
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+        if !refresh {
+            return 1
+        }
         if samples == nil {
-            return 0
+            return 1
+        }
+        if clippedSamples > 0 {
+            return samples!.count + 1
         }
         return samples!.count
     }
@@ -105,34 +120,69 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, NSTable
         tableView: NSTableView,
         objectValueForTableColumn tableColumn: NSTableColumn?,
         row: Int) -> AnyObject? {
-        if tableColumn == nil {
-            NSLog("No column given.")
-            return "<no col>"
-        }
-        if samples == nil {
-            NSLog("No process sample set for row %d", row)
-            return "<no sample>"
-        }
+            if tableColumn == nil {
+                NSLog("No column given.")
+                return "<no col>"
+            }
 
-        let psmpl: ProcessSample = samples![row]
-        switch tableColumn!.identifier {
-        case "PID":
-            return psmpl.staticDat.pid
-        case "%CPU":
-            return psmpl.cpuUsagePerc * 100
-        case "EXEC":
-            return psmpl.staticDat.exec
-        case "COMMAND":
-            return psmpl.staticDat.command
-        default:
-            NSLog("Unknown col identifier encountered: \"%@\"", tableColumn!.identifier)
-            return "<unknown id>"
-        }
+            if !refresh {
+                return makeOneLine("View refresh turned off.")
+            }
+            if samples == nil {
+                return makeOneLine("No data available.")
+            }
+            if samples!.count == row {
+                return makeOneLine("\(clippedSamples) process samples clipped.")
+            }
+
+            let psmpl: ProcessSample = samples![row]
+            switch tableColumn!.identifier {
+            case "PID":
+                return psmpl.staticDat.pid
+            case "%CPU":
+                return psmpl.cpuUsagePerc * 100
+            case "EXEC":
+                return psmpl.staticDat.exec
+            case "COMMAND":
+                return psmpl.staticDat.command
+            default:
+                NSLog("Unknown col identifier encountered: \"%@\"", tableColumn!.identifier)
+                return "<unknown id>"
+            }
+    }
+
+    func tableView(
+        tableView: FSMergedTableView,
+        spanForTableColumn tableColumn: NSTableColumn,
+        row: Int
+        ) -> Int {
+            // onelines
+            if !refresh || samples == nil || samples!.count == row {
+                return processTable!.tableColumns.first!.identifier == tableColumn.identifier ? processTable!.tableColumns.count : 0
+            }
+
+            return 1
     }
 
     func newSample(smpl: Sample) {
         sample = smpl
         processTable?.reloadData()
         return
+    }
+
+    // MARK: Helper
+
+    private func makeOneLine(value: String) -> AnyObject? {
+        let cell = makeOneLineCell()
+        cell.stringValue = value
+        return cell
+    }
+
+    private func makeOneLineCell() -> NSCell {
+        let cell = NSCell()
+        cell.alignment = .Center
+        cell.bordered = true
+        cell.backgroundStyle = .Dark
+        return cell
     }
 }
