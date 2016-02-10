@@ -126,13 +126,13 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, FSMerge
             }
 
             if !refresh {
-                return makeOneLine("View refresh turned off.")
+                return fillSharedOneLine("View refresh turned off.")
             }
             if samples == nil {
-                return makeOneLine("No data available.")
+                return fillSharedOneLine("No data available.")
             }
             if samples!.count == row {
-                return makeOneLine("\(clippedSamples) process samples clipped.")
+                return fillSharedOneLine("\(clippedSamples) processes clipped.")
             }
 
             let psmpl: ProcessSample = samples![row]
@@ -158,7 +158,8 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, FSMerge
         ) -> Int {
             // onelines
             if !refresh || samples == nil || samples!.count == row {
-                return processTable!.tableColumns.first!.identifier == tableColumn.identifier ? processTable!.tableColumns.count : 0
+                return processTable!.tableColumns.first!.identifier == tableColumn.identifier
+                    ? processTable!.tableColumns.count : 0
             }
 
             return 1
@@ -170,19 +171,31 @@ class ProcessTableViewController: NSViewController, NSTableViewDelegate, FSMerge
         return
     }
 
-    // MARK: Helper
+    // MARK: oneLine
 
+    private func createOneLine() -> NSTextFieldCell {
+        let cell = NSTextFieldCell()
+        cell.alignment = .Center
+        cell.backgroundColor = NSColor.redColor()
+        cell.textColor = NSColor.grayColor()
+        return cell
+    }
+
+    /// Creates a new object
     private func makeOneLine(value: String) -> AnyObject? {
-        let cell = makeOneLineCell()
+        let cell = createOneLine()
         cell.stringValue = value
         return cell
     }
 
-    private func makeOneLineCell() -> NSCell {
-        let cell = NSCell()
-        cell.alignment = .Center
-        cell.bordered = true
-        cell.backgroundStyle = .Dark
-        return cell
+    private var sharedOneLine: NSTextFieldCell?
+
+    /// reuses an old object, only use once each tableView refresh
+    private func fillSharedOneLine(value: String) -> AnyObject? {
+        if sharedOneLine == nil {
+            sharedOneLine = createOneLine()
+        }
+        sharedOneLine!.stringValue = value
+        return sharedOneLine
     }
 }
